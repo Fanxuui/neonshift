@@ -1,3 +1,22 @@
-# Godot 4+ specific ignores
+# Godot-specific
+.import/
+.export/
 .godot/
-/android/
+# (Godot 4.0 will automatically generates .godot folder)
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# Temporary
+*.tmp
+*.log
+
+# Builds and exports
+build/
+export/
+*.exe
+*.apk
+*.zip
+*.pck
+

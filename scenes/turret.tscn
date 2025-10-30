@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://cu68dkhnrithv"]
+
+[ext_resource type="PackedScene" uid="uid://cuy0lgtl7esbu" path="res://scenes/bullet.tscn" id="2_pp6j5"]
+[ext_resource type="Texture2D" uid="uid://c8pkt8a1rsmae" path="res://assets/turret_art.png" id="3_6fjxm"]
+[ext_resource type="Texture2D" uid="uid://k7nw3rjwj7bd" path="res://assets/flame_icone.png" id="4_mqfwu"]
+[ext_resource type="Script" uid="uid://dr5c33baboef7" path="res://scripts/turret.gd" id="5_6fjxm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d447f"]
+size = Vector2(24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3h054"]
+atlas = ExtResource("4_mqfwu")
+region = Rect2(348, 0, 337, 1024)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7vwir"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3h054")
+}],
+"loop": true,
+"name": &"fire",
+"speed": 5.0
+}]
+
+[node name="turret" type="CharacterBody2D"]
+script = ExtResource("5_6fjxm")
+bullet_scene = ExtResource("2_pp6j5")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, 24)
+shape = SubResource("RectangleShape2D_d447f")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(2, 24)
+scale = Vector2(0.0351562, 0.0371093)
+texture = ExtResource("3_6fjxm")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(2.99998, -3)
+scale = Vector2(0.0474777, 0.0390625)
+sprite_frames = SubResource("SpriteFrames_7vwir")
+animation = &"fire"
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

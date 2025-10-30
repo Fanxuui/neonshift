@@ -1,0 +1,78 @@
+[gd_scene load_steps=10 format=3 uid="uid://dcst2x8q5jyg2"]
+
+[ext_resource type="Script" uid="uid://dao2qaqnl2je1" path="res://scripts/breakable_door.gd" id="1_syr6t"]
+[ext_resource type="Texture2D" uid="uid://dpxsbqufqygq5" path="res://assets/door_frame.png" id="2_nu5w7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b8f3s"]
+size = Vector2(22, 62)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kv2jk"]
+size = Vector2(22, 62)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s7ell"]
+atlas = ExtResource("2_nu5w7")
+region = Rect2(194, 375, 134, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wmt2a"]
+atlas = ExtResource("2_nu5w7")
+region = Rect2(462, 375, 134, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2xrok"]
+atlas = ExtResource("2_nu5w7")
+region = Rect2(680, 374, 170, 325)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ttfl1"]
+atlas = ExtResource("2_nu5w7")
+region = Rect2(1190, 374, 170, 325)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5i2a2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s7ell")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wmt2a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2xrok")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ttfl1")
+}],
+"loop": true,
+"name": &"breaking",
+"speed": 5.0
+}]
+
+[node name="breakable_door" type="StaticBody2D"]
+scale = Vector2(0.5, 0.5)
+collision_mask = 2
+script = ExtResource("1_syr6t")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_right = 24.0
+offset_bottom = 64.0
+color = Color(0.408529, 0.294967, 0.199878, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(11, 33)
+shape = SubResource("RectangleShape2D_b8f3s")
+
+[node name="hitbox" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(11, 33)
+shape = SubResource("RectangleShape2D_kv2jk")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(12, 32)
+scale = Vector2(0.179104, 0.197531)
+sprite_frames = SubResource("SpriteFrames_5i2a2")
+animation = &"breaking"
+frame = 1
+frame_progress = 0.012246
+
+[connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]

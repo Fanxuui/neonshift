@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://b527fhetek5hs"]
+
+[ext_resource type="Script" uid="uid://c1papg2xddax6" path="res://scripts/sliding_door.gd" id="1_ewgdl"]
+[ext_resource type="Texture2D" uid="uid://cv6lnsf12w2gu" path="res://assets/industrial.v2.png" id="2_6wduj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4n0mk"]
+size = Vector2(16, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8uarx"]
+size = Vector2(16, 64)
+
+[node name="sliding_door" type="StaticBody2D"]
+scale = Vector2(1.37959, 0.77423)
+script = ExtResource("1_ewgdl")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1.90735e-06, -1.43051e-06)
+scale = Vector2(0.177778, 2.46154)
+texture = ExtResource("2_6wduj")
+region_enabled = true
+region_rect = Rect2(66.9247, 99.1252, 90.3288, 26.2584)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_4n0mk")
+
+[node name="hit_box" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hit_box"]
+shape = SubResource("RectangleShape2D_8uarx")
+
+[connection signal="area_entered" from="hit_box" to="." method="_on_hit_box_area_entered"]

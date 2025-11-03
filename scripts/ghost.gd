@@ -53,6 +53,9 @@ func _physics_process(delta):
 		position.x += direction * speed * delta
 	
 func take_damage() -> void:
+	queue_free()
+	
+func slow_down() -> void:
 	_is_slowed = true
 	await get_tree().create_timer(1.0).timeout
 	_is_slowed = false
@@ -61,11 +64,6 @@ func die() -> void:
 	queue_free()
 
 
-func _on_killzone_area_entered(area: Area2D) -> void:
-	if area.name == "sword":
-		queue_free()
-
-
-
-func _on_killzone_body_entered(body: Node2D) -> void:
-	pass # Replace with function body.
+func _on_hitbox_area_entered(area: Area2D) -> void:
+	if area.is_in_group("playerhurtbox"):
+		area.get_parent().die()

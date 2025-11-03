@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4ftn3syndan8"]
+
+[ext_resource type="Script" uid="uid://ynvobq5dmcm7" path="res://scripts/swordhitbox.gd" id="1_0vdsg"]
+
+[node name="SwordHitbox" type="Area2D"]
+script = ExtResource("1_0vdsg")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

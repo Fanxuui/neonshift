@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dv1ikq1wucki2"]
+[gd_scene load_steps=15 format=3 uid="uid://dv1ikq1wucki2"]
 
 [ext_resource type="Script" uid="uid://bjpy5d3haavp3" path="res://scripts/ghost.gd" id="1_fj7t6"]
 [ext_resource type="Texture2D" uid="uid://cv6lnsf12w2gu" path="res://assets/industrial.v2.png" id="1_tykv7"]
@@ -67,6 +67,9 @@ size = Vector2(14, 13)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bbnym"]
 size = Vector2(14, 13)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5mfnq"]
+size = Vector2(14, 13)
+
 [node name="ghost" type="CharacterBody2D"]
 collision_layer = 4
 script = ExtResource("1_fj7t6")
@@ -81,10 +84,12 @@ autoplay = "idle"
 position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_veat2")
 
-[node name="Killzone" parent="." instance=ExtResource("2_l5lq6")]
-collision_mask = 2
+[node name="Hitbox" parent="." instance=ExtResource("2_l5lq6")]
+collision_layer = 16
+collision_mask = 32
+script = null
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_bbnym")
 
@@ -99,4 +104,11 @@ target_position = Vector2(0, 8)
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
-[connection signal="area_entered" from="Killzone" to="." method="_on_killzone_area_entered"]
+[node name="Hurtbox" type="Area2D" parent="." groups=["enemy_hurtbox"]]
+collision_layer = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_5mfnq")
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

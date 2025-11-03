@@ -22,7 +22,7 @@ func _on_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
 		body.die()  # Call the player's die function
 	if body.is_in_group("enemies"):
-		body.take_damage()
+		body.slow_down()
 	queue_free()
 		
 

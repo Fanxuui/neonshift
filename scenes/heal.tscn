@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://bdvq0c4ikterg"]
+
+[ext_resource type="Script" uid="uid://c6amr2rd67050" path="res://scenes/heal.gd" id="1_8vb04"]
+[ext_resource type="Texture2D" uid="uid://cv6lnsf12w2gu" path="res://assets/industrial.v2.png" id="2_5fh3v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f7att"]
+size = Vector2(6, 7)
+
+[node name="bullet" type="Area2D"]
+collision_layer = 8
+collision_mask = 7
+script = ExtResource("1_8vb04")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_f7att")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_5fh3v")
+region_enabled = true
+region_rect = Rect2(176, 256, 5, 5)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 7.579000000000001
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

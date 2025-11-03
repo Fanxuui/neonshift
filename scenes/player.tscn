@@ -438,12 +438,12 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fjrip"]
-size = Vector2(56, 23)
+size = Vector2(57, 44)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ua5cf"]
 size = Vector2(18, 29)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 2
 script = ExtResource("1_k411p")
 bullet_scene = ExtResource("2_qhqgy")
@@ -468,7 +468,7 @@ collision_mask = 64
 monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sword/SwordHitbox"]
-position = Vector2(-4, -3.5)
+position = Vector2(15.5, -2)
 shape = SubResource("RectangleShape2D_fjrip")
 
 [node name="Hurtbox" type="Area2D" parent="." groups=["playerhurtbox"]]

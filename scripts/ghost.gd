@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 const REGULAR_SPEED := 50.0
-const CHASING_SPEED := 100.0
+const CHASING_SPEED := 75.0
 const REDUCED_SPEED := 20.0
 const CHASE_RANGE := 100.0
 const STOP_RANGE := 5.0
@@ -9,6 +9,7 @@ const STOP_RANGE := 5.0
 @export var speed := REGULAR_SPEED
 var player: Node2D
 var direction = 1
+var health = 1
 var _is_slowed := false
 
 @onready var ray_cast_right: RayCast2D = $RayCastRight
@@ -19,8 +20,11 @@ var _is_slowed := false
 
 func _ready():
 	add_to_group("enemies")
-	player = get_parent().get_parent().get_node("Player")
-
+	var players = get_tree().get_nodes_in_group("player")
+	if players.size() > 0:
+		player = players[0] as Node2D
+	else:
+		player = null
 func _physics_process(delta):
 	if player:
 		var reachable := false
@@ -28,7 +32,7 @@ func _physics_process(delta):
 		var dist := absf(dx)
 		if dist <= CHASE_RANGE:
 			navigation_agent.target_position = player.global_position
-			reachable = navigation_agent.is_target_reachable()
+			reachable = true
 		if reachable:
 			if _is_slowed:
 				speed = REDUCED_SPEED
@@ -66,4 +70,4 @@ func die() -> void:
 
 func _on_hitbox_area_entered(area: Area2D) -> void:
 	if area.is_in_group("playerhurtbox"):
-		area.get_parent().die()
+		area.get_parent().take_damage()

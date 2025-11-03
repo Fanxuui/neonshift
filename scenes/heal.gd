@@ -7,7 +7,7 @@ var direction := Vector2.ZERO
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	add_to_group("bullets")
+	add_to_group("healitem")
 	timer.start()
 	$Sprite2D.modulate = Color(0, 2, 0)
 
@@ -23,10 +23,9 @@ func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("turrets"):
 		body.slow_down()
 	if body.name == "Player":
-		body.die()  # Call the player's die function
-	if body.is_in_group("enemies"):
-		body.slow_down()
-	queue_free()
+		body.heal()
+		print(body.health)  # Call the player's die function
+		queue_free()
 		
 
 

@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 const SPEED = 140.0
 const JUMP_VELOCITY = -300.0
+const MAX_HEALTH = 5
 
 @export var bullet_scene: PackedScene
 @onready var timer: Timer = $Timer
@@ -13,9 +14,11 @@ enum PlayerState { IDLE, MOVE, JUMP, SWORD, GUN, DIE }
 var state: PlayerState = PlayerState.IDLE
 var anim_locked: bool = false
 
+
 enum Weapon { GUN, SWORD }
 var current_weapon = Weapon.SWORD
 var is_attacking = false
+var health = MAX_HEALTH
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -24,6 +27,17 @@ var spawn_position := Vector2.ZERO
 
 func _ready():
 	spawn_position = global_position
+	add_to_group("player")
+	
+func take_damage():
+	health -= 1
+	print(health)
+	if health <= 0:
+		die()
+		
+func heal():
+	health += 1
+	
 
 func die():
 	anim_locked = true
@@ -84,6 +98,10 @@ func _physics_process(delta: float) -> void:
 		$AnimatedSprite2D.play("slash_sword")
 		sword_hitbox.start_attack()
 		
+	else:
+		sword_hitbox.end_attack()
+
+
 	_update_animation()
 
 func _update_animation() -> void:

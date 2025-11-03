@@ -17,3 +17,7 @@ func _on_area_entered(area):
 	if enemy == null: return
 	if enemy.has_method("take_damage"):
 		enemy.take_damage()
+	if enemy.has_method("apply_knockback"):
+		enemy.apply_knockback(area.get_parent().global_position)
+	if enemy.health != null:
+		print(enemy.health)

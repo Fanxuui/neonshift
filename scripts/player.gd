@@ -2,22 +2,19 @@ extends CharacterBody2D
 
 const SPEED = 140.0
 const JUMP_VELOCITY = -300.0
-const MAX_HEALTH = 5
+const MAX_HEALTH = 3
 
 @export var bullet_scene: PackedScene
-@onready var timer: Timer = $Timer
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var sword_hitbox: Area2D = $Sword/SwordHitbox
 
-enum PlayerState { IDLE, MOVE, JUMP, SWORD, GUN, DIE }
+enum PlayerState { IDLE, MOVE, JUMP, SWORD, GUN, DIE, HURT }
 
 var state: PlayerState = PlayerState.IDLE
 var anim_locked: bool = false
 
-
 enum Weapon { GUN, SWORD }
 var current_weapon = Weapon.SWORD
-var is_attacking = false
 var health = MAX_HEALTH
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -30,27 +27,33 @@ func _ready():
 	add_to_group("player")
 	
 func take_damage():
-	health -= 1
 	print(health)
-	if health <= 0:
+	if health == 1:
 		die()
+		return
+	health -= 1
+	anim_locked = true
+	state = PlayerState.HURT
+	_update_animation()
+
 		
 func heal():
 	health += 1
 	
 
 func die():
+	print("die")
 	anim_locked = true
 	state = PlayerState.DIE
-	
-func _physics_process(delta: float) -> void:
-	# Add the gravity.
-	if not is_on_floor():
-		velocity.y += gravity * delta
+	_update_animation()
 
+func handle_movement_input() -> void:
+	
+	if state in [PlayerState.SWORD, PlayerState.GUN, PlayerState.HURT, PlayerState.DIE]:
+		return
+	
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
-		anim_locked = true
 		state = PlayerState.JUMP
 		velocity.y = JUMP_VELOCITY
 
@@ -63,12 +66,47 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		
 	if not anim_locked:
-		if velocity.x != 0:
-			state = PlayerState.MOVE
+		if not is_on_floor():
+			state = PlayerState.JUMP
 		else:
-			state = PlayerState.IDLE
+			if velocity.x != 0:
+				state = PlayerState.MOVE
+			else:
+				state = PlayerState.IDLE
 		
 
+func shoot_bullet() -> void:
+	var bullet = bullet_scene.instantiate()
+	if facing_dir.x < 0:
+		bullet.global_position = global_position + facing_dir * 30 + Vector2(0, -3)
+	else:
+		bullet.global_position = global_position + facing_dir * 30 + Vector2(0, -3)
+	bullet.direction = facing_dir.normalized()
+	get_tree().current_scene.add_child(bullet)
+
+func handle_attack_input() -> void:
+	if Input.is_action_just_pressed("attack"): 
+		if state in [PlayerState.SWORD, PlayerState.GUN, PlayerState.HURT, PlayerState.DIE]:
+			return
+		if current_weapon == Weapon.GUN:
+			state = PlayerState.GUN
+			anim_locked = true
+			$AnimationPlayer.play("shoot")
+			
+		if current_weapon == Weapon.SWORD:
+			state = PlayerState.SWORD
+			anim_locked = true
+			sword_hitbox.start_attack()
+
+func _physics_process(delta: float) -> void:
+		
+	# Add the gravity.
+	if not is_on_floor():
+		velocity.y += gravity * delta
+	if anim_locked:
+		move_and_slide()
+		return
+	handle_movement_input()
 	move_and_slide()
 	
 	if Input.is_action_pressed("move_right"):
@@ -80,29 +118,10 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("toggle_weapon"):
 		current_weapon = Weapon.GUN if current_weapon == Weapon.SWORD else Weapon.SWORD
-	
-	if current_weapon == Weapon.GUN and Input.is_action_just_pressed("attack"): 
-		state = PlayerState.GUN
-		anim_locked = true
-		var bullet = bullet_scene.instantiate()
-		if facing_dir.x < 0:		
-			bullet.global_position = global_position + facing_dir * 23		
-		else:
-			bullet.global_position = global_position + facing_dir * 13
-		bullet.direction = facing_dir.normalized()
-		get_tree().current_scene.add_child(bullet)
 
-	if current_weapon == Weapon.SWORD and Input.is_action_just_pressed("attack"):
-		state = PlayerState.SWORD
-		anim_locked = true
-		$AnimatedSprite2D.play("slash_sword")
-		sword_hitbox.start_attack()
-		
-	else:
-		sword_hitbox.end_attack()
-
-
+	handle_attack_input()
 	_update_animation()
+
 
 func _update_animation() -> void:
 	match state:
@@ -116,11 +135,15 @@ func _update_animation() -> void:
 			if $AnimatedSprite2D.animation != "jump":
 				$AnimatedSprite2D.play("jump")
 		PlayerState.SWORD:
+			print("play animation")
 			if $AnimatedSprite2D.animation != "slash_sword":
 				$AnimatedSprite2D.play("slash_sword")
 		PlayerState.GUN:
 			if $AnimatedSprite2D.animation != "slash_gun":
 				$AnimatedSprite2D.play("slash_gun")
+		PlayerState.HURT:
+			if $AnimatedSprite2D.animation != "get_hit":
+				$AnimatedSprite2D.play("get_hit")
 		PlayerState.DIE:
 			if $AnimatedSprite2D.animation != "death":
 				$AnimatedSprite2D.play("death")
@@ -130,13 +153,16 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 	if $AnimatedSprite2D.animation == "slash_sword":
 		anim_locked = false
 		sword_hitbox.end_attack()
-		
-	if $AnimatedSprite2D.animation == "slash_gun" or "jump":
+	elif $AnimatedSprite2D.animation == "slash_gun":
 		anim_locked = false
-	
-	if $AnimatedSprite2D.animation == "death":
+	elif $AnimatedSprite2D.animation == "jump":
+		anim_locked = false
+	elif $AnimatedSprite2D.animation == "get_hit":
+		anim_locked = false
+	elif $AnimatedSprite2D.animation == "death":
 		anim_locked = false
 		global_position = spawn_position
+		health = MAX_HEALTH
 		
 	var dir = Input.get_axis("move_left", "move_right")
 	if dir != 0:

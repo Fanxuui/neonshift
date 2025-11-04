@@ -1,11 +1,10 @@
-[gd_scene load_steps=37 format=4 uid="uid://en3vqdkwnnio"]
+[gd_scene load_steps=36 format=4 uid="uid://en3vqdkwnnio"]
 
 [ext_resource type="Texture2D" uid="uid://cv6lnsf12w2gu" path="res://assets/industrial.v2.png" id="1_jv3i5"]
 [ext_resource type="PackedScene" uid="uid://g51wsrys1hsp" path="res://scenes/killzone.tscn" id="2_ll25s"]
 [ext_resource type="PackedScene" uid="uid://cq2cov84cq0s1" path="res://scenes/player.tscn" id="3_sk60w"]
 [ext_resource type="PackedScene" uid="uid://c7ir68rrj5e6j" path="res://scenes/gun.tscn" id="4_om4r1"]
 [ext_resource type="PackedScene" uid="uid://cu68dkhnrithv" path="res://scenes/turret.tscn" id="5_171oe"]
-[ext_resource type="PackedScene" uid="uid://dongws64nfc2n" path="res://scenes/sword_icon.tscn" id="6_e8wc3"]
 [ext_resource type="PackedScene" uid="uid://br42jee0jyht4" path="res://scenes/exit.tscn" id="7_ypn4w"]
 [ext_resource type="FontFile" uid="uid://bj0h4rfw7vukl" path="res://assets/fonts/PixelOperator8.ttf" id="8_vc1y7"]
 [ext_resource type="PackedScene" uid="uid://dv1ikq1wucki2" path="res://scenes/ghost.tscn" id="9_44yx7"]
@@ -1059,7 +1058,7 @@ position = Vector2(-2, 34)
 shape = SubResource("WorldBoundaryShape2D_ya4ey")
 
 [node name="Player" parent="." instance=ExtResource("3_sk60w")]
-position = Vector2(-256, 12)
+position = Vector2(-252, 27)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(68, -15)
@@ -1074,11 +1073,7 @@ position_smoothing_enabled = true
 position = Vector2(211, 33)
 
 [node name="turret" parent="." instance=ExtResource("5_171oe")]
-position = Vector2(488, 5)
-
-[node name="sword_icon" parent="." instance=ExtResource("6_e8wc3")]
-position = Vector2(630, 18)
-collision_mask = 2
+position = Vector2(514, 6)
 
 [node name="exit" parent="." instance=ExtResource("7_ypn4w")]
 position = Vector2(945, 100)
@@ -1126,4 +1121,4 @@ text = "Toggle with \"T\""
 [node name="Ghost" type="Node" parent="."]
 
 [node name="ghost" parent="Ghost" instance=ExtResource("9_44yx7")]
-position = Vector2(827, 102)
+position = Vector2(828, 110)

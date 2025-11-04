@@ -9,7 +9,6 @@ var direction := Vector2.ZERO
 func _ready() -> void:
 	add_to_group("bullets")
 	timer.start()
-	$Sprite2D.modulate = Color(0, 2, 0)
 
 	
 

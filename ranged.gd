@@ -8,6 +8,8 @@ const CHASE_RANGE := 100.0
 const SHOOT_RANGE := 120.0
 const STOP_RANGE := 5.0
 const SHOOT_COOLDOWN := 1.5
+const BULLET_SLOW_MULT := 0.1
+const BULLET_BASE_SPEED := 300.0
 
 @export var speed := REGULAR_SPEED
 @export var bullet_scene: PackedScene
@@ -26,7 +28,6 @@ var can_shoot := true
 
 func _ready():
 	add_to_group("enemies")
-	add_to_group("turrets")
 	var players = get_tree().get_nodes_in_group("player")
 	if players.size() > 0:
 		player = players[0] as Node2D
@@ -76,10 +77,15 @@ func _physics_process(delta):
 func _shoot_projectile() -> void:
 	can_shoot = false
 	var bullet = bullet_scene.instantiate()
-	
+	var shoot_dir = (player.global_position - global_position).normalized()
 	var offset := Vector2(direction * 10, -7)
 	bullet.global_position = global_position + offset
-	bullet.direction = Vector2(direction, 0)
+	bullet.direction = shoot_dir
+	bullet.rotation = shoot_dir.angle()
+	if _is_slowed:
+		bullet.speed = BULLET_BASE_SPEED * BULLET_SLOW_MULT
+	else:
+		bullet.speed = BULLET_BASE_SPEED
 	
 	get_tree().current_scene.add_child(bullet)
 	
@@ -90,6 +96,7 @@ func take_damage() -> void:
 	queue_free()
 	
 func slow_down() -> void:
+	print("slow")
 	_is_slowed = true
 	var cur_speed = speed
 	speed = REDUCED_SPEED
@@ -101,6 +108,6 @@ func die() -> void:
 	queue_free()
 
 
-func _on_hitbox_area_entered(area: Area2D) -> void:
-	if area.is_in_group("playerhurtbox"):
-		area.get_parent().take_damage()
+#func _on_hitbox_area_entered(area: Area2D) -> void:
+	#if area.is_in_group("playerhurtbox"):
+		#area.get_parent().take_damage(1)

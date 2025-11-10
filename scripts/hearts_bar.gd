@@ -17,7 +17,7 @@ func _create_hearts() -> void:
 	for i in range(max_health):
 		var h: AnimatedSprite2D = heart_scene.instantiate()
 		add_child(h)
-		h.position = Vector2(i * 100, 0)
+		h.position = Vector2(i * 80, 0)
 		hearts.append(h)
 
 func _on_health_changed(current: int, max: int) -> void:

@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=4 uid="uid://wwbqbws515pt"]
+[gd_scene load_steps=14 format=4 uid="uid://wwbqbws515pt"]
 
 [ext_resource type="Texture2D" uid="uid://c2u3o2r05frjl" path="res://assets/Sidescroller Shooter - Central City/Background/Base Color.png" id="1_sugp2"]
 [ext_resource type="Texture2D" uid="uid://6qg8u82gy61f" path="res://assets/Sidescroller Shooter - Central City/Background/Background Props.png" id="2_jyhfs"]
 [ext_resource type="Texture2D" uid="uid://5rnu65uqudbm" path="res://assets/Sidescroller Shooter - Central City/Assets/Tiles.png" id="3_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://cq2cov84cq0s1" path="res://scenes/player.tscn" id="4_171oe"]
+[ext_resource type="PackedScene" uid="uid://s5e3vf4tt5bi" path="res://scenes/flying_enemy.tscn" id="6_tefeu"]
 [ext_resource type="PackedScene" uid="uid://dv1ikq1wucki2" path="res://scenes/ghost.tscn" id="10_kkuia"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tefeu"]
@@ -1015,7 +1016,7 @@ texture = ExtResource("3_tbgi4")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_85g3d")
 
-[node name="Level0" type="Node2D"]
+[node name="Level1" type="Node2D"]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 position = Vector2(0, -2)
@@ -1045,3 +1046,5 @@ position = Vector2(-336, 75)
 
 [node name="ghost2" parent="Enemy" instance=ExtResource("10_kkuia")]
 position = Vector2(42, 61)
+
+[node name="ghost" parent="Enemy" instance=ExtResource("6_tefeu")]

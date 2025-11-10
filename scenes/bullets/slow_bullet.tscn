@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://dljch0x8vxygn"]
+
+[ext_resource type="PackedScene" uid="uid://cuy0lgtl7esbu" path="res://scenes/bullets/bullet_base.tscn" id="1_8vwuq"]
+[ext_resource type="Script" uid="uid://d31hs1gq5splo" path="res://scripts/slow_bullet.gd" id="2_jt7hq"]
+
+[node name="Slow Bullet" instance=ExtResource("1_8vwuq")]
+script = ExtResource("2_jt7hq")

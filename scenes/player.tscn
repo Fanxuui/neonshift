@@ -1,7 +1,7 @@
 [gd_scene load_steps=76 format=3 uid="uid://cq2cov84cq0s1"]
 
 [ext_resource type="Script" uid="uid://dxigrpekjubl5" path="res://scripts/player.gd" id="1_k411p"]
-[ext_resource type="PackedScene" uid="uid://cuy0lgtl7esbu" path="res://scenes/bullet.tscn" id="2_qhqgy"]
+[ext_resource type="PackedScene" uid="uid://dljch0x8vxygn" path="res://scenes/bullets/slow_bullet.tscn" id="2_ur7pv"]
 [ext_resource type="PackedScene" uid="uid://b4ftn3syndan8" path="res://scenes/hitbox.tscn" id="3_dqkch"]
 [ext_resource type="Texture2D" uid="uid://daxcw6lm2y1ii" path="res://assets/Striker/spr_StrikerDeath_strip.png" id="3_smehm"]
 [ext_resource type="Texture2D" uid="uid://ceynclxlw7cgv" path="res://assets/Striker/spr_StrikerIdle_strip.png" id="4_fjrip"]
@@ -502,7 +502,7 @@ _data = {
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 2
 script = ExtResource("1_k411p")
-bullet_scene = ExtResource("2_qhqgy")
+bullet_scene = ExtResource("2_ur7pv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-2, 4)

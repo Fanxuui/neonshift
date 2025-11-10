@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=4 uid="uid://wwbqbws515pt"]
+[gd_scene load_steps=34 format=4 uid="uid://wwbqbws515pt"]
 
 [ext_resource type="Texture2D" uid="uid://c2u3o2r05frjl" path="res://assets/Sidescroller Shooter - Central City/Background/Base Color.png" id="1_sugp2"]
 [ext_resource type="Texture2D" uid="uid://6qg8u82gy61f" path="res://assets/Sidescroller Shooter - Central City/Background/Background Props.png" id="2_jyhfs"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://d4mir546kcf8i" path="res://assets/Elements-01.png" id="8_85g3d"]
 [ext_resource type="Script" uid="uid://dicwbliei6u8y" path="res://scripts/game_manager.gd" id="8_ya4ey"]
 [ext_resource type="Script" uid="uid://chdbeiao8ehn7" path="res://scripts/mounse_indicator.gd" id="9_choun"]
+[ext_resource type="Script" uid="uid://da3ukx7vc1qjo" path="res://scripts/fade_rect.gd" id="9_jkv2x"]
 [ext_resource type="PackedScene" uid="uid://dwvpu2l4olj12" path="res://scenes/shooter.tscn" id="12_eb6dy"]
 [ext_resource type="PackedScene" uid="uid://8if0lqhe35ko" path="res://scenes/platform.tscn" id="14_jbj1t"]
 
@@ -1318,6 +1319,15 @@ position_smoothing_enabled = true
 [node name="HeartsBar" parent="CanvasLayer" instance=ExtResource("6_tefeu")]
 position = Vector2(127, 67)
 
+[node name="FadeRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+script = ExtResource("9_jkv2x")
+
 [node name="GameManager" type="Node" parent="."]
 script = ExtResource("8_ya4ey")
 
@@ -1359,7 +1369,13 @@ position = Vector2(211, 63)
 [node name="Ranged2" parent="Enemies" instance=ExtResource("7_o6xl0")]
 position = Vector2(430, 191)
 
-[node name="ranged" parent="Enemies" instance=ExtResource("12_eb6dy")]
+[node name="Shooter" parent="Enemies" instance=ExtResource("12_eb6dy")]
 position = Vector2(1146, 28)
+
+[node name="Ranged3" parent="Enemies" instance=ExtResource("7_o6xl0")]
+position = Vector2(986, 127)
+
+[node name="Ranged4" parent="Enemies" instance=ExtResource("7_o6xl0")]
+position = Vector2(1123, 127)
 
 [connection signal="body_entered" from="BoundryWalls/BottomWall" to="Player" method="_on_bottom_wall_body_entered"]

@@ -1,8 +1,11 @@
 extends CharacterBody2D
 
+signal health_changed(current)
+
 const SPEED = 140.0
 const JUMP_VELOCITY = -300.0
 const MAX_HEALTH = 3
+@onready var game_manager: Node = $"../GameManager"
 const MAX_JUMPS = 2
 
 
@@ -18,7 +21,7 @@ var anim_locked: bool = false
 
 enum Weapon { GUN, SWORD }
 var current_weapon = Weapon.SWORD
-var health = MAX_HEALTH
+var health = GameState.current_health
 var jump_count = 0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -34,11 +37,11 @@ func _ready():
 	add_to_group("player")
 	
 func take_damage():
-	print(health)
-	if health == 1:
+	print(GameState.current_health)
+	GameState.damage(1)
+	if GameState.current_health <= 0:
 		die()
 		return
-	health -= 1
 	anim_locked = true
 	state = PlayerState.HURT
 	_update_animation()
@@ -46,6 +49,7 @@ func take_damage():
 		
 func heal():
 	health += 1
+	emit_signal("health_changed", health)
 	
 
 func die():
@@ -87,11 +91,14 @@ func handle_movement_input() -> void:
 
 func shoot_bullet() -> void:
 	var bullet = bullet_scene.instantiate()
+	var mouse_pos: Vector2 = get_global_mouse_position()
+	var shoot_dir = (mouse_pos - global_position).normalized()
 	if facing_dir.x < 0:
-		bullet.global_position = global_position + facing_dir * 30 + Vector2(0, -3)
+		bullet.global_position = global_position + shoot_dir * 30 + Vector2(0, -3)
 	else:
-		bullet.global_position = global_position + facing_dir * 30 + Vector2(0, -3)
-	bullet.direction = facing_dir.normalized()
+		bullet.global_position = global_position + shoot_dir * 30 + Vector2(0, -3)
+	bullet.direction = shoot_dir
+	bullet.rotation = shoot_dir.angle()
 	get_tree().current_scene.add_child(bullet)
 
 func handle_attack_input() -> void:
@@ -109,7 +116,10 @@ func handle_attack_input() -> void:
 			sword_hitbox.start_attack()
 
 func _physics_process(delta: float) -> void:
-		
+	if Input.is_action_just_pressed("ui_accept"):
+		take_damage()
+	if Input.is_action_just_pressed("ui_cancel"):
+		heal()
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
@@ -184,8 +194,8 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 		anim_locked = false
 	elif $AnimatedSprite2D.animation == "death":
 		anim_locked = false
-		global_position = spawn_position
-		health = MAX_HEALTH
+		game_manager.restart_run()
+		
 		
 	var dir = Input.get_axis("move_left", "move_right")
 	if dir != 0:

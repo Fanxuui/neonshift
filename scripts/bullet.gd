@@ -22,12 +22,15 @@ func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("turrets"):
 		body.slow_down()
 	if body.name == "Player":
-		body.die()  # Call the player's die function
+		body.take_damage()  # Call the player's die function
 	if body.is_in_group("enemies"):
 		body.slow_down()
 	queue_free()
 		
 
+func _on_hitbox_area_entered(area: Area2D) -> void:
+	if area.is_in_group("playerhurtbox"):
+		area.get_parent().take_damage()
 
 func _on_timer_timeout() -> void:
 	queue_free()

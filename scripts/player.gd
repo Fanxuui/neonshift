@@ -36,7 +36,8 @@ func _ready():
 	
 func take_damage(damage: int):
 	print(GameState.current_health)
-	GameState.damage(damage)
+	if GameState.current_health > 0:
+		GameState.damage(damage)
 	if GameState.current_health <= 0:
 		die()
 		return
@@ -169,6 +170,9 @@ func _update_animation() -> void:
 				$AnimatedSprite2D.play("get_hit")
 		PlayerState.DIE:
 			if $AnimatedSprite2D.animation != "death":
+				Engine.time_scale = 0.5
+				await get_tree().create_timer(1, false, true).timeout
+				Engine.time_scale = 1.0
 				$AnimatedSprite2D.play("death")
 
 func _on_animated_sprite_2d_animation_finished() -> void:
@@ -183,10 +187,6 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 	elif $AnimatedSprite2D.animation == "get_hit":
 		anim_locked = false
 	elif $AnimatedSprite2D.animation == "death":
-		anim_locked = false
-		Engine.time_scale = 0.2
-		await get_tree().create_timer(0.6, false, true).timeout
-		Engine.time_scale = 1.0
 		game_manager.restart_run()
 		
 		
@@ -198,7 +198,11 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 
 
 func _on_bottom_wall_body_entered(body: Node2D) -> void:
+	death()
+	
+func death() -> void:
 	Engine.time_scale = 0.2
 	await get_tree().create_timer(0.6, false, true).timeout
 	Engine.time_scale = 1.0
 	game_manager.restart_run()
+	

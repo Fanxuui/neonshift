@@ -1227,9 +1227,11 @@ use_parent_material = true
 tile_set = SubResource("TileSet_5vw27")
 
 [node name="BG0" type="TileMapLayer" parent="TileMapLayer"]
+visible = false
 tile_set = SubResource("TileSet_ya4ey")
 
 [node name="bg0" type="Sprite2D" parent="TileMapLayer/BG0"]
+visible = false
 position = Vector2(311, 83.00001)
 scale = Vector2(1.860465, 1.8604652)
 texture = ExtResource("3_o6xl0")

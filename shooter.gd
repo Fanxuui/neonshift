@@ -16,6 +16,7 @@ var can_shoot := true
 var _is_slowed := false
 
 @export var bullet_scene: PackedScene = preload("res://scenes/bullet.tscn")
+@export var heal_drop_scene: PackedScene = preload("res://scenes/heal.tscn")
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
@@ -80,4 +81,16 @@ func slow_down() -> void:
 func take_damage():
 	health -= 1
 	if health <= 0:
-		queue_free()
+		die()
+
+
+func die() -> void:
+	if heal_drop_scene:
+		var heal_item = heal_drop_scene.instantiate()
+		get_parent().add_child(heal_item)
+		heal_item.global_position = global_position + Vector2(0, -16)
+	queue_free()
+
+func _on_hitbox_area_entered(area: Area2D) -> void:
+	if area.is_in_group("playerhurtbox"):
+		area.get_parent().take_damage()

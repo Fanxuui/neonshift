@@ -1,9 +1,12 @@
+[gd_scene load_steps=16 format=4 uid="uid://wwbqbws515pt"]
 [gd_scene load_steps=13 format=4 uid="uid://wwbqbws515pt"]
 
 [ext_resource type="Texture2D" uid="uid://c2u3o2r05frjl" path="res://assets/Sidescroller Shooter - Central City/Background/Base Color.png" id="1_sugp2"]
 [ext_resource type="Texture2D" uid="uid://6qg8u82gy61f" path="res://assets/Sidescroller Shooter - Central City/Background/Background Props.png" id="2_jyhfs"]
 [ext_resource type="Texture2D" uid="uid://5rnu65uqudbm" path="res://assets/Sidescroller Shooter - Central City/Assets/Tiles.png" id="3_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://cq2cov84cq0s1" path="res://scenes/player.tscn" id="4_171oe"]
+[ext_resource type="PackedScene" uid="uid://bmo5lsqmaq7ps" path="res://scenes/ranged.tscn" id="7_o6xl0"]
+[ext_resource type="PackedScene" uid="uid://dwvpu2l4olj12" path="res://scenes/shooter.tscn" id="8_tipki"]
 [ext_resource type="PackedScene" uid="uid://dv1ikq1wucki2" path="res://scenes/ghost.tscn" id="10_kkuia"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tefeu"]
@@ -1036,3 +1039,10 @@ position = Vector2(-181, 45)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(10, 10)
+position = Vector2(-373, -214)
+
+[node name="ranged" parent="Enemy" instance=ExtResource("7_o6xl0")]
+position = Vector2(-58, 127)
+
+[node name="ranged2" parent="Enemy" instance=ExtResource("8_tipki")]
+position = Vector2(-108, 100)

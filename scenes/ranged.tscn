@@ -1,8 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://bmo5lsqmaq7ps"]
+[gd_scene load_steps=16 format=3 uid="uid://qslq878mwgt7"]
 
 [ext_resource type="Script" uid="uid://cu8xx5lol6c7e" path="res://ranged.gd" id="1_ihxqk"]
 [ext_resource type="Texture2D" uid="uid://cv6lnsf12w2gu" path="res://assets/industrial.v2.png" id="2_4qb3e"]
-[ext_resource type="PackedScene" uid="uid://cuy0lgtl7esbu" path="res://scenes/bullet.tscn" id="2_8akpr"]
+[ext_resource type="PackedScene" uid="uid://cuy0lgtl7esbu" path="res://scenes/bullets/bullet_base.tscn" id="2_8akpr"]
 [ext_resource type="PackedScene" uid="uid://g51wsrys1hsp" path="res://scenes/killzone.tscn" id="3_8akpr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l5lq6"]

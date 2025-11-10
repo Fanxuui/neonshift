@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 # === CONSTANTS ===
 const CHASE_SPEED := 50.0
+const REDUCED_SPEED := 20.0
 const CHASE_RANGE := 250.0
 const SHOOT_RANGE := 200.0
 const FIRE_COOLDOWN := 2.0
@@ -14,8 +15,9 @@ var player: Node2D
 var health := MAX_HEALTH
 var can_shoot := true
 var _is_slowed := false
+var speed := 0
 
-@export var bullet_scene: PackedScene = preload("res://scenes/bullet.tscn")
+@export var bullet_scene: PackedScene
 @export var heal_drop_scene: PackedScene = preload("res://scenes/heal.tscn")
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
@@ -36,15 +38,20 @@ func _physics_process(delta):
 
 	var to_player = player.global_position - global_position
 	var dist = to_player.length()
+	var dir = to_player.normalized()
 
+	
 	if dist <= CHASE_RANGE:
-		var dir = to_player.normalized()
-		velocity = dir * CHASE_SPEED
-		move_and_slide()
+		if _is_slowed:
+			speed = REDUCED_SPEED
+		else:
+			speed = CHASE_SPEED
 		animated_sprite.flip_h = dir.x < 0
 	else:
-		velocity = Vector2.ZERO
-		move_and_slide()
+		speed = 0
+	
+	velocity = dir * speed
+	move_and_slide()
 
 	if dist <= SHOOT_RANGE and can_shoot:
 		shoot_spread(to_player.normalized())
@@ -67,7 +74,7 @@ func shoot_spread(direction: Vector2):
 		bullet.direction = bullet_dir
 		bullet.speed = 300  # adjust as needed
 
-	animated_sprite.play("shoot")
+	#animated_sprite.play("shoot")
 
 	await get_tree().create_timer(FIRE_COOLDOWN).timeout
 	can_shoot = true
@@ -75,8 +82,10 @@ func shoot_spread(direction: Vector2):
 # === DAMAGE ===
 func slow_down() -> void:
 	_is_slowed = true
+	speed = REDUCED_SPEED
 	await get_tree().create_timer(1.0).timeout
 	_is_slowed = false
+	speed = CHASE_SPEED
 
 func take_damage():
 	health -= 1
@@ -93,4 +102,4 @@ func die() -> void:
 
 func _on_hitbox_area_entered(area: Area2D) -> void:
 	if area.is_in_group("playerhurtbox"):
-		area.get_parent().take_damage()
+		area.get_parent().take_damage(1)

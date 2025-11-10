@@ -36,9 +36,9 @@ func _ready():
 	spawn_position = global_position
 	add_to_group("player")
 	
-func take_damage():
+func take_damage(damage: int):
 	print(GameState.current_health)
-	GameState.damage(1)
+	GameState.damage(damage)
 	if GameState.current_health <= 0:
 		die()
 		return
@@ -116,10 +116,6 @@ func handle_attack_input() -> void:
 			sword_hitbox.start_attack()
 
 func _physics_process(delta: float) -> void:
-	if Input.is_action_just_pressed("ui_accept"):
-		take_damage()
-	if Input.is_action_just_pressed("ui_cancel"):
-		heal()
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta

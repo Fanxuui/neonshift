@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2jhg53i0j7p3"]
+
+[ext_resource type="PackedScene" uid="uid://cuy0lgtl7esbu" path="res://scenes/bullets/bullet_base.tscn" id="1_ajmct"]
+[ext_resource type="Script" uid="uid://bat2pu77ms4sc" path="res://scripts/enemy_bullet.gd" id="2_bb6co"]
+
+[node name="Enemy Bullet" instance=ExtResource("1_ajmct")]
+collision_mask = 33
+script = ExtResource("2_bb6co")
+damage = 1

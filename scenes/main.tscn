@@ -1,15 +1,15 @@
-[gd_scene load_steps=17 format=4 uid="uid://wwbqbws515pt"]
+[gd_scene load_steps=19 format=4 uid="uid://wwbqbws515pt"]
 
 [ext_resource type="Texture2D" uid="uid://c2u3o2r05frjl" path="res://assets/Sidescroller Shooter - Central City/Background/Base Color.png" id="1_sugp2"]
 [ext_resource type="Texture2D" uid="uid://6qg8u82gy61f" path="res://assets/Sidescroller Shooter - Central City/Background/Background Props.png" id="2_jyhfs"]
 [ext_resource type="Texture2D" uid="uid://5rnu65uqudbm" path="res://assets/Sidescroller Shooter - Central City/Assets/Tiles.png" id="3_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://cq2cov84cq0s1" path="res://scenes/player.tscn" id="4_171oe"]
 [ext_resource type="PackedScene" uid="uid://kdey5ga2qs2h" path="res://scenes/hearts_bar.tscn" id="6_tefeu"]
-[ext_resource type="Script" uid="uid://dicwbliei6u8y" path="res://scripts/game_manager.gd" id="7_o6xl0"]
+[ext_resource type="PackedScene" uid="uid://qslq878mwgt7" path="res://scenes/ranged.tscn" id="7_o6xl0"]
 [ext_resource type="Texture2D" uid="uid://d4mir546kcf8i" path="res://assets/Elements-01.png" id="8_85g3d"]
-[ext_resource type="Script" uid="uid://chdbeiao8ehn7" path="res://scripts/mounse_indicator.gd" id="9_choun"]
-[ext_resource type="PackedScene" uid="uid://bmo5lsqmaq7ps" path="res://scenes/ranged.tscn" id="7_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://dwvpu2l4olj12" path="res://scenes/shooter.tscn" id="8_tipki"]
+[ext_resource type="Script" uid="uid://dicwbliei6u8y" path="res://scripts/game_manager.gd" id="8_ya4ey"]
+[ext_resource type="Script" uid="uid://chdbeiao8ehn7" path="res://scripts/mounse_indicator.gd" id="9_choun"]
 [ext_resource type="PackedScene" uid="uid://dv1ikq1wucki2" path="res://scenes/ghost.tscn" id="10_kkuia"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tefeu"]
@@ -1034,7 +1034,7 @@ tile_set = SubResource("TileSet_85g3d")
 use_parent_material = true
 tile_set = SubResource("TileSet_5vw27")
 
-[node name="Mid" type="TileMapLayer" parent="TileMapLayer"]
+[node name="Mid" type="TileMapLayer" parent="TileMapLayer" groups=["terrain"]]
 tile_map_data = PackedByteArray("AADq/wsAAAAAAAAAAADr/wsAAAABAAAAAADs/wsAAAAAAAAAAADt/wsAAAABAAAAAADu/wsAAAAAAAAAAADv/wsAAAABAAAAAADw/wsAAAAAAAAAAADx/wsAAAABAAAAAADy/wsAAAAAAAAAAADz/wsAAAABAAAAAAD6/wgAAAAAAAAAAAD7/wgAAAABAAAAAAD8/wgAAAAAAAAAAAD9/wgAAAABAAAAAAD+/wgAAAAAAAAAAAD//wgAAAABAAAAAAAAAAgAAAAAAAAAAAABAAgAAAABAAAAAAACAAgAAAAAAAAAAAADAAgAAAABAAAAAAD0/wsAAAACAAcAAAD2/woAAAACAAcAAAD4/wkAAAACAAcAAADq/wUAAAAAAAAAAADr/wUAAAABAAAAAADs/wUAAAAAAAAAAADt/wUAAAABAAAAAADu/wUAAAAAAAAAAADv/wUAAAABAAAAAADw/wUAAAAAAAAAAADx/wUAAAABAAAAAADz/wcAAAAAAAAAAAD0/wcAAAABAAAAAAD+/wQAAAACAAAAAAD//wQAAAADAAAAAAAAAAQAAAAAAAAAAAABAAQAAAABAAAAAAACAAQAAAAAAAAAAAADAAQAAAABAAAAAAAEAAQAAAAAAAAAAAAFAAQAAAABAAAAAAD+/wUAAAAAAAQAAAD+/wYAAAAAAAUAAAD+/wcAAAAAAAYAAAD//wUAAAABAAQAAAD//wYAAAABAAUAAAD//wcAAAABAAYAAAAJAAUAAAAAAAQAAAAJAAYAAAAAAAUAAAAJAAcAAAAAAAYAAAAKAAUAAAABAAQAAAAKAAYAAAABAAUAAAAKAAcAAAABAAYAAAAAAAUAAAAAAAEAAAAAAAYAAAAAAAIAAAAAAAcAAAAAAAMAAAABAAUAAAABAAEAAAABAAYAAAABAAIAAAABAAcAAAABAAMAAAACAAUAAAAAAAEAAAACAAYAAAAAAAIAAAACAAcAAAAAAAMAAAADAAUAAAABAAEAAAADAAYAAAABAAIAAAADAAcAAAABAAMAAAAEAAUAAAAAAAEAAAAEAAYAAAAAAAIAAAAEAAcAAAAAAAMAAAAFAAUAAAABAAEAAAAFAAYAAAABAAIAAAAFAAcAAAABAAMAAAAGAAUAAAAAAAEAAAAGAAYAAAAAAAIAAAAGAAcAAAAAAAMAAAAHAAUAAAABAAEAAAAHAAYAAAABAAIAAAAHAAcAAAABAAMAAAAIAAUAAAAAAAEAAAAIAAYAAAAAAAIAAAAIAAcAAAAAAAMAAAAGAAQAAAAAAAAAAAAHAAQAAAABAAAAAAAIAAQAAAAAAAAAAAAJAAQAAAACAAAAAAAKAAQAAAADAAAAAAAEAAgAAAAAAAAAAAAFAAgAAAABAAAAAAAGAAgAAAAAAAAAAAAHAAgAAAABAAAAAAAIAAgAAAAAAAAAAAAJAAgAAAABAAAAAAAKAAgAAAAAAAAAAAALAAgAAAABAAAAAAAMAAgAAAAAAAAAAAANAAgAAAABAAAAAAAOAAgAAAAAAAAAAAAPAAgAAAABAAAAAAAQAAgAAAAAAAAAAAARAAgAAAABAAAAAAASAAgAAAAAAAAAAAATAAgAAAABAAAAAAAUAAgAAAAAAAAAAAAVAAgAAAABAAAAAAA=")
 tile_set = SubResource("TileSet_choun")
 
@@ -1042,16 +1042,16 @@ tile_set = SubResource("TileSet_choun")
 position = Vector2(-295, 133)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-zoom = Vector2(10, 10)
-position = Vector2(-373, -214)
+position = Vector2(-1, 3)
+zoom = Vector2(4, 4)
 
-[node name="ranged" parent="Enemy" instance=ExtResource("7_o6xl0")]
+[node name="Enemy#ranged" parent="." instance=ExtResource("7_o6xl0")]
 position = Vector2(-58, 127)
 
-[node name="ghost1" parent="Enemy" instance=ExtResource("10_kkuia")]
+[node name="Enemy#ghost1" parent="." instance=ExtResource("10_kkuia")]
 position = Vector2(-336, 75)
 
-[node name="ghost2" parent="Enemy" instance=ExtResource("10_kkuia")]
+[node name="Enemy#ghost2" parent="." instance=ExtResource("10_kkuia")]
 position = Vector2(42, 61)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -1060,7 +1060,7 @@ position = Vector2(42, 61)
 position = Vector2(127, 67)
 
 [node name="GameManager" type="Node" parent="."]
-script = ExtResource("7_o6xl0")
+script = ExtResource("8_ya4ey")
 
 [node name="MounseIndicator" type="Sprite2D" parent="."]
 scale = Vector2(0.05, 0.05)
@@ -1068,5 +1068,6 @@ texture = ExtResource("8_85g3d")
 region_enabled = true
 region_rect = Rect2(3587, 115, 540, 558)
 script = ExtResource("9_choun")
-[node name="ranged2" parent="Enemy" instance=ExtResource("8_tipki")]
+
+[node name="Enemy#ranged2" parent="." instance=ExtResource("8_tipki")]
 position = Vector2(-108, 100)

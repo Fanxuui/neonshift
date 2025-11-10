@@ -8,6 +8,8 @@
 [ext_resource type="Script" uid="uid://dicwbliei6u8y" path="res://scripts/game_manager.gd" id="7_o6xl0"]
 [ext_resource type="Texture2D" uid="uid://d4mir546kcf8i" path="res://assets/Elements-01.png" id="8_85g3d"]
 [ext_resource type="Script" uid="uid://chdbeiao8ehn7" path="res://scripts/mounse_indicator.gd" id="9_choun"]
+[ext_resource type="PackedScene" uid="uid://bmo5lsqmaq7ps" path="res://scenes/ranged.tscn" id="7_o6xl0"]
+[ext_resource type="PackedScene" uid="uid://dwvpu2l4olj12" path="res://scenes/shooter.tscn" id="8_tipki"]
 [ext_resource type="PackedScene" uid="uid://dv1ikq1wucki2" path="res://scenes/ghost.tscn" id="10_kkuia"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tefeu"]
@@ -1019,7 +1021,7 @@ texture = ExtResource("3_tbgi4")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_85g3d")
 
-[node name="Level0" type="Node2D"]
+[node name="Level1" type="Node2D"]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 position = Vector2(0, -2)
@@ -1040,9 +1042,11 @@ tile_set = SubResource("TileSet_choun")
 position = Vector2(-295, 133)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-zoom = Vector2(3, 3)
+zoom = Vector2(10, 10)
+position = Vector2(-373, -214)
 
-[node name="Enemy" type="Node" parent="."]
+[node name="ranged" parent="Enemy" instance=ExtResource("7_o6xl0")]
+position = Vector2(-58, 127)
 
 [node name="ghost1" parent="Enemy" instance=ExtResource("10_kkuia")]
 position = Vector2(-336, 75)
@@ -1064,3 +1068,5 @@ texture = ExtResource("8_85g3d")
 region_enabled = true
 region_rect = Rect2(3587, 115, 540, 558)
 script = ExtResource("9_choun")
+[node name="ranged2" parent="Enemy" instance=ExtResource("8_tipki")]
+position = Vector2(-108, 100)

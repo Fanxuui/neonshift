@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://kdey5ga2qs2h"]
+
+[ext_resource type="Script" uid="uid://byfuesy2vkoni" path="res://scripts/hearts_bar.gd" id="1_5o703"]
+[ext_resource type="PackedScene" uid="uid://ds6oj124cpv5x" path="res://scenes/heart.tscn" id="2_i18io"]
+
+[node name="HeartsBar" type="Node2D"]
+script = ExtResource("1_5o703")
+heart_scene = ExtResource("2_i18io")

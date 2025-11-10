@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=3 uid="uid://cq2cov84cq0s1"]
+[gd_scene load_steps=77 format=3 uid="uid://cq2cov84cq0s1"]
 
 [ext_resource type="Script" uid="uid://dxigrpekjubl5" path="res://scripts/player.gd" id="1_k411p"]
 [ext_resource type="PackedScene" uid="uid://dljch0x8vxygn" path="res://scenes/bullets/slow_bullet.tscn" id="2_ur7pv"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://d001mvj7uchx3" path="res://assets/Striker/spr_StrikerJump_strip.png" id="5_smehm"]
 [ext_resource type="Texture2D" uid="uid://ctvmb1rmbunyu" path="res://assets/Striker/spr_StrikerRun_strip.png" id="6_ur7pv"]
 [ext_resource type="Texture2D" uid="uid://dj24qpjlgtwpt" path="res://assets/Striker/spr_StrikerSlash_stripWithEffect.png" id="7_y4r1p"]
+[ext_resource type="Texture2D" uid="uid://cwaqjt3markxw" path="res://assets/Striker/spr_StrikerSlash_stripNoEffect.png" id="8_y4r1p"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ur7pv"]
 
@@ -204,36 +205,36 @@ region = Rect2(576, 0, 96, 96)
 atlas = ExtResource("6_ur7pv")
 region = Rect2(672, 0, 96, 96)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_fjrip"]
-atlas = ExtResource("7_y4r1p")
+[sub_resource type="AtlasTexture" id="AtlasTexture_fdfoy"]
+atlas = ExtResource("8_y4r1p")
 region = Rect2(1024, 0, 128, 96)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_smehm"]
-atlas = ExtResource("7_y4r1p")
+[sub_resource type="AtlasTexture" id="AtlasTexture_hhpqf"]
+atlas = ExtResource("8_y4r1p")
 region = Rect2(1152, 0, 128, 96)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ur7pv"]
-atlas = ExtResource("7_y4r1p")
+[sub_resource type="AtlasTexture" id="AtlasTexture_g5jhy"]
+atlas = ExtResource("8_y4r1p")
 region = Rect2(1280, 0, 128, 96)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_y4r1p"]
-atlas = ExtResource("7_y4r1p")
+[sub_resource type="AtlasTexture" id="AtlasTexture_holxr"]
+atlas = ExtResource("8_y4r1p")
 region = Rect2(1408, 0, 128, 96)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_fdfoy"]
-atlas = ExtResource("7_y4r1p")
+[sub_resource type="AtlasTexture" id="AtlasTexture_8txt3"]
+atlas = ExtResource("8_y4r1p")
 region = Rect2(1536, 0, 128, 96)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_hhpqf"]
-atlas = ExtResource("7_y4r1p")
+[sub_resource type="AtlasTexture" id="AtlasTexture_2w11d"]
+atlas = ExtResource("8_y4r1p")
 region = Rect2(1664, 0, 128, 96)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_g5jhy"]
-atlas = ExtResource("7_y4r1p")
+[sub_resource type="AtlasTexture" id="AtlasTexture_770dr"]
+atlas = ExtResource("8_y4r1p")
 region = Rect2(1792, 0, 128, 96)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_holxr"]
-atlas = ExtResource("7_y4r1p")
+[sub_resource type="AtlasTexture" id="AtlasTexture_8f1cb"]
+atlas = ExtResource("8_y4r1p")
 region = Rect2(1920, 0, 128, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j2b1d"]
@@ -425,18 +426,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_fjrip")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_smehm")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ur7pv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_y4r1p")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_fdfoy")
 }, {
 "duration": 1.0,
@@ -447,6 +436,18 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_holxr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8txt3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2w11d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_770dr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8f1cb")
 }],
 "loop": false,
 "name": &"slash_gun",
@@ -486,7 +487,7 @@ tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.5),
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -511,7 +512,7 @@ shape = SubResource("CapsuleShape2D_ur7pv")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_2oo1m")
-animation = &"idle"
+animation = &"slash_gun"
 autoplay = "idle"
 
 [node name="Sword" type="Node2D" parent="."]

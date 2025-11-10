@@ -19,8 +19,6 @@ enum PlayerState { IDLE, MOVE, JUMP, SWORD, GUN, DIE, HURT }
 var state: PlayerState = PlayerState.IDLE
 var anim_locked: bool = false
 
-enum Weapon { GUN, SWORD }
-var current_weapon = Weapon.SWORD
 var health = GameState.current_health
 var jump_count = 0
 
@@ -94,26 +92,25 @@ func shoot_bullet() -> void:
 	var mouse_pos: Vector2 = get_global_mouse_position()
 	var shoot_dir = (mouse_pos - global_position).normalized()
 	if facing_dir.x < 0:
-		bullet.global_position = global_position + shoot_dir * 30 + Vector2(0, -3)
+		bullet.global_position = global_position + shoot_dir + Vector2(0, -3)
 	else:
-		bullet.global_position = global_position + shoot_dir * 30 + Vector2(0, -3)
+		bullet.global_position = global_position + shoot_dir + Vector2(0, -3)
 	bullet.direction = shoot_dir
 	bullet.rotation = shoot_dir.angle()
 	get_tree().current_scene.add_child(bullet)
 
 func handle_attack_input() -> void:
-	if Input.is_action_just_pressed("attack"): 
+	if Input.is_action_just_pressed("shoot"): 
 		if state in [PlayerState.SWORD, PlayerState.GUN, PlayerState.HURT, PlayerState.DIE]:
 			return
-		if current_weapon == Weapon.GUN:
-			state = PlayerState.GUN
-			anim_locked = true
-			$AnimationPlayer.play("shoot")
-			
-		if current_weapon == Weapon.SWORD:
-			state = PlayerState.SWORD
-			anim_locked = true
-			sword_hitbox.start_attack()
+		state = PlayerState.GUN
+		anim_locked = true
+		$AnimationPlayer.play("shoot")
+		
+	if Input.is_action_just_pressed("slash"): 
+		state = PlayerState.SWORD
+		anim_locked = true
+		sword_hitbox.start_attack()
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -144,9 +141,6 @@ func _physics_process(delta: float) -> void:
 	elif Input.is_action_pressed("move_left"):
 		facing_dir = Vector2.LEFT
 		get_node("AnimatedSprite2D").flip_h = true
-	
-	if Input.is_action_just_pressed("toggle_weapon"):
-		current_weapon = Weapon.GUN if current_weapon == Weapon.SWORD else Weapon.SWORD
 
 	handle_attack_input()
 	_update_animation()
@@ -190,6 +184,9 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 		anim_locked = false
 	elif $AnimatedSprite2D.animation == "death":
 		anim_locked = false
+		Engine.time_scale = 0.2
+		await get_tree().create_timer(0.6, false, true).timeout
+		Engine.time_scale = 1.0
 		game_manager.restart_run()
 		
 		
@@ -198,3 +195,10 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 		state = PlayerState.MOVE
 	else:
 		state = PlayerState.IDLE
+
+
+func _on_bottom_wall_body_entered(body: Node2D) -> void:
+	Engine.time_scale = 0.2
+	await get_tree().create_timer(0.6, false, true).timeout
+	Engine.time_scale = 1.0
+	game_manager.restart_run()

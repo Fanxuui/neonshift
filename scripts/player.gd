@@ -17,6 +17,7 @@ const WALL_JUMP_PUSH_FORCE: float = 100.0
 @export var bullet_scene: PackedScene
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var sword_hitbox: Area2D = $Sword/SwordHitbox
+@onready var target_point: Node2D = $TargetPoint
 
 enum PlayerState { IDLE, MOVE, JUMP, SWORD, GUN, DIE, HURT, WALL_CLIMB }
 
@@ -115,11 +116,11 @@ func handle_movement_input() -> void:
 func shoot_bullet() -> void:
 	var bullet = bullet_scene.instantiate()
 	var mouse_pos: Vector2 = get_global_mouse_position()
-	var shoot_dir = (mouse_pos - global_position).normalized()
+	var shoot_dir = (mouse_pos - target_point.global_position).normalized()
 	if facing_dir.x < 0:
-		bullet.global_position = global_position + shoot_dir + Vector2(0, -3)
+		bullet.global_position = target_point.global_position + shoot_dir
 	else:
-		bullet.global_position = global_position + shoot_dir + Vector2(0, -3)
+		bullet.global_position = target_point.global_position + shoot_dir
 	bullet.direction = shoot_dir
 	bullet.rotation = shoot_dir.angle()
 	get_tree().current_scene.add_child(bullet)

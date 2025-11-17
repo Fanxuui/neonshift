@@ -36,6 +36,7 @@ var reaction_timer := 0.0
 @onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
 @onready var gun_pivot: Node2D = $GunPivot
 @onready var alert_icon: Sprite2D = $AlertIcon
+@onready var target_point: Node2D = $TargetPoint
 
 func _ready() -> void:
 	add_to_group("enemies")
@@ -128,12 +129,10 @@ func _state_attack(delta: float, can_see_player: bool, dx: float, distance: floa
 		if distance < IDEAL_SHOOT_DISTANCE - 5.0:
 			speed = SHOOT_CHASE_SPEED
 			direction = -signf(dx)
-			print("远离")
 	
 		elif distance > IDEAL_SHOOT_DISTANCE + 5.0:
 			speed = SHOOT_CHASE_SPEED
 			direction = signf(dx)
-			print("靠近")
 	else:
 		if _is_slowed:
 			speed = REDUCED_SPEED
@@ -149,16 +148,19 @@ func _handle_raycast_direction() -> void:
 		direction *= -1
 		animated_sprite.flip_h = direction < 0
 		gun_pivot.scale.x *= -1
+		target_point.position.x *= -1
 	# collide with the right floor -> move left
 	elif ray_cast_right.is_colliding():
 		direction = -1
 		animated_sprite.flip_h = true
 		gun_pivot.scale.x = -1
+		target_point.position.x *= -1
 	# collide with the left floor -> move right
 	elif ray_cast_left.is_colliding():
 		direction = 1
 		animated_sprite.flip_h = false
 		gun_pivot.scale.x = 1
+		target_point.position.x *= -1
 
 # ---------------- Other Function ----------------
 

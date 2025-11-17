@@ -82,7 +82,10 @@ position = Vector2(0, -24)
 sprite_frames = SubResource("SpriteFrames_l5lq6")
 animation = &"walk"
 autoplay = "walk"
-frame_progress = 0.25223365
+frame_progress = 0.7804724
+
+[node name="TargetPoint" type="Node2D" parent="."]
+position = Vector2(-9, -19)
 
 [node name="GunPivot" type="Node2D" parent="."]
 position = Vector2(0, -18)

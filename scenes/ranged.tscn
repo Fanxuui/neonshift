@@ -1,68 +1,64 @@
-[gd_scene load_steps=16 format=3 uid="uid://qslq878mwgt7"]
+[gd_scene load_steps=18 format=3 uid="uid://qslq878mwgt7"]
 
 [ext_resource type="Script" uid="uid://cu8xx5lol6c7e" path="res://ranged.gd" id="1_ihxqk"]
-[ext_resource type="Texture2D" uid="uid://cv6lnsf12w2gu" path="res://assets/industrial.v2.png" id="2_4qb3e"]
 [ext_resource type="PackedScene" uid="uid://b2jhg53i0j7p3" path="res://scenes/bullets/enemy_bullet.tscn" id="2_8akpr"]
 [ext_resource type="PackedScene" uid="uid://g51wsrys1hsp" path="res://scenes/killzone.tscn" id="3_8akpr"]
+[ext_resource type="Texture2D" uid="uid://bh23sfgd8dwif" path="res://assets/free-guns-pack-2-for-main-characters-pixel-art/1 Characters/2 Punk/Walk2.png" id="3_afsbx"]
+[ext_resource type="Texture2D" uid="uid://bfo2mwr4xi4ib" path="res://assets/free-guns-pack-2-for-main-characters-pixel-art/3 Hands/2 Punk/8.png" id="4_mcfec"]
+[ext_resource type="Texture2D" uid="uid://bcsdps3b6o4vu" path="res://assets/free-guns-pack-2-for-main-characters-pixel-art/2 Guns/2_1.png" id="5_f1u7b"]
+[ext_resource type="Texture2D" uid="uid://chq568lteu0d8" path="res://assets/New Piskel-1.png.png" id="7_mcfec"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_l5lq6"]
-atlas = ExtResource("2_4qb3e")
-region = Rect2(0, 416, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_0djpx"]
+atlas = ExtResource("3_afsbx")
+region = Rect2(0, 0, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_bbnym"]
-atlas = ExtResource("2_4qb3e")
-region = Rect2(16, 416, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_woal2"]
+atlas = ExtResource("3_afsbx")
+region = Rect2(48, 0, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_veat2"]
-atlas = ExtResource("2_4qb3e")
-region = Rect2(32, 416, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_n1ca0"]
+atlas = ExtResource("3_afsbx")
+region = Rect2(96, 0, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5mfnq"]
-atlas = ExtResource("2_4qb3e")
-region = Rect2(48, 416, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_k5q02"]
+atlas = ExtResource("3_afsbx")
+region = Rect2(144, 0, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_lv6vd"]
-atlas = ExtResource("2_4qb3e")
-region = Rect2(64, 416, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_r1m62"]
+atlas = ExtResource("3_afsbx")
+region = Rect2(192, 0, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_sv5gc"]
-atlas = ExtResource("2_4qb3e")
-region = Rect2(80, 416, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wj1r3"]
-atlas = ExtResource("2_4qb3e")
-region = Rect2(96, 416, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_a7n7o"]
+atlas = ExtResource("3_afsbx")
+region = Rect2(240, 0, 48, 48)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_l5lq6"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_l5lq6")
+"texture": SubResource("AtlasTexture_0djpx")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_bbnym")
+"texture": SubResource("AtlasTexture_woal2")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_veat2")
+"texture": SubResource("AtlasTexture_n1ca0")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_5mfnq")
+"texture": SubResource("AtlasTexture_k5q02")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_lv6vd")
+"texture": SubResource("AtlasTexture_r1m62")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_sv5gc")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wj1r3")
+"texture": SubResource("AtlasTexture_a7n7o")
 }],
 "loop": true,
-"name": &"idle",
-"speed": 10.0
+"name": &"walk",
+"speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_veat2"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4qb3e"]
 size = Vector2(14, 13)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bbnym"]
@@ -76,24 +72,42 @@ collision_layer = 4
 script = ExtResource("1_ihxqk")
 bullet_scene = ExtResource("2_8akpr")
 
+[node name="AlertIcon" type="Sprite2D" parent="."]
+position = Vector2(0, -38)
+texture = ExtResource("7_mcfec")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(0, -8)
+position = Vector2(0, -24)
 sprite_frames = SubResource("SpriteFrames_l5lq6")
-animation = &"idle"
-autoplay = "idle"
+animation = &"walk"
+autoplay = "walk"
+frame_progress = 0.25223365
+
+[node name="GunPivot" type="Node2D" parent="."]
+position = Vector2(0, -18)
+
+[node name="Hands" type="Sprite2D" parent="GunPivot"]
+position = Vector2(-2, 1)
+texture = ExtResource("4_mcfec")
+
+[node name="Gun" type="Sprite2D" parent="GunPivot"]
+position = Vector2(-3, 0)
+texture = ExtResource("5_f1u7b")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, -6.5)
-shape = SubResource("RectangleShape2D_veat2")
+shape = SubResource("RectangleShape2D_4qb3e")
 
 [node name="Hitbox" parent="." instance=ExtResource("3_8akpr")]
+visible = false
 collision_layer = 16
 collision_mask = 32
 script = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(0, -6.5)
+position = Vector2(1, -11)
 shape = SubResource("RectangleShape2D_bbnym")
 
 [node name="RayCastRight" type="RayCast2D" parent="."]
@@ -109,13 +123,15 @@ position = Vector2(0, -7)
 target_position = Vector2(0, 8)
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+target_desired_distance = 20.0
 
 [node name="Hurtbox" type="Area2D" parent="." groups=["enemy_hurtbox"]]
+visible = false
 position = Vector2(0, -7)
 collision_layer = 64
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2(0, 0.5)
+position = Vector2(0, -7)
 shape = SubResource("RectangleShape2D_5mfnq")
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

@@ -472,7 +472,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fjrip"]
-size = Vector2(50, 42)
+size = Vector2(62.5, 42)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ua5cf"]
 size = Vector2(18, 29)
@@ -506,16 +506,20 @@ script = ExtResource("1_k411p")
 bullet_scene = ExtResource("2_ur7pv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-2, 4)
+position = Vector2(-2, -16)
 shape = SubResource("CapsuleShape2D_ur7pv")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
+position = Vector2(0, -20)
 sprite_frames = SubResource("SpriteFrames_2oo1m")
-animation = &"slash_gun"
+animation = &"slash_sword"
 autoplay = "idle"
+frame = 3
+frame_progress = 1.0
 
 [node name="Sword" type="Node2D" parent="."]
+position = Vector2(0, -20)
 
 [node name="SwordHitbox" parent="Sword" instance=ExtResource("3_dqkch")]
 collision_layer = 8
@@ -523,14 +527,15 @@ collision_mask = 64
 monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sword/SwordHitbox"]
-position = Vector2(12, -1)
+position = Vector2(-5.25, -1)
 shape = SubResource("RectangleShape2D_fjrip")
 
 [node name="Hurtbox" type="Area2D" parent="." groups=["playerhurtbox"]]
+position = Vector2(0, -20)
 collision_layer = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2(-2, 4.5)
+position = Vector2(-2, 4)
 shape = SubResource("RectangleShape2D_ua5cf")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

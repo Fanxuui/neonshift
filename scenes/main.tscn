@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=4 uid="uid://wwbqbws515pt"]
+[gd_scene load_steps=54 format=4 uid="uid://wwbqbws515pt"]
 
 [ext_resource type="Texture2D" uid="uid://c2u3o2r05frjl" path="res://assets/Sidescroller Shooter - Central City/Background/Base Color.png" id="1_sugp2"]
 [ext_resource type="Texture2D" uid="uid://6qg8u82gy61f" path="res://assets/Sidescroller Shooter - Central City/Background/Background Props.png" id="2_jyhfs"]
@@ -1088,10 +1088,28 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)])
 agent_radius = 0.0
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_pm3ni"]
+vertices = PackedVector2Array(8, -5.046875, 8, 8, -8, 8, -8, -8, 8, -8)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, 8, -8, 8, -5.045038, 8, 8, -8, 8)])
+agent_radius = 0.0
+
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_dp3eg"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)])
+agent_radius = 0.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_y6deb"]
+vertices = PackedVector2Array(8, -5.046875, 8, 8, -8, 8, -8, -8, 8, -8)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, 8, -8, 8, -5.045038, 8, 8, -8, 8)])
+agent_radius = 0.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_og1vs"]
+vertices = PackedVector2Array(8, -5.046875, 8, 8, -8, 8, -8, -8, 8, -8)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, 8, -8, 8, -5.045038, 8, 8, -8, 8)])
 agent_radius = 0.0
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_0ld40"]
@@ -1156,10 +1174,13 @@ texture = ExtResource("3_tbgi4")
 1:4/0 = 0
 2:4/0 = 0
 2:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:4/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_pm3ni")
 3:4/0 = 0
 3:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:4/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_y6deb")
 4:4/0 = 0
 4:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:4/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_og1vs")
 5:4/0 = 0
 5:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 0:5/0 = 0
@@ -1638,6 +1659,14 @@ limit_right = 1306
 limit_bottom = 220
 position_smoothing_enabled = true
 
+[node name="MounseIndicator" type="Sprite2D" parent="."]
+z_index = 1
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("8_85g3d")
+region_enabled = true
+region_rect = Rect2(3587, 115, 540, 558)
+script = ExtResource("9_choun")
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="HeartsBar" parent="CanvasLayer" instance=ExtResource("6_tefeu")]
@@ -1654,13 +1683,6 @@ script = ExtResource("9_jkv2x")
 
 [node name="GameManager" type="Node" parent="."]
 script = ExtResource("8_ya4ey")
-
-[node name="MounseIndicator" type="Sprite2D" parent="."]
-scale = Vector2(0.05, 0.05)
-texture = ExtResource("8_85g3d")
-region_enabled = true
-region_rect = Rect2(3587, 115, 540, 558)
-script = ExtResource("9_choun")
 
 [node name="Platforms" type="Node2D" parent="."]
 

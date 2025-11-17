@@ -6,7 +6,7 @@ func _ready() -> void:
 func _process(delta):
 	if Input.is_action_just_pressed("quit"):
 		quit_game()
-    
+	
 func restart_run() -> void:
 	var fade_rect = get_tree().current_scene.get_node("CanvasLayer/FadeRect")
 	if fade_rect:

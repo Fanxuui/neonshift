@@ -3,41 +3,26 @@ extends CharacterBody2D
 signal health_changed(current)
 
 const SPEED = 140.0
-const JUMP_VELOCITY = -350.0
+const JUMP_VELOCITY = -300.0
 const MAX_HEALTH = 3
 @onready var game_manager: Node = $"../GameManager"
 const MAX_JUMPS = 2
 
 var ACCEL = 12
 var DECEL = 10
-const GRAVITY_NORMAL: float = 14.5
-const GRAVITY_WALL: float = 8.5
-const WALL_JUMP_PUSH_FORCE: float = 100.0
-
-
 
 @export var bullet_scene: PackedScene
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var sword_hitbox: Area2D = $Sword/SwordHitbox
 @onready var target_point: Node2D = $TargetPoint
 
-enum PlayerState { IDLE, MOVE, JUMP, SWORD, GUN, DIE, HURT, WALL_CLIMB }
+enum PlayerState { IDLE, MOVE, JUMP, SWORD, GUN, DIE, HURT }
 
 var state: PlayerState = PlayerState.IDLE
 var anim_locked: bool = false
 
 var health = GameState.current_health
 var jump_count = 0
-
-var wall_contact_coyote: float = 0.0
-const WALL_CONTACT_COYOTE_TIME: float = 0.2
-
-var wall_jump_lock: float = 0.0
-const WALL_JUMP_LOCK_TIME: float = 0.05
-
-var look_dir_x: int = 1
-
-
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -76,23 +61,13 @@ func die():
 
 func handle_movement_input(delta: float) -> void:
 	
-	var on_left_wall := is_on_left_wall()
-	var on_right_wall := is_on_right_wall()
-	var on_wall := on_left_wall or on_right_wall
-
-	# --- WALL JUMP ---
-	if Input.is_action_just_pressed("jump") and on_wall and not is_on_floor():
-		state = PlayerState.JUMP
-		jump_count = 1
-		velocity.y = JUMP_VELOCITY
-		velocity.x = WALL_JUMP_PUSH_FORCE * (1 if on_left_wall else -1)
-		return
-
-	# --- NORMAL JUMP ---
+	# Handle jump.
 	if Input.is_action_just_pressed("jump") and jump_count < MAX_JUMPS:
 		state = PlayerState.JUMP
 		velocity.y = JUMP_VELOCITY
 		jump_count += 1
+	
+	
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -141,21 +116,16 @@ func handle_attack_input() -> void:
 		sword_hitbox.start_attack()
 
 func _physics_process(delta: float) -> void:
-	var on_left_wall := is_on_left_wall()
-	var on_right_wall := is_on_right_wall()
-	var on_wall := on_left_wall or on_right_wall
-
-	# Apply gravity
+	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
-
-		# Wall sliding
-		if velocity.y > 0 and on_wall:
-			velocity.y = GRAVITY_WALL
-			look_dir_x = -1 if on_left_wall else 1
-			state = PlayerState.WALL_CLIMB
-
-	# Reset jump count when touching floor
+	
+	#handle walking off ledge
+	if was_on_floor and not is_on_floor():
+		if jump_count == 0:
+			jump_count = 1	
+	
+		
 	if is_on_floor():
 		jump_count = 0
 		
@@ -166,14 +136,14 @@ func _physics_process(delta: float) -> void:
 		handle_movement_input(delta)
 		
 	move_and_slide()
-
-	# Handle sprite flip
+	
+	
 	if Input.is_action_pressed("move_right"):
 		facing_dir = Vector2.RIGHT
-		$AnimatedSprite2D.flip_h = false
+		get_node("AnimatedSprite2D").flip_h = false
 	elif Input.is_action_pressed("move_left"):
 		facing_dir = Vector2.LEFT
-		$AnimatedSprite2D.flip_h = true
+		get_node("AnimatedSprite2D").flip_h = true
 
 	_update_animation()
 
@@ -230,29 +200,3 @@ func death() -> void:
 	Engine.time_scale = 1.0
 	game_manager.restart_run()
 	
-func check_wall(dir: int) -> bool:
-	var space_state := get_world_2d().direct_space_state
-	var shape := collision_shape.shape
-
-	var half_width := 0.0
-	if shape is RectangleShape2D:
-		half_width = shape.size.x * 0.5
-	elif shape is CapsuleShape2D:
-		half_width = shape.radius
-
-	var start := collision_shape.global_position + Vector2(dir * half_width, 0)
-	var end := start + Vector2(dir * 6, 0)
-
-	var params := PhysicsRayQueryParameters2D.new()
-	params.from = start
-	params.to = end
-	params.exclude = [self]
-
-	return not space_state.intersect_ray(params).is_empty()
-
-	
-func is_on_left_wall() -> bool:
-	return check_wall(-1)
-
-func is_on_right_wall() -> bool:
-	return check_wall(1)

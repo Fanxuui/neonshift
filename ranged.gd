@@ -190,7 +190,7 @@ func slow_down() -> void:
 	_is_slowed = true
 	var cur_speed = speed
 	speed = REDUCED_SPEED
-	await get_tree().create_timer(1.0).timeout
+	await get_tree().create_timer(3.0).timeout
 	_is_slowed = false
 	speed = cur_speed
 

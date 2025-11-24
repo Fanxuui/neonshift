@@ -1,9 +1,9 @@
 extends CharacterBody2D
 
 const REGULAR_SPEED := 50.0
-const CHASING_SPEED := 75.0
+const CHASING_SPEED := 350.0
 const REDUCED_SPEED := 20.0
-const CHASE_RANGE := 100.0
+const CHASE_RANGE := 200.0
 const STOP_RANGE := 5.0
 
 @export var speed := REGULAR_SPEED
@@ -20,6 +20,7 @@ var _is_slowed := false
 
 func _ready():
 	add_to_group("enemies")
+	scale = Vector2(2.0, 2.0)
 	var players = get_tree().get_nodes_in_group("player")
 	if players.size() > 0:
 		player = players[0] as Node2D
@@ -36,8 +37,10 @@ func _physics_process(delta):
 		if reachable:
 			if _is_slowed:
 				speed = REDUCED_SPEED
+				modulate = Color(0, 0, 1)
 			else:
 				speed = CHASING_SPEED
+				modulate = Color(1, 1, 1)
 			if dist > STOP_RANGE:
 				direction = signf(dx)
 				animated_sprite.flip_h = (dx < 0.0)
@@ -70,4 +73,4 @@ func die() -> void:
 
 func _on_hitbox_area_entered(area: Area2D) -> void:
 	if area.is_in_group("playerhurtbox"):
-		area.get_parent().take_damage()
+		area.get_parent().take_damage(1)

@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 # === CONSTANTS ===
-const CHASE_SPEED := 100.0
+const CHASE_SPEED := 200.0
 const REDUCED_SPEED := 40.0
 const CHASE_RANGE := 250.0
 const MAX_HEALTH := 3
@@ -24,6 +24,7 @@ var health := MAX_HEALTH
 # === READY ===
 func _ready():
 	add_to_group("enemies")
+	scale = Vector2(2,2)
 	var players = get_tree().get_nodes_in_group("player")
 	if players.size() > 0:
 		player = players[0] as Node2D
@@ -47,8 +48,10 @@ func _physics_process(delta):
 		var move_speed: float
 		if _is_slowed:
 			move_speed = REDUCED_SPEED
+			modulate = Color(0, 0, 1)
 		else:
 			move_speed = CHASE_SPEED
+			modulate = Color(1, 1, 1)
 		velocity = dir * move_speed
 		move_and_slide()
 
@@ -59,8 +62,9 @@ func _physics_process(delta):
 		move_and_slide()
 
 # === DAMAGE & STATUS ===
-func take_damage() -> void:
+func take_damage2(from_position: Vector2 = global_position) -> void:
 	health -= 1
+	apply_knockback(from_position)
 	if health <= 0:
 		die()
 
@@ -79,7 +83,7 @@ func die() -> void:
 # === COLLISIONS ===
 func _on_hitbox_area_entered(area: Area2D) -> void:
 	if area.is_in_group("playerhurtbox"):
-		area.get_parent().take_damage()
+		area.get_parent().take_damage(1)
 		apply_knockback(area.get_parent().global_position)
 
 		

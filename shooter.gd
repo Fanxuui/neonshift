@@ -44,8 +44,10 @@ func _physics_process(delta):
 	if dist <= CHASE_RANGE:
 		if _is_slowed:
 			speed = REDUCED_SPEED
+			$AnimatedSprite2D.modulate = Color(0,0,1)
 		else:
 			speed = CHASE_SPEED
+			$AnimatedSprite2D.modulate = Color(1,1,1)
 		animated_sprite.flip_h = dir.x < 0
 	else:
 		speed = 0

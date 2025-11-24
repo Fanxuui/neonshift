@@ -3,7 +3,7 @@ extends CharacterBody2D
 signal health_changed(current)
 
 const SPEED = 140.0
-const JUMP_VELOCITY = -300.0
+const JUMP_VELOCITY = -350.0
 const MAX_HEALTH = 3
 @onready var game_manager: Node = $"../GameManager"
 const MAX_JUMPS = 2
@@ -237,14 +237,24 @@ func death() -> void:
 	
 func check_wall(dir: int) -> bool:
 	var space_state := get_world_2d().direct_space_state
-	
+	var shape := collision_shape.shape
+
+	var half_width := 0.0
+	if shape is RectangleShape2D:
+		half_width = shape.size.x * 0.5
+	elif shape is CapsuleShape2D:
+		half_width = shape.radius
+
+	var start := collision_shape.global_position + Vector2(dir * half_width, 0)
+	var end := start + Vector2(dir * 6, 0)
+
 	var params := PhysicsRayQueryParameters2D.new()
-	params.from = global_position
-	params.to = global_position + Vector2(10 * dir, 0)
+	params.from = start
+	params.to = end
 	params.exclude = [self]
-	
-	var result := space_state.intersect_ray(params)
-	return result.size() > 0
+
+	return not space_state.intersect_ray(params).is_empty()
+
 	
 func is_on_left_wall() -> bool:
 	return check_wall(-1)

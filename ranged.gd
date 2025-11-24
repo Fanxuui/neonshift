@@ -40,7 +40,6 @@ var reaction_timer := 0.0
 
 func _ready() -> void:
 	add_to_group("enemies")
-	
 	# find the player
 	var players = get_tree().get_nodes_in_group("player")
 	if players.size() > 0:
@@ -84,8 +83,10 @@ func _state_patrol(delta: float, can_see_player: bool, dx: float) -> void:
 	# regular patrol speed
 	if _is_slowed:
 		speed = REDUCED_SPEED
+		modulate = Color(0,0,1)
 	else:
 		speed = REGULAR_SPEED
+		modulate = Color(1,1,1)
 	
 	# keep current direction when patrolling
 	
@@ -136,8 +137,10 @@ func _state_attack(delta: float, can_see_player: bool, dx: float, distance: floa
 	else:
 		if _is_slowed:
 			speed = REDUCED_SPEED
+			modulate = Color(0,0,1)
 		else:
 			speed = CHASING_SPEED
+			modulate = Color(1,1,1)
 	
 
 # ---------------- Patrol Derection / Terrain Detection ----------------

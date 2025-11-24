@@ -6,6 +6,7 @@ const REDUCED_SPEED := 20.0
 const CHASE_RANGE := 250.0
 const SHOOT_RANGE := 200.0
 const FIRE_COOLDOWN := 2.0
+const SLOW_FIRECOOLDOWN := 4.0
 const BULLET_COUNT := 5          # how many bullets per volley
 const SPREAD_ANGLE := 45.0       # total spread (in degrees)
 const MAX_HEALTH := 3
@@ -24,6 +25,7 @@ var speed := 0
 
 # === READY ===
 func _ready():
+	scale = Vector2(2,2)
 	add_to_group("enemies")
 	var players = get_tree().get_nodes_in_group("player")
 	if players.size() > 0:
@@ -44,8 +46,10 @@ func _physics_process(delta):
 	if dist <= CHASE_RANGE:
 		if _is_slowed:
 			speed = REDUCED_SPEED
+			modulate = Color(0,0,1)
 		else:
 			speed = CHASE_SPEED
+			modulate = Color(1,1,1)
 		animated_sprite.flip_h = dir.x < 0
 	else:
 		speed = 0
@@ -72,7 +76,10 @@ func shoot_spread(direction: Vector2):
 		get_tree().current_scene.add_child(bullet)
 		bullet.global_position = global_position
 		bullet.direction = bullet_dir
-		bullet.speed = 300  # adjust as needed
+		if _is_slowed:
+			bullet.speed = 100 
+		else:
+			bullet.speed = 300 
 
 	#animated_sprite.play("shoot")
 

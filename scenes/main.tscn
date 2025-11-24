@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=4 uid="uid://wwbqbws515pt"]
+[gd_scene load_steps=57 format=4 uid="uid://wwbqbws515pt"]
 
 [ext_resource type="Texture2D" uid="uid://c2u3o2r05frjl" path="res://assets/Sidescroller Shooter - Central City/Background/Base Color.png" id="1_sugp2"]
 [ext_resource type="Texture2D" uid="uid://6qg8u82gy61f" path="res://assets/Sidescroller Shooter - Central City/Background/Background Props.png" id="2_jyhfs"]
@@ -11,6 +11,9 @@
 [ext_resource type="Texture2D" uid="uid://dk5ydvhuq5kum" path="res://assets/Sidescroller Shooter - Central City/Assets/Props-01.png" id="6_ya4ey"]
 [ext_resource type="PackedScene" uid="uid://tcnmesck5sqc" path="res://scenes/platform.tscn" id="9_85g3d"]
 [ext_resource type="PackedScene" uid="uid://dv1ikq1wucki2" path="res://scenes/ghost.tscn" id="10_kkuia"]
+[ext_resource type="PackedScene" uid="uid://s5e3vf4tt5bi" path="res://scenes/flying_enemy.tscn" id="11_eb6dy"]
+[ext_resource type="PackedScene" path="res://scenes/shooter.tscn" id="12_eb6dy"]
+[ext_resource type="PackedScene" uid="uid://bdvq0c4ikterg" path="res://scenes/heal.tscn" id="14_a8y0u"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tefeu"]
 texture = ExtResource("1_sugp2")
@@ -4349,46 +4352,13 @@ tile_map_data = PackedByteArray("AABWABMAAAAEAAIAAABWABQAAAAEAAIAAABWABUAAAAEAAI
 tile_set = SubResource("TileSet_yc10j")
 
 [node name="Player" parent="." instance=ExtResource("4_171oe")]
-position = Vector2(-224, 150)
+position = Vector2(-209, 188)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(6, -38)
 zoom = Vector2(2.125, 2.125)
 
 [node name="Enemy" type="Node" parent="."]
-
-[node name="ghost1" parent="Enemy" instance=ExtResource("10_kkuia")]
-position = Vector2(7, 145)
-
-[node name="ghost2" parent="Enemy" instance=ExtResource("10_kkuia")]
-position = Vector2(144, 133)
-
-[node name="ghost3" parent="Enemy" instance=ExtResource("10_kkuia")]
-position = Vector2(313, 122)
-
-[node name="ghost4" parent="Enemy" instance=ExtResource("10_kkuia")]
-position = Vector2(571, 205)
-
-[node name="ghost5" parent="Enemy" instance=ExtResource("10_kkuia")]
-position = Vector2(628, 218)
-
-[node name="ghost6" parent="Enemy" instance=ExtResource("10_kkuia")]
-position = Vector2(871, 169)
-
-[node name="ghost7" parent="Enemy" instance=ExtResource("10_kkuia")]
-position = Vector2(957, 145)
-
-[node name="ghost8" parent="Enemy" instance=ExtResource("10_kkuia")]
-position = Vector2(1020, 163)
-
-[node name="ghost9" parent="Enemy" instance=ExtResource("10_kkuia")]
-position = Vector2(1142, 150)
-
-[node name="ghost10" parent="Enemy" instance=ExtResource("10_kkuia")]
-position = Vector2(909, 118)
-
-[node name="ghost11" parent="Enemy" instance=ExtResource("10_kkuia")]
-position = Vector2(1086, 133)
 
 [node name="Platforms" type="Node2D" parent="."]
 
@@ -4398,3 +4368,24 @@ position = Vector2(-50, 103)
 [node name="Music" type="AudioStreamPlayer2D" parent="."]
 autoplay = true
 bus = &"Bgm"
+
+[node name="ranged" parent="." instance=ExtResource("12_eb6dy")]
+position = Vector2(1639, 56)
+
+[node name="ghost" parent="." instance=ExtResource("10_kkuia")]
+position = Vector2(340, -20)
+
+[node name="ghost2" parent="." instance=ExtResource("10_kkuia")]
+position = Vector2(233, 225)
+
+[node name="ghost3" parent="." instance=ExtResource("11_eb6dy")]
+position = Vector2(809, 7)
+
+[node name="bullet" parent="." instance=ExtResource("14_a8y0u")]
+position = Vector2(197, -42)
+
+[node name="bullet2" parent="." instance=ExtResource("14_a8y0u")]
+position = Vector2(807, 171)
+
+[node name="bullet3" parent="." instance=ExtResource("14_a8y0u")]
+position = Vector2(1334, 143)

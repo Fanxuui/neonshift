@@ -8,6 +8,8 @@ const MAX_HEALTH = 3
 @onready var game_manager: Node = $"../GameManager"
 const MAX_JUMPS = 2
 
+var ACCEL = 12
+var DECEL = 10
 const GRAVITY_NORMAL: float = 14.5
 const GRAVITY_WALL: float = 8.5
 const WALL_JUMP_PUSH_FORCE: float = 100.0
@@ -72,10 +74,7 @@ func die():
 	state = PlayerState.DIE
 	_update_animation()
 
-func handle_movement_input() -> void:
-	
-	if state in [PlayerState.SWORD, PlayerState.GUN, PlayerState.HURT, PlayerState.DIE]:
-		return
+func handle_movement_input(delta: float) -> void:
 	
 	var on_left_wall := is_on_left_wall()
 	var on_right_wall := is_on_right_wall()
@@ -98,16 +97,18 @@ func handle_movement_input() -> void:
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_axis("move_left", "move_right")
-	if direction:
-		velocity.x = direction * SPEED
+	var target_speed := direction * SPEED
+	if direction != 0:
+		velocity.x = lerp(velocity.x, target_speed, ACCEL * delta)
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+		if is_on_floor():
+			velocity.x = lerp(velocity.x, 0.0, DECEL * delta)
 		
 	if not anim_locked:
 		if not is_on_floor():
 			state = PlayerState.JUMP
 		else:
-			if velocity.x != 0:
+			if direction != 0:
 				state = PlayerState.MOVE
 			else:
 				state = PlayerState.IDLE
@@ -130,8 +131,9 @@ func handle_attack_input() -> void:
 		if state in [PlayerState.SWORD, PlayerState.GUN, PlayerState.HURT, PlayerState.DIE]:
 			return
 		state = PlayerState.GUN
+		velocity.x *= 0.2
 		anim_locked = true
-		$AnimationPlayer.play("shoot")
+		shoot_bullet()
 		
 	if Input.is_action_just_pressed("slash"): 
 		state = PlayerState.SWORD
@@ -156,12 +158,13 @@ func _physics_process(delta: float) -> void:
 	# Reset jump count when touching floor
 	if is_on_floor():
 		jump_count = 0
-
-	if anim_locked:
-		move_and_slide()
-		return
-
-	handle_movement_input()
+		
+	was_on_floor = is_on_floor()
+	
+	handle_attack_input()
+	if not anim_locked:
+		handle_movement_input(delta)
+		
 	move_and_slide()
 
 	# Handle sprite flip
@@ -172,7 +175,6 @@ func _physics_process(delta: float) -> void:
 		facing_dir = Vector2.LEFT
 		$AnimatedSprite2D.flip_h = true
 
-	handle_attack_input()
 	_update_animation()
 
 
@@ -188,7 +190,6 @@ func _update_animation() -> void:
 			if $AnimatedSprite2D.animation != "jump":
 				$AnimatedSprite2D.play("jump")
 		PlayerState.SWORD:
-			print("play animation")
 			if $AnimatedSprite2D.animation != "slash_sword":
 				$AnimatedSprite2D.play("slash_sword")
 		PlayerState.GUN:
@@ -218,12 +219,6 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 	elif $AnimatedSprite2D.animation == "death":
 		game_manager.restart_run()
 		
-		
-	var dir = Input.get_axis("move_left", "move_right")
-	if dir != 0:
-		state = PlayerState.MOVE
-	else:
-		state = PlayerState.IDLE
 
 
 func _on_bottom_wall_body_entered(body: Node2D) -> void:

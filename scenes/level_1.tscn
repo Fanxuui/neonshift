@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=4 uid="uid://dlunmykmaatrj"]
+[gd_scene load_steps=34 format=4 uid="uid://dlunmykmaatrj"]
 
 [ext_resource type="PackedScene" uid="uid://cq2cov84cq0s1" path="res://scenes/player.tscn" id="1_bswci"]
 [ext_resource type="PackedScene" uid="uid://g51wsrys1hsp" path="res://scenes/killzone.tscn" id="1_e3sih"]
@@ -1075,6 +1075,10 @@ position = Vector2(978, 375)
 
 [node name="gun" parent="." instance=ExtResource("6_e3sih")]
 position = Vector2(24, 182)
+
+[node name="sword_icon" parent="." instance=ExtResource("7_2y5yt")]
+position = Vector2(421, 58)
+collision_mask = 2
 
 [node name="breakable_door" parent="." instance=ExtResource("5_15mv3")]
 position = Vector2(33, 162)

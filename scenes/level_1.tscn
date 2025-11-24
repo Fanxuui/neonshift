@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://dcst2x8q5jyg2" path="res://scenes/breakable_door.tscn" id="5_15mv3"]
 [ext_resource type="PackedScene" uid="uid://br42jee0jyht4" path="res://scenes/exit.tscn" id="5_pa8r4"]
 [ext_resource type="PackedScene" uid="uid://c7ir68rrj5e6j" path="res://scenes/gun.tscn" id="6_e3sih"]
-[ext_resource type="PackedScene" uid="uid://dongws64nfc2n" path="res://scenes/sword_icon.tscn" id="7_2y5yt"]
 [ext_resource type="Script" uid="uid://gvdwvap7mjq" path="res://scripts/checkpoint.gd" id="10_2y5yt"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_2y5yt"]

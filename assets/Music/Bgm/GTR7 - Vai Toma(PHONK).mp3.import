@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ep44hsfh1358"
+path="res://.godot/imported/GTR7 - Vai Toma(PHONK).mp3-1fc146bb1491f708bf40d11c5728c3f1.mp3str"
+
+[deps]
+
+source_file="res://assets/Music/Bgm/GTR7 - Vai Toma(PHONK).mp3"
+dest_files=["res://.godot/imported/GTR7 - Vai Toma(PHONK).mp3-1fc146bb1491f708bf40d11c5728c3f1.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

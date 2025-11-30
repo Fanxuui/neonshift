@@ -261,3 +261,5 @@ func is_on_left_wall() -> bool:
 
 func is_on_right_wall() -> bool:
 	return check_wall(1)
+	
+#hi

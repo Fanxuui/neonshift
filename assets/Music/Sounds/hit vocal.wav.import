@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bj4ivua8vl25d"
+path="res://.godot/imported/hit vocal.wav-017800fad8a1cf13f656c9a02c326889.sample"
+
+[deps]
+
+source_file="res://assets/Music/Sounds/hit vocal.wav"
+dest_files=["res://.godot/imported/hit vocal.wav-017800fad8a1cf13f656c9a02c326889.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -54,13 +54,14 @@ func _physics_process(delta: float) -> void:
 		return
 	
 	var dx := player.global_position.x - global_position.x
-	var distance := absf(dx)
+	var distance := global_position.distance_to(player.global_position)
+
 	
 	navigation_agent.target_position = player.global_position
 	
 	var in_chase_range := distance <= CHASE_RANGE
 	var reachable := navigation_agent.is_target_reachable()
-	var can_see_player := in_chase_range and reachable
+	var can_see_player := in_chase_range 
 	
 	match state:
 		EnemyState.PATROL:
@@ -73,10 +74,13 @@ func _physics_process(delta: float) -> void:
 	# avoid falling and turn around on wall collisions in any state.
 	_handle_raycast_direction()
 	
+	
+	
 	# final movement
 	position.x += direction * speed * delta
+	if not is_on_floor():
+		position.y += 60 * delta
 	move_and_slide()
-
 # ---------------- State Logic ----------------
 
 func _state_patrol(delta: float, can_see_player: bool, dx: float) -> void:
@@ -84,8 +88,10 @@ func _state_patrol(delta: float, can_see_player: bool, dx: float) -> void:
 	# regular patrol speed
 	if _is_slowed:
 		speed = REDUCED_SPEED
+		modulate = Color(0,0,1)
 	else:
 		speed = REGULAR_SPEED
+		modulate = Color(1,1,1)
 	
 	# keep current direction when patrolling
 	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=4 uid="uid://wwbqbws515pt"]
+[gd_scene load_steps=81 format=4 uid="uid://wwbqbws515pt"]
 
 [ext_resource type="Texture2D" uid="uid://c2u3o2r05frjl" path="res://assets/Sidescroller Shooter - Central City/Background/Base Color.png" id="1_sugp2"]
 [ext_resource type="Texture2D" uid="uid://6qg8u82gy61f" path="res://assets/Sidescroller Shooter - Central City/Background/Background Props.png" id="2_jyhfs"]
@@ -16,8 +16,16 @@
 [ext_resource type="Script" uid="uid://chdbeiao8ehn7" path="res://scripts/mounse_indicator.gd" id="9_choun"]
 [ext_resource type="AudioStream" uid="uid://ep44hsfh1358" path="res://assets/Music/Bgm/GTR7 - Vai Toma(PHONK).mp3" id="9_dp3eg"]
 [ext_resource type="Script" uid="uid://da3ukx7vc1qjo" path="res://scripts/fade_rect.gd" id="9_jkv2x"]
+[ext_resource type="AudioStream" uid="uid://cjjo4jjqfwk1p" path="res://assets/Music/Sounds/footstep.wav" id="11_0ld40"]
+[ext_resource type="AudioStream" uid="uid://vk88n7k744i2" path="res://assets/Music/Sounds/jump.wav" id="12_2wyq8"]
 [ext_resource type="PackedScene" uid="uid://dwvpu2l4olj12" path="res://scenes/shooter.tscn" id="12_eb6dy"]
+[ext_resource type="AudioStream" uid="uid://cwsivfxwb2gja" path="res://assets/Music/Sounds/gun.wav" id="13_vxglm"]
+[ext_resource type="AudioStream" uid="uid://cu3yk3v0yksui" path="res://assets/Music/Sounds/heal-short.wav" id="14_2f3dj"]
 [ext_resource type="PackedScene" uid="uid://8if0lqhe35ko" path="res://scenes/platform.tscn" id="14_jbj1t"]
+[ext_resource type="AudioStream" uid="uid://bj4ivua8vl25d" path="res://assets/Music/Sounds/hit vocal.wav" id="15_yq6so"]
+[ext_resource type="AudioStream" uid="uid://cxt7l52onvar3" path="res://assets/Music/Sounds/sword.wav" id="16_fv21b"]
+[ext_resource type="AudioStream" uid="uid://befwbo7lmapdi" path="res://assets/Music/Sounds/wall_slide.wav" id="17_tel4y"]
+[ext_resource type="AudioStream" uid="uid://bn77d4qy3pcvp" path="res://assets/Music/Sounds/character death.wav" id="18_qkpxi"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yc10j"]
 texture = ExtResource("1_sugp2")
@@ -3964,13 +3972,13 @@ texture = ExtResource("3_tbgi4")
 5:6/0 = 0
 5:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 0:7/0 = 0
-0:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, 0.17985916, 8, 8, -8, 8)
+0:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, 0, 8, 8, -8, 8)
 1:7/0 = 0
-1:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -0.35971642, 8, 8, 8, 8, -8, 8)
+1:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 0, 8, 8, -8, 8)
 2:7/0 = 0
-2:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 8, 8, 0.17985916, 8, 8, -8, 8)
+2:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, 0, 8, 8, -8, 8)
 3:7/0 = 0
-3:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -0.71943474, 8, -8, 8, 8, -8, 8)
+3:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 0, 8, -8, 8, 8, -8, 8)
 4:7/0 = 0
 4:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 5:7/0 = 0
@@ -4113,9 +4121,9 @@ texture = ExtResource("3_tbgi4")
 5:3/0 = 0
 5:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 0:4/0 = 0
-0:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, 8, 8, 4, 8, 0, 4, 0, 0, -4, -4, -4, -8)
 1:4/0 = 0
-1:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 4.98584, -8, 4.756607, -1.9771433, 0.2865448, 1.0602083, 0.057308197, 3.9256344, -0.97424316, 3.8683262, -1.3180962, 6.275284, -1.260788, 8.624933, -2.5180225, 8, -8, 8)
+1:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(4, -8, 4, -4, 0, 0, 0, 4, -4, 8, -8, 8, -8, -8)
 2:4/0 = 0
 2:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 3:4/0 = 0
@@ -4125,9 +4133,9 @@ texture = ExtResource("3_tbgi4")
 5:4/0 = 0
 5:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 0:5/0 = 0
-0:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, 8, 8, 4, 8, 4, -8)
 1:5/0 = 0
-1:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -2.5180225, -8, -2.5180225, 8, -8, 8)
+1:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -8, -4, 8, -8, 8, -8, -8)
 2:5/0 = 0
 2:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 3:5/0 = 0
@@ -4137,9 +4145,9 @@ texture = ExtResource("3_tbgi4")
 5:5/0 = 0
 5:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 0:6/0 = 0
-0:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, 8, 8, 4, 8, 4, -8)
 1:6/0 = 0
-1:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -2.5180225, -8, -2.5180225, 2.6978817, -1.0315514, 3.0086975, -0.97424316, 4.6133366, 0, 5.014496, -0.17985916, 8, -2.5180225, 8, -8, 8)
+1:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -8, -4, 8, -8, 8, -8, -8)
 2:6/0 = 0
 2:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 3:6/0 = 0
@@ -4149,9 +4157,9 @@ texture = ExtResource("3_tbgi4")
 5:6/0 = 0
 5:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 0:7/0 = 0
-0:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, 0.17985916, 8, 8, -8, 8)
+0:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, 0, 8, 8, -8, 8)
 1:7/0 = 0
-1:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -0.35971642, 8, 8, 8, 8, -8, 8)
+1:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 0, 8, 8, -8, 8)
 2:7/0 = 0
 2:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 8, 8, 0.17985916, 8, 8, -8, 8)
 3:7/0 = 0
@@ -4264,7 +4272,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_85g3d"]
 resource_name = "move"
-length = 5.0
+length = 1.5
 loop_mode = 2
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -4273,10 +4281,10 @@ tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 5),
+"times": PackedFloat32Array(0, 1.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(533, 143), Vector2(919, 143)]
+"values": [Vector2(-24, 57), Vector2(65, 57)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ya4ey"]
@@ -4317,13 +4325,47 @@ tracks/0/keys = {
 "values": [Vector2(180, 149), Vector2(1818, 116), Vector2(1877, 117)]
 }
 
+[sub_resource type="Animation" id="Animation_dp3eg"]
+resource_name = "move2"
+length = 1.5
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(953, 145), Vector2(953, 30)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jscy8"]
 _data = {
 &"RESET": SubResource("Animation_gqmmt"),
-&"move": SubResource("Animation_yc10j")
+&"move": SubResource("Animation_yc10j"),
+&"move2": SubResource("Animation_dp3eg")
 }
 
-[sub_resource type="Animation" id="Animation_eb6dy"]
+[sub_resource type="Animation" id="Animation_0ld40"]
+resource_name = "move3"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1065, 103.965), Vector2(1065, 10)]
+}
+
+[sub_resource type="Animation" id="Animation_jscy8"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -4335,30 +4377,13 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(768, 197)]
+"values": [Vector2(1065, 131)]
 }
 
-[sub_resource type="Animation" id="Animation_ya4ey"]
-resource_name = "updown"
-length = 2.0
-loop_mode = 2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2, 2.0001),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(2391, 195), Vector2(2391, 164), Vector2(2391, 164)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_trceg"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pm3ni"]
 _data = {
-&"RESET": SubResource("Animation_eb6dy"),
-&"updown": SubResource("Animation_ya4ey")
+&"RESET": SubResource("Animation_jscy8"),
+&"move3": SubResource("Animation_0ld40")
 }
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_a8y0u"]
@@ -4477,9 +4502,10 @@ tile_set = SubResource("TileSet_e755i")
 [node name="Music" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("9_dp3eg")
 autoplay = true
+bus = &"BGM"
 
 [node name="Player" parent="." instance=ExtResource("4_171oe")]
-position = Vector2(119, 223)
+position = Vector2(327, 221)
 floor_snap_length = 10.0
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
@@ -4490,6 +4516,30 @@ limit_top = -99
 limit_right = 1306
 limit_bottom = 220
 position_smoothing_enabled = true
+
+[node name="FootstepPlayer" type="AudioStreamPlayer2D" parent="Player"]
+stream = ExtResource("11_0ld40")
+
+[node name="Jump" type="AudioStreamPlayer2D" parent="Player"]
+stream = ExtResource("12_2wyq8")
+
+[node name="GunPlayer" type="AudioStreamPlayer2D" parent="Player"]
+stream = ExtResource("13_vxglm")
+
+[node name="HealPlayer" type="AudioStreamPlayer2D" parent="Player"]
+stream = ExtResource("14_2f3dj")
+
+[node name="HitPlayer" type="AudioStreamPlayer2D" parent="Player"]
+stream = ExtResource("15_yq6so")
+
+[node name="SwordPlayer" type="AudioStreamPlayer2D" parent="Player"]
+stream = ExtResource("16_fv21b")
+
+[node name="ClimbngPlayer" type="AudioStreamPlayer2D" parent="Player"]
+stream = ExtResource("17_tel4y")
+
+[node name="DeathPlayer" type="AudioStreamPlayer2D" parent="Player"]
+stream = ExtResource("18_qkpxi")
 
 [node name="MounseIndicator" type="Sprite2D" parent="."]
 z_index = 1
@@ -4508,6 +4558,10 @@ position = Vector2(127, 67)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 1061.0
+offset_top = -576.0
+offset_right = 1061.0
+offset_bottom = -576.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0)
@@ -4527,9 +4581,6 @@ libraries = {
 }
 autoplay = "move"
 
-[node name="Platform4" parent="Platforms" instance=ExtResource("14_jbj1t")]
-position = Vector2(1609, 116)
-
 [node name="Platform2" parent="Platforms" instance=ExtResource("14_jbj1t")]
 position = Vector2(180, 149)
 
@@ -4537,16 +4588,16 @@ position = Vector2(180, 149)
 libraries = {
 &"": SubResource("AnimationLibrary_jscy8")
 }
-autoplay = "move"
+autoplay = "move2"
 
-[node name="Platform3" parent="Platforms" instance=ExtResource("14_jbj1t")]
-position = Vector2(768, 197)
+[node name="Platform4" parent="." instance=ExtResource("14_jbj1t")]
+position = Vector2(1065, 131)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Platforms/Platform3"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Platform4"]
 libraries = {
-&"": SubResource("AnimationLibrary_trceg")
+&"": SubResource("AnimationLibrary_pm3ni")
 }
-autoplay = "updown"
+autoplay = "move3"
 
 [node name="BoundryWalls" type="StaticBody2D" parent="."]
 

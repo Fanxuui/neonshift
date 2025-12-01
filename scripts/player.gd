@@ -4,7 +4,7 @@ signal health_changed(current)
 
 const SPEED = 140.0
 const JUMP_VELOCITY = -350.0
-const MAX_HEALTH = 3
+const MAX_HEALTH = 5
 @onready var game_manager: Node = $"../GameManager"
 const MAX_JUMPS = 2
 
@@ -72,6 +72,7 @@ func take_damage(damage: int):
 func heal():
 	health += 1
 	emit_signal("health_changed", health)
+	print(health)
 	
 
 func die():

@@ -5,12 +5,14 @@ const CHASING_SPEED := 350.0
 const REDUCED_SPEED := 20.0
 const CHASE_RANGE := 200.0
 const STOP_RANGE := 5.0
+const GRAVITY := 900.0
 
 @export var speed := REGULAR_SPEED
 var player: Node2D
 var direction = 1
 var health = 1
 var _is_slowed := false
+
 
 @onready var ray_cast_right: RayCast2D = $RayCastRight
 @onready var ray_cast_left: RayCast2D = $RayCastLeft
@@ -22,18 +24,27 @@ func _ready():
 	add_to_group("enemies")
 	scale = Vector2(2.0, 2.0)
 	var players = get_tree().get_nodes_in_group("player")
-	if players.size() > 0:
-		player = players[0] as Node2D
-	else:
-		player = null
+	player = players[0] if players.size() > 0 else null
+		
 func _physics_process(delta):
+	# --- Gravity ---
+	if not is_on_floor():
+		velocity.y += GRAVITY * delta
+	else:
+		velocity.y = 0
+
 	if player:
 		var reachable := false
 		var dx := player.global_position.x - global_position.x
 		var dist := absf(dx)
-		if dist <= CHASE_RANGE:
+
+		# Only chase if player is above or same height
+		var player_above := player.global_position.y <= global_position.y+10
+
+		if dist <= CHASE_RANGE and player_above:
 			navigation_agent.target_position = player.global_position
 			reachable = true
+
 		if reachable:
 			if _is_slowed:
 				speed = REDUCED_SPEED
@@ -41,27 +52,34 @@ func _physics_process(delta):
 			else:
 				speed = CHASING_SPEED
 				modulate = Color(1, 1, 1)
+
 			if dist > STOP_RANGE:
 				direction = signf(dx)
 				animated_sprite.flip_h = (dx < 0.0)
 		else:
 			speed = REGULAR_SPEED
-		
+
+	# --- Ledge/wall turning ---
+	if is_on_floor():  # Only check when grounded
 		if not ray_cast_bottom.is_colliding():
+			velocity.x =0
 			direction *= -1
-			animated_sprite.flip_h = direction < 0
+			animated_sprite.flip_h = (direction < 0)
 		elif ray_cast_right.is_colliding():
 			direction = -1
 			animated_sprite.flip_h = true
 		elif ray_cast_left.is_colliding():
 			direction = 1
 			animated_sprite.flip_h = false
-			
-		position.x += direction * speed * delta
-	
+
+	# --- Horizontal velocity ---
+	velocity.x = direction * speed
+
+	move_and_slide()
+
 func take_damage() -> void:
 	queue_free()
-	
+
 func slow_down() -> void:
 	_is_slowed = true
 	await get_tree().create_timer(1.0).timeout
@@ -69,7 +87,6 @@ func slow_down() -> void:
 
 func die() -> void:
 	queue_free()
-
 
 func _on_hitbox_area_entered(area: Area2D) -> void:
 	if area.is_in_group("playerhurtbox"):

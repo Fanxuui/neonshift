@@ -1,10 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://qslq878mwgt7"]
+[gd_scene load_steps=19 format=3 uid="uid://qslq878mwgt7"]
 
 [ext_resource type="Script" uid="uid://cu8xx5lol6c7e" path="res://ranged.gd" id="1_ihxqk"]
 [ext_resource type="PackedScene" uid="uid://b2jhg53i0j7p3" path="res://scenes/bullets/enemy_bullet.tscn" id="2_8akpr"]
 [ext_resource type="PackedScene" uid="uid://g51wsrys1hsp" path="res://scenes/killzone.tscn" id="3_8akpr"]
 [ext_resource type="Texture2D" uid="uid://bh23sfgd8dwif" path="res://assets/free-guns-pack-2-for-main-characters-pixel-art/1 Characters/2 Punk/Walk2.png" id="3_afsbx"]
 [ext_resource type="Texture2D" uid="uid://bfo2mwr4xi4ib" path="res://assets/free-guns-pack-2-for-main-characters-pixel-art/3 Hands/2 Punk/8.png" id="4_mcfec"]
+[ext_resource type="PackedScene" uid="uid://e6j3ejaq2h87" path="res://scenes/target_point.tscn" id="5_0djpx"]
 [ext_resource type="Texture2D" uid="uid://bcsdps3b6o4vu" path="res://assets/free-guns-pack-2-for-main-characters-pixel-art/2 Guns/2_1.png" id="5_f1u7b"]
 [ext_resource type="Texture2D" uid="uid://chq568lteu0d8" path="res://assets/New Piskel-1.png.png" id="7_mcfec"]
 
@@ -67,7 +68,7 @@ size = Vector2(14, 13)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5mfnq"]
 size = Vector2(14, 13)
 
-[node name="ranged" type="CharacterBody2D"]
+[node name="ranged" type="CharacterBody2D" groups=["enemies"]]
 collision_layer = 4
 script = ExtResource("1_ihxqk")
 bullet_scene = ExtResource("2_8akpr")
@@ -84,7 +85,7 @@ animation = &"walk"
 autoplay = "walk"
 frame_progress = 0.7804724
 
-[node name="TargetPoint" type="Node2D" parent="."]
+[node name="TargetPoint" parent="." instance=ExtResource("5_0djpx")]
 position = Vector2(-9, -19)
 
 [node name="GunPivot" type="Node2D" parent="."]

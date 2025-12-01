@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://dv1ikq1wucki2"]
+[gd_scene load_steps=16 format=3 uid="uid://dv1ikq1wucki2"]
 
 [ext_resource type="Script" uid="uid://bjpy5d3haavp3" path="res://scripts/ghost.gd" id="1_fj7t6"]
 [ext_resource type="Texture2D" uid="uid://cv6lnsf12w2gu" path="res://assets/industrial.v2.png" id="1_tykv7"]
 [ext_resource type="PackedScene" uid="uid://g51wsrys1hsp" path="res://scenes/killzone.tscn" id="2_l5lq6"]
+[ext_resource type="PackedScene" uid="uid://e6j3ejaq2h87" path="res://scenes/target_point.tscn" id="4_veat2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l5lq6"]
 atlas = ExtResource("1_tykv7")
@@ -70,7 +71,7 @@ size = Vector2(14, 13)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5mfnq"]
 size = Vector2(14, 13)
 
-[node name="ghost" type="CharacterBody2D"]
+[node name="ghost" type="CharacterBody2D" groups=["enemies"]]
 collision_layer = 4
 script = ExtResource("1_fj7t6")
 
@@ -115,5 +116,8 @@ collision_layer = 64
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_5mfnq")
+
+[node name="TargetPoint" parent="." instance=ExtResource("4_veat2")]
+position = Vector2(0, -6)
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

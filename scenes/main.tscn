@@ -1,4 +1,4 @@
-[gd_scene load_steps=81 format=4 uid="uid://wwbqbws515pt"]
+[gd_scene load_steps=83 format=4 uid="uid://wwbqbws515pt"]
 
 [ext_resource type="Texture2D" uid="uid://c2u3o2r05frjl" path="res://assets/Sidescroller Shooter - Central City/Background/Base Color.png" id="1_sugp2"]
 [ext_resource type="Texture2D" uid="uid://6qg8u82gy61f" path="res://assets/Sidescroller Shooter - Central City/Background/Background Props.png" id="2_jyhfs"]
@@ -26,6 +26,8 @@
 [ext_resource type="AudioStream" uid="uid://cxt7l52onvar3" path="res://assets/Music/Sounds/sword.wav" id="16_fv21b"]
 [ext_resource type="AudioStream" uid="uid://befwbo7lmapdi" path="res://assets/Music/Sounds/wall_slide.wav" id="17_tel4y"]
 [ext_resource type="AudioStream" uid="uid://bn77d4qy3pcvp" path="res://assets/Music/Sounds/character death.wav" id="18_qkpxi"]
+[ext_resource type="PackedScene" uid="uid://dv1ikq1wucki2" path="res://scenes/ghost.tscn" id="27_2f3dj"]
+[ext_resource type="PackedScene" uid="uid://s5e3vf4tt5bi" path="res://scenes/flying_enemy.tscn" id="28_yq6so"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yc10j"]
 texture = ExtResource("1_sugp2")
@@ -4505,7 +4507,7 @@ autoplay = true
 bus = &"BGM"
 
 [node name="Player" parent="." instance=ExtResource("4_171oe")]
-position = Vector2(327, 221)
+position = Vector2(-250, 209)
 floor_snap_length = 10.0
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
@@ -4642,5 +4644,14 @@ position = Vector2(2577, 156)
 
 [node name="Ranged7" parent="Enemies" instance=ExtResource("7_o6xl0")]
 position = Vector2(2190, 204)
+
+[node name="ghost" parent="." instance=ExtResource("27_2f3dj")]
+position = Vector2(-237, 82)
+
+[node name="ghost2" parent="." instance=ExtResource("27_2f3dj")]
+position = Vector2(244, -17)
+
+[node name="ghost3" parent="." instance=ExtResource("28_yq6so")]
+position = Vector2(608, -6)
 
 [connection signal="body_entered" from="BoundryWalls/BottomWall" to="Player" method="_on_bottom_wall_body_entered"]

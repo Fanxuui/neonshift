@@ -5,16 +5,20 @@ const CHASE_SPEED := 50.0
 const REDUCED_SPEED := 20.0
 const CHASE_RANGE := 250.0
 const SHOOT_RANGE := 200.0
-const FIRE_COOLDOWN := 5.0
-const BULLET_COUNT := 3       # how many bullets per volley
+const FIRE_COOLDOWN := 3.0
+const BULLET_COUNT := 3      # how many bullets per volley
 const SPREAD_ANGLE := 45.0       # total spread (in degrees)
 const MAX_HEALTH := 3
+const KNOCKBACK_FORCE := 150.0
+const KNOCKBACK_DURATION := .5
+
 
 # === VARIABLES ===
 var player: Node2D
 var health := MAX_HEALTH
 var can_shoot := true
 var _is_slowed := false
+var _is_knocked_back := false
 var speed := 0
 
 @export var bullet_scene: PackedScene
@@ -105,3 +109,13 @@ func die() -> void:
 func _on_hitbox_area_entered(area: Area2D) -> void:
 	if area.is_in_group("playerhurtbox"):
 		area.get_parent().take_damage(1)
+		apply_knockback(area.get_parent().global_position)
+
+		
+func apply_knockback(player_pos: Vector2):
+	var knock_dir = (global_position - player_pos).normalized()
+	velocity = knock_dir * KNOCKBACK_FORCE
+	_is_knocked_back = true
+	move_and_slide()
+	await get_tree().create_timer(KNOCKBACK_DURATION).timeout
+	_is_knocked_back = false

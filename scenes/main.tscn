@@ -4614,7 +4614,7 @@ shape = SubResource("WorldBoundaryShape2D_jbj1t")
 [node name="Enemies" type="Node" parent="."]
 
 [node name="Ranged1" parent="Enemies" instance=ExtResource("7_o6xl0")]
-position = Vector2(182, 222)
+position = Vector2(182, 225)
 
 [node name="Ranged2" parent="Enemies" instance=ExtResource("7_o6xl0")]
 position = Vector2(430, 191)

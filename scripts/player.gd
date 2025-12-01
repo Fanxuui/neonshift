@@ -12,6 +12,14 @@ const GRAVITY_NORMAL: float = 14.5
 const GRAVITY_WALL: float = 8.5
 const WALL_JUMP_PUSH_FORCE: float = 100.0
 
+const DASH_SPEED = 400.0
+const DASH_TIME = 0.2
+const DOUBLE_TAP_TIME = 0.25
+
+var dash_timer: float = 0.0
+var last_tap_time_left: float = -1.0
+var last_tap_time_right: float = -1.0
+var is_dashing: bool = false
 
 
 @export var bullet_scene: PackedScene
@@ -142,6 +150,13 @@ func _physics_process(delta: float) -> void:
 	var on_left_wall := is_on_left_wall()
 	var on_right_wall := is_on_right_wall()
 	var on_wall := on_left_wall or on_right_wall
+	
+	handle_dash_input(delta)
+	if is_dashing:
+		move_and_slide()
+		_update_animation()
+		return
+
 
 	# Apply gravity
 	if not is_on_floor():
@@ -262,4 +277,33 @@ func is_on_left_wall() -> bool:
 func is_on_right_wall() -> bool:
 	return check_wall(1)
 	
+	
+func handle_dash_input(delta: float):
+	# Count down dash timer
+	if is_dashing:
+		dash_timer -= delta
+		if dash_timer <= 0:
+			is_dashing = false
+			anim_locked = false
+		return
+
+	# Track double-taps LEFT
+	if Input.is_action_just_pressed("move_left"):
+		if last_tap_time_left > 0 and (Time.get_ticks_msec() - last_tap_time_left) < DOUBLE_TAP_TIME * 1000:
+			start_dash(-1)
+		last_tap_time_left = Time.get_ticks_msec()
+
+	# Track double-taps RIGHT
+	if Input.is_action_just_pressed("move_right"):
+		if last_tap_time_right > 0 and (Time.get_ticks_msec() - last_tap_time_right) < DOUBLE_TAP_TIME * 1000:
+			start_dash(1)
+		last_tap_time_right = Time.get_ticks_msec()
+		
+func start_dash(direction: int):
+	is_dashing = true
+	anim_locked = true
+	state = PlayerState.MOVE  # dash uses run animation unless you make a dash anim
+	velocity.x = direction * DASH_SPEED
+	velocity.y = 0
+	dash_timer = DASH_TIME
 #202511302319

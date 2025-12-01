@@ -5,8 +5,8 @@ const CHASE_SPEED := 50.0
 const REDUCED_SPEED := 20.0
 const CHASE_RANGE := 250.0
 const SHOOT_RANGE := 200.0
-const FIRE_COOLDOWN := 2.0
-const BULLET_COUNT := 5          # how many bullets per volley
+const FIRE_COOLDOWN := 5.0
+const BULLET_COUNT := 3       # how many bullets per volley
 const SPREAD_ANGLE := 45.0       # total spread (in degrees)
 const MAX_HEALTH := 3
 

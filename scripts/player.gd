@@ -9,6 +9,10 @@ const JUMP_VELOCITY = -350.0
 const MAX_HEALTH = 3
 @onready var game_manager: Node = $"../GameManager"
 const MAX_JUMPS = 2
+const INVINCIBILITY_TIME := 1.0   # 1 second of i-frames
+var is_invincible := false
+var recently_hit := false
+
 
 const GRAVITY_NORMAL: float = 14.5
 const GRAVITY_WALL: float = 8.5
@@ -22,6 +26,9 @@ var dash_timer: float = 0.0
 var last_tap_time_left: float = -1.0
 var last_tap_time_right: float = -1.0
 var is_dashing: bool = false
+
+const DAMAGE_LOCKOUT_TIME := 1   # Prevent multi-hit spam per attack
+
 
 
 @export var bullet_scene: PackedScene
@@ -66,19 +73,36 @@ func _ready():
 	instance = self
 	
 func take_damage(damage: int):
-	print(GameState.current_health)
+	# Prevent multiple damage from the same attack (multi-hitbox, multi-frame overlap)
+	if recently_hit:
+		return
+
+	recently_hit = true
+
+	# Stop dash
 	is_dashing = false
 	dash_timer = 0
-	
+
+	# Apply real damage
 	if GameState.current_health > 0:
 		GameState.damage(damage)
+
+	# Die?
 	if GameState.current_health <= 0:
 		die()
 		return
+
 	anim_locked = true
 	state = PlayerState.HURT
-	
 	_update_animation()
+
+	# Start flash + unlock hit after short period
+	flash_sprite()
+	start_damage_lockout()
+
+func start_damage_lockout():
+	await get_tree().create_timer(DAMAGE_LOCKOUT_TIME).timeout
+	recently_hit = false
 
 		
 func heal():
@@ -327,4 +351,23 @@ func start_dash(direction: int):
 	velocity.x = direction * DASH_SPEED
 	velocity.y = 0
 	dash_timer = DASH_TIME
+	
+func flash_sprite():
+	var sprite = $AnimatedSprite2D
+	
+	for i in range(5):
+		sprite.modulate = Color(1,1,1,0.3)  # transparent
+		await get_tree().create_timer(0.07).timeout
+		sprite.modulate = Color(1,1,1,1)    # solid
+		await get_tree().create_timer(0.07).timeout
+	
+func start_invincibility():
+	is_invincible = true
+	flash_sprite() # optional
+	invincibility_timer()
+	
+func invincibility_timer() -> void:
+	await get_tree().create_timer(INVINCIBILITY_TIME, false, true).timeout
+	is_invincible = false
+	$AnimatedSprite2D.modulate = Color(1,1,1,1) # reset sprite
 #202511302319

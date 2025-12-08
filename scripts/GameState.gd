@@ -3,12 +3,12 @@ extends Node
 
 signal health_changed(current, max)
 
-var max_health: int = 3
-var current_health: int = 3
+var max_health: int = 5
+var current_health: int = 5
 
 func reset():
-	max_health = 3
-	current_health = 3
+	max_health = 5
+	current_health = 5
 	emit_signal("health_changed", current_health, max_health)
 
 func damage(amount: int):

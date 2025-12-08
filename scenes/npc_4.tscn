@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://n45imv6x0xtx"]
+
+[ext_resource type="Texture2D" uid="uid://bcqrnwqyntrfu" path="res://assets/free-townspeople-cyberpunk-pixel-art/10/Idle.png" id="1_1rqg5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hkbsh"]
+atlas = ExtResource("1_1rqg5")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nb6wk"]
+atlas = ExtResource("1_1rqg5")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_luxr3"]
+atlas = ExtResource("1_1rqg5")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0jglr"]
+atlas = ExtResource("1_1rqg5")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x65tw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hkbsh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nb6wk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_luxr3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0jglr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Npc4" type="CharacterBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_x65tw")
+autoplay = "default"
+frame_progress = 0.0050799423

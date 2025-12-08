@@ -1,0 +1,69 @@
+[gd_scene load_steps=9 format=3 uid="uid://bx57dgmmxmn0g"]
+
+[ext_resource type="Texture2D" uid="uid://cgs4oeod3lg4t" path="res://assets/free-townspeople-cyberpunk-pixel-art/7/Idle.png" id="1_8dm1u"]
+[ext_resource type="Script" uid="uid://d10jpu1hsh2oe" path="res://scripts/interactable_npc.gd" id="1_ttshn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ttshn"]
+atlas = ExtResource("1_8dm1u")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rga5l"]
+atlas = ExtResource("1_8dm1u")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3w2wa"]
+atlas = ExtResource("1_8dm1u")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xr7qm"]
+atlas = ExtResource("1_8dm1u")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tr1an"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ttshn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rga5l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3w2wa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xr7qm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8dm1u"]
+radius = 26.019224
+
+[node name="Npc1" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_ttshn")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-8, -24)
+sprite_frames = SubResource("SpriteFrames_tr1an")
+autoplay = "default"
+frame_progress = 0.75876546
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -10)
+shape = SubResource("CircleShape2D_8dm1u")
+debug_color = Color(0.959977, 0.754125, 3.85046e-07, 0.41960785)
+
+[node name="ButtonPrompt" type="Label" parent="."]
+visible = false
+offset_left = -20.0
+offset_top = -44.0
+offset_right = 20.0
+offset_bottom = -21.0
+text = "E"
+horizontal_alignment = 1

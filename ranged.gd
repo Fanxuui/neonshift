@@ -62,6 +62,7 @@ func _physics_process(delta: float) -> void:
 	var reachable := navigation_agent.is_target_reachable()
 	var can_see_player := in_chase_range and reachable
 	
+	
 	match state:
 		EnemyState.PATROL:
 			_state_patrol(delta, can_see_player, dx)

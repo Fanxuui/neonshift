@@ -1,4 +1,4 @@
-[gd_scene load_steps=81 format=4 uid="uid://wwbqbws515pt"]
+[gd_scene load_steps=109 format=4 uid="uid://wwbqbws515pt"]
 
 [ext_resource type="Texture2D" uid="uid://c2u3o2r05frjl" path="res://assets/Sidescroller Shooter - Central City/Background/Base Color.png" id="1_sugp2"]
 [ext_resource type="Texture2D" uid="uid://6qg8u82gy61f" path="res://assets/Sidescroller Shooter - Central City/Background/Background Props.png" id="2_jyhfs"]
@@ -26,6 +26,19 @@
 [ext_resource type="AudioStream" uid="uid://cxt7l52onvar3" path="res://assets/Music/Sounds/sword.wav" id="16_fv21b"]
 [ext_resource type="AudioStream" uid="uid://befwbo7lmapdi" path="res://assets/Music/Sounds/wall_slide.wav" id="17_tel4y"]
 [ext_resource type="AudioStream" uid="uid://bn77d4qy3pcvp" path="res://assets/Music/Sounds/character death.wav" id="18_qkpxi"]
+[ext_resource type="Script" uid="uid://ct63huug8gybc" path="res://scripts/tutorial_ui.gd" id="23_tel4y"]
+[ext_resource type="Script" uid="uid://bfum5h1wtofle" path="res://addons/dialogue_nodes/objects/DialogueBox.gd" id="24_fuf3a"]
+[ext_resource type="Script" uid="uid://bnn0v4yrotwj" path="res://addons/dialogue_nodes/objects/bbcodeWait.gd" id="25_pibwh"]
+[ext_resource type="Script" uid="uid://cru7hqlt4jse5" path="res://addons/dialogue_nodes/objects/bbcodeGhost.gd" id="26_c6pm6"]
+[ext_resource type="Script" uid="uid://cttm3bvyovbsa" path="res://addons/dialogue_nodes/objects/bbcodeMatrix.gd" id="27_5he1u"]
+[ext_resource type="PackedScene" uid="uid://bx57dgmmxmn0g" path="res://scenes/npc_1.tscn" id="27_vxglm"]
+[ext_resource type="PackedScene" uid="uid://cwy1twvc8kcu8" path="res://scenes/npc_3.tscn" id="29_yq6so"]
+[ext_resource type="PackedScene" uid="uid://n45imv6x0xtx" path="res://scenes/npc_4.tscn" id="30_fv21b"]
+[ext_resource type="PackedScene" uid="uid://c1hmcgdlos678" path="res://scenes/npc_ending.tscn" id="32_5q0nq"]
+[ext_resource type="PackedScene" uid="uid://r6rmnr4ffm04" path="res://scenes/shooter_basic.tscn" id="32_qkpxi"]
+[ext_resource type="Resource" uid="uid://canm52y3w26d4" path="res://Dialogue/Level1_NPCs.tres" id="33_pibwh"]
+[ext_resource type="Texture2D" uid="uid://c4yy0rhn3v2gc" path="res://assets/free-townspeople-cyberpunk-pixel-art/5/Idle.png" id="34_c6pm6"]
+[ext_resource type="Texture2D" uid="uid://dm6eex4b4ojdl" path="res://assets/free-townspeople-cyberpunk-pixel-art/1/Idle.png" id="38_c6pm6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yc10j"]
 texture = ExtResource("1_sugp2")
@@ -4255,6 +4268,15 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_kf5aa")
 sources/1 = SubResource("TileSetAtlasSource_t5ykj")
 
+[sub_resource type="RichTextEffect" id="RichTextEffect_5poiv"]
+script = ExtResource("25_pibwh")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_2cjbq"]
+script = ExtResource("26_c6pm6")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_chjal"]
+script = ExtResource("27_5he1u")
+
 [sub_resource type="Animation" id="Animation_choun"]
 length = 0.001
 tracks/0/type = "value"
@@ -4393,6 +4415,92 @@ distance = -349.0
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_jbj1t"]
 distance = -2.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_23bb0"]
+atlas = ExtResource("34_c6pm6")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8v6sq"]
+atlas = ExtResource("34_c6pm6")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qchs1"]
+atlas = ExtResource("34_c6pm6")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_362ta"]
+atlas = ExtResource("34_c6pm6")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5he1u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_23bb0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8v6sq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qchs1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_362ta")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5he1u"]
+atlas = ExtResource("38_c6pm6")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5poiv"]
+atlas = ExtResource("38_c6pm6")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2cjbq"]
+atlas = ExtResource("38_c6pm6")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_chjal"]
+atlas = ExtResource("38_c6pm6")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cjqg0"]
+atlas = ExtResource("38_c6pm6")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vchkt"]
+atlas = ExtResource("38_c6pm6")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_txyw0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5he1u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5poiv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2cjbq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_chjal")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cjqg0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vchkt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
 [node name="Level1" type="Node2D"]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
@@ -4505,16 +4613,16 @@ autoplay = true
 bus = &"BGM"
 
 [node name="Player" parent="." instance=ExtResource("4_171oe")]
-position = Vector2(327, 221)
+position = Vector2(-310, 206)
 floor_snap_length = 10.0
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(-1, 3)
-zoom = Vector2(3, 3)
+zoom = Vector2(2, 2)
 limit_left = -345
 limit_top = -99
-limit_right = 1306
-limit_bottom = 220
+limit_right = 1401
+limit_bottom = 280
 position_smoothing_enabled = true
 
 [node name="FootstepPlayer" type="AudioStreamPlayer2D" parent="Player"]
@@ -4558,14 +4666,140 @@ position = Vector2(127, 67)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 1061.0
-offset_top = -576.0
-offset_right = 1061.0
-offset_bottom = -576.0
+offset_left = -59.0
+offset_top = -58.0
+offset_right = 127.0
+offset_bottom = 37.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0)
 script = ExtResource("9_jkv2x")
+
+[node name="TutorialUI" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MoveTutorial" type="Panel" parent="CanvasLayer/TutorialUI"]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 530.0
+offset_right = 333.0
+offset_bottom = 611.0
+script = ExtResource("23_tel4y")
+init_on_ready = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/TutorialUI/MoveTutorial"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Movement:
+
+A / D"
+horizontal_alignment = 1
+
+[node name="JumpTutorial" type="Panel" parent="CanvasLayer/TutorialUI"]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 530.0
+offset_right = 755.0
+offset_bottom = 611.0
+script = ExtResource("23_tel4y")
+init_on_ready = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/TutorialUI/JumpTutorial"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Jump:
+
+Space"
+horizontal_alignment = 1
+
+[node name="DoubleJumpTutorial" type="Panel" parent="CanvasLayer/TutorialUI"]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 530.0
+offset_right = 755.0
+offset_bottom = 611.0
+script = ExtResource("23_tel4y")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/TutorialUI/DoubleJumpTutorial"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Double Jump:
+
+Space +Space"
+horizontal_alignment = 1
+
+[node name="AttackTutorial" type="Panel" parent="CanvasLayer/TutorialUI"]
+layout_mode = 0
+offset_left = 813.0
+offset_top = 530.0
+offset_right = 1120.0
+offset_bottom = 611.0
+script = ExtResource("23_tel4y")
+init_on_ready = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/TutorialUI/AttackTutorial"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Attack:
+
+Left Click"
+horizontal_alignment = 1
+
+[node name="ShootTutorial" type="Panel" parent="CanvasLayer/TutorialUI"]
+layout_mode = 0
+offset_left = 813.0
+offset_top = 418.0
+offset_right = 1120.0
+offset_bottom = 499.0
+script = ExtResource("23_tel4y")
+init_on_ready = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/TutorialUI/ShootTutorial"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Shoot:
+
+Right Click"
+horizontal_alignment = 1
+
+[node name="DialogueBox" type="Panel" parent="CanvasLayer"]
+visible = false
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -170.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("24_fuf3a")
+skip_input_action = "interact"
+custom_effects = Array[RichTextEffect]([SubResource("RichTextEffect_5poiv"), SubResource("RichTextEffect_2cjbq"), SubResource("RichTextEffect_chjal")])
+metadata/_custom_type_script = "uid://bfum5h1wtofle"
 
 [node name="GameManager" type="Node" parent="."]
 script = ExtResource("8_ya4ey")
@@ -4614,22 +4848,22 @@ shape = SubResource("WorldBoundaryShape2D_jbj1t")
 [node name="Enemies" type="Node" parent="."]
 
 [node name="Ranged1" parent="Enemies" instance=ExtResource("7_o6xl0")]
-position = Vector2(182, 222)
+position = Vector2(507, 225)
 
 [node name="Ranged2" parent="Enemies" instance=ExtResource("7_o6xl0")]
-position = Vector2(430, 191)
+position = Vector2(428, 225)
 
 [node name="Shooter1" parent="Enemies" instance=ExtResource("12_eb6dy")]
 position = Vector2(1146, 28)
 
 [node name="Ranged3" parent="Enemies" instance=ExtResource("7_o6xl0")]
-position = Vector2(986, 127)
+position = Vector2(985, 177)
 
 [node name="Ranged4" parent="Enemies" instance=ExtResource("7_o6xl0")]
 position = Vector2(1795, 202)
 
 [node name="Ranged5" parent="Enemies" instance=ExtResource("7_o6xl0")]
-position = Vector2(1417, 188)
+position = Vector2(1293, 210)
 
 [node name="Shooter2" parent="Enemies" instance=ExtResource("12_eb6dy")]
 position = Vector2(1969, 2)
@@ -4643,4 +4877,53 @@ position = Vector2(2577, 156)
 [node name="Ranged7" parent="Enemies" instance=ExtResource("7_o6xl0")]
 position = Vector2(2190, 204)
 
+[node name="NPCs" type="Node2D" parent="."]
+
+[node name="Npc1" parent="NPCs" instance=ExtResource("27_vxglm")]
+position = Vector2(-50, 176)
+dialogue_data = ExtResource("33_pibwh")
+dialogue_id = "NPC_1"
+
+[node name="Npc5" parent="NPCs" instance=ExtResource("27_vxglm")]
+position = Vector2(143, 223)
+dialogue_data = ExtResource("33_pibwh")
+dialogue_id = "NPC_2"
+
+[node name="AnimatedSprite2D" parent="NPCs/Npc5" index="0"]
+sprite_frames = SubResource("SpriteFrames_5he1u")
+frame_progress = 0.0
+
+[node name="Npc3" parent="NPCs" instance=ExtResource("29_yq6so")]
+position = Vector2(-246, 55)
+
+[node name="Npc4" parent="NPCs" instance=ExtResource("30_fv21b")]
+position = Vector2(700, 199)
+
+[node name="Npc_Ending" parent="NPCs" instance=ExtResource("32_5q0nq")]
+position = Vector2(3702, 127)
+
+[node name="Npc2" parent="NPCs" instance=ExtResource("27_vxglm")]
+position = Vector2(322, 223)
+dialogue_data = ExtResource("33_pibwh")
+dialogue_id = "NPC_3"
+
+[node name="AnimatedSprite2D" parent="NPCs/Npc2" index="0"]
+sprite_frames = SubResource("SpriteFrames_txyw0")
+frame_progress = 0.0
+
+[node name="ButtonPrompt" parent="NPCs/Npc2" index="2"]
+visible = true
+
+[node name="ranged" parent="." instance=ExtResource("32_qkpxi")]
+position = Vector2(43, 170)
+
+[connection signal="attacked" from="Player" to="CanvasLayer/TutorialUI/AttackTutorial" method="delete_tutorial"]
+[connection signal="double_jumped" from="Player" to="CanvasLayer/TutorialUI/DoubleJumpTutorial" method="delete_tutorial"]
+[connection signal="jumped" from="Player" to="CanvasLayer/TutorialUI/JumpTutorial" method="delete_tutorial"]
+[connection signal="moved" from="Player" to="CanvasLayer/TutorialUI/MoveTutorial" method="delete_tutorial"]
+[connection signal="shooted" from="Player" to="CanvasLayer/TutorialUI/ShootTutorial" method="delete_tutorial"]
+[connection signal="tutorial_ended" from="CanvasLayer/TutorialUI/JumpTutorial" to="CanvasLayer/TutorialUI/DoubleJumpTutorial" method="Initiate"]
 [connection signal="body_entered" from="BoundryWalls/BottomWall" to="Player" method="_on_bottom_wall_body_entered"]
+
+[editable path="NPCs/Npc5"]
+[editable path="NPCs/Npc2"]

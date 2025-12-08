@@ -1,3 +1,5 @@
+class_name Player
+
 extends CharacterBody2D
 
 signal health_changed(current)
@@ -43,7 +45,7 @@ const WALL_JUMP_LOCK_TIME: float = 0.05
 
 var look_dir_x: int = 1
 
-
+static var instance: Player
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -52,13 +54,22 @@ var spawn_position := Vector2.ZERO
 
 var was_on_floor = false
 
+signal moved
+signal jumped
+signal double_jumped
+signal attacked
+signal shooted
 
 func _ready():
 	spawn_position = global_position
 	add_to_group("player")
+	instance = self
 	
 func take_damage(damage: int):
 	print(GameState.current_health)
+	is_dashing = false
+	dash_timer = 0
+	
 	if GameState.current_health > 0:
 		GameState.damage(damage)
 	if GameState.current_health <= 0:
@@ -66,6 +77,7 @@ func take_damage(damage: int):
 		return
 	anim_locked = true
 	state = PlayerState.HURT
+	
 	_update_animation()
 
 		
@@ -79,6 +91,7 @@ func die():
 	anim_locked = true
 	state = PlayerState.DIE
 	_update_animation()
+	velocity = Vector2(0, 0)
 
 func handle_movement_input() -> void:
 	
@@ -99,15 +112,19 @@ func handle_movement_input() -> void:
 
 	# --- NORMAL JUMP ---
 	if Input.is_action_just_pressed("jump") and jump_count < MAX_JUMPS:
+		emit_signal("jumped")
 		state = PlayerState.JUMP
 		velocity.y = JUMP_VELOCITY
 		jump_count += 1
+		if jump_count == MAX_JUMPS:
+			emit_signal("double_jumped")
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_axis("move_left", "move_right")
 	if direction:
 		velocity.x = direction * SPEED
+		emit_signal("moved")
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		
@@ -138,10 +155,14 @@ func handle_attack_input() -> void:
 		if state in [PlayerState.SWORD, PlayerState.GUN, PlayerState.HURT, PlayerState.DIE]:
 			return
 		state = PlayerState.GUN
+		emit_signal("shooted") 
+		$GunPlayer.play()
 		anim_locked = true
 		$AnimationPlayer.play("shoot")
 		
-	if Input.is_action_just_pressed("slash"): 
+	if Input.is_action_just_pressed("slash"):
+		$SwordPlayer.play()
+		emit_signal("attacked") 
 		state = PlayerState.SWORD
 		anim_locked = true
 		sword_hitbox.start_attack()
@@ -214,10 +235,10 @@ func _update_animation() -> void:
 				$AnimatedSprite2D.play("get_hit")
 		PlayerState.DIE:
 			if $AnimatedSprite2D.animation != "death":
+				$AnimatedSprite2D.play("death")
 				Engine.time_scale = 0.5
 				await get_tree().create_timer(1, false, true).timeout
 				Engine.time_scale = 1.0
-				$AnimatedSprite2D.play("death")
 
 func _on_animated_sprite_2d_animation_finished() -> void:
 	

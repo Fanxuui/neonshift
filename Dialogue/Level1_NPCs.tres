@@ -1,0 +1,339 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3 uid="uid://canm52y3w26d4"]
+
+[ext_resource type="Script" uid="uid://dnejmkg2lcl01" path="res://addons/dialogue_nodes/objects/DialogueData.gd" id="1_eyqm7"]
+
+[resource]
+script = ExtResource("1_eyqm7")
+starts = {
+"NPC_1": &"0_1",
+"NPC_2": &"0_2",
+"NPC_3": &"0_3"
+}
+nodes = {
+&"0_1": {
+"link": &"1_1",
+"offset": Vector2(12, 308),
+"start_id": "NPC_1"
+},
+&"0_2": {
+"link": &"1_3",
+"offset": Vector2(-37, 644),
+"start_id": "NPC_2"
+},
+&"0_3": {
+"link": &"1_5",
+"offset": Vector2(20, 1200),
+"start_id": "NPC_3"
+},
+&"1_1": {
+"dialogue": "Stop there. You’re not from this place, are you?
+ These streets aren’t safe anymore.",
+"offset": Vector2(360, 300),
+"options": {
+0: {
+"condition": {},
+"link": &"1_2",
+"text": ""
+}
+},
+"size": Vector2(500.00024, 342.00012),
+"speaker": "NPC"
+},
+&"1_10": {
+"dialogue": "Exactly. One second can save your life here.
+ Go now—move fast, stay alive.",
+"offset": Vector2(3520, 300),
+"options": {
+0: {
+"condition": {},
+"link": &"1_11",
+"text": ""
+}
+},
+"size": Vector2(420, 440.00006),
+"speaker": "NPC"
+},
+&"1_11": {
+"dialogue": "…Thank you.",
+"offset": Vector2(4060, 300),
+"options": {
+0: {
+"condition": {},
+"link": "END",
+"text": ""
+}
+},
+"size": Vector2(339.99878, 460),
+"speaker": "Player"
+},
+&"1_12": {
+"dialogue": " So they attack anything?",
+"offset": Vector2(1360, 760),
+"options": {
+0: {
+"condition": {},
+"link": &"1_13",
+"text": ""
+}
+},
+"size": Vector2(420.00018, 339.99994),
+"speaker": "Player"
+},
+&"1_13": {
+"dialogue": " Yes. Some won’t fall in one hit.",
+"offset": Vector2(1840, 760),
+"options": {
+0: {
+"condition": {},
+"link": &"1_14",
+"text": ""
+}
+},
+"size": Vector2(420.0005, 340.00006),
+"speaker": "NPC"
+},
+&"1_14": {
+"dialogue": " If they get up again, finish them fast.",
+"offset": Vector2(2320, 780),
+"options": {
+0: {
+"condition": {},
+"link": &"1_15",
+"text": ""
+}
+},
+"size": Vector2(580.0006, 340),
+"speaker": "NPC"
+},
+&"1_15": {
+"dialogue": " So defeating them just keeps me alive.",
+"offset": Vector2(3020, 800),
+"options": {
+0: {
+"condition": {},
+"link": &"1_16",
+"text": ""
+}
+},
+"size": Vector2(640.00037, 320),
+"speaker": "Player"
+},
+&"1_16": {
+"dialogue": "Some drop healing energy—use it when you can.
+",
+"offset": Vector2(3720, 800),
+"options": {
+0: {
+"condition": {},
+"link": &"1_17",
+"text": ""
+}
+},
+"size": Vector2(759.9995, 320),
+"speaker": "NPC"
+},
+&"1_17": {
+"dialogue": " You’ll need every advantage in this place.",
+"offset": Vector2(4520, 800),
+"options": {
+0: {
+"condition": {},
+"link": &"1_18",
+"text": ""
+}
+},
+"size": Vector2(499.99927, 340),
+"speaker": "NPC"
+},
+&"1_18": {
+"dialogue": " Understood.",
+"offset": Vector2(5100, 780),
+"options": {
+0: {
+"condition": {},
+"link": "END",
+"text": ""
+}
+},
+"size": Vector2(360.00037, 320),
+"speaker": "Player"
+},
+&"1_19": {
+"dialogue": "They’re faster than the others?
+",
+"offset": Vector2(1100, 1160),
+"options": {
+0: {
+"condition": {},
+"link": &"1_20",
+"text": ""
+}
+},
+"size": Vector2(540, 340),
+"speaker": "Player"
+},
+&"1_2": {
+"dialogue": "What happened here?",
+"offset": Vector2(1060, 300),
+"options": {
+0: {
+"condition": {},
+"link": &"1_6",
+"text": ""
+}
+},
+"size": Vector2(300, 342),
+"speaker": "Player"
+},
+&"1_20": {
+"dialogue": " Yes. That’s why your Slow Gun matters.
+When the world speeds up, slowing it down saves you.
+",
+"offset": Vector2(1680, 1160),
+"options": {
+0: {
+"condition": {},
+"link": &"1_21",
+"text": ""
+}
+},
+"size": Vector2(760, 340),
+"speaker": "NPC"
+},
+&"1_21": {
+"dialogue": " Slowing them is my only opening.",
+"offset": Vector2(2480, 1160),
+"options": {
+0: {
+"condition": {},
+"link": &"1_22",
+"text": ""
+}
+},
+"size": Vector2(480, 340),
+"speaker": "Player"
+},
+&"1_22": {
+"dialogue": " Their bodies, their bullets—everything slows if you shoot right.
+ Then you’ll have time to move, strike, survive.",
+"offset": Vector2(3040, 1160),
+"options": {
+0: {
+"condition": {},
+"link": &"1_23",
+"text": ""
+}
+},
+"size": Vector2(520, 340),
+"speaker": "NPC"
+},
+&"1_23": {
+"dialogue": " I’ll use it well!!!",
+"offset": Vector2(3640, 1160),
+"options": {
+0: {
+"condition": {},
+"link": "END",
+"text": ""
+}
+},
+"size": Vector2(460, 320),
+"speaker": "Player"
+},
+&"1_3": {
+"dialogue": " Those out there aren’t people—AI broke them.",
+"offset": Vector2(445, 712),
+"options": {
+0: {
+"condition": {},
+"link": &"1_4",
+"text": ""
+}
+},
+"size": Vector2(340, 400),
+"speaker": "NPC"
+},
+&"1_4": {
+"dialogue": " Workers, robots, failed experiments… all corrupted.",
+"offset": Vector2(857, 711),
+"options": {
+0: {
+"condition": {},
+"link": &"1_12",
+"text": ""
+}
+},
+"size": Vector2(399.99945, 420.00006),
+"speaker": "NPC"
+},
+&"1_5": {
+"dialogue": "You’re heading toward the core, aren't you?
+ Be careful—everything there moves too fast.
+",
+"offset": Vector2(360, 1160),
+"options": {
+0: {
+"condition": {},
+"link": &"1_19",
+"text": ""
+}
+},
+"size": Vector2(660, 340),
+"speaker": "NPC"
+},
+&"1_6": {
+"dialogue": " Some people lost themselves to broken tech.
+ If they see you, they’ll attack. Stay light—jump and climb.",
+"offset": Vector2(1580, 300),
+"options": {
+0: {
+"condition": {},
+"link": &"1_7",
+"text": ""
+}
+},
+"size": Vector2(400.0008, 439.99994),
+"speaker": "NPC"
+},
+&"1_7": {
+"dialogue": " I… feel different here.",
+"offset": Vector2(2040, 300),
+"options": {
+0: {
+"condition": {},
+"link": &"1_8",
+"text": ""
+}
+},
+"size": Vector2(440.00018, 440),
+"speaker": "Player"
+},
+&"1_8": {
+"dialogue": "Your sword will protect you.
+ And take this Slow Gun—it won’t kill, but it slows them down.
+",
+"offset": Vector2(2580, 300),
+"options": {
+0: {
+"condition": {},
+"link": &"1_9",
+"text": ""
+}
+},
+"size": Vector2(420, 460),
+"speaker": "NPC"
+},
+&"1_9": {
+"dialogue": "Slow… to buy time?",
+"offset": Vector2(3060, 300),
+"options": {
+0: {
+"condition": {},
+"link": &"1_10",
+"text": ""
+}
+},
+"size": Vector2(340.00085, 479.9999),
+"speaker": "Player"
+}
+}

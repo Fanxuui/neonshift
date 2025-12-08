@@ -325,6 +325,8 @@ func is_on_right_wall() -> bool:
 	
 func handle_dash_input(delta: float):
 	# Count down dash timer
+	if state == PlayerState.DIE:
+		return
 	if is_dashing:
 		dash_timer -= delta
 		if dash_timer <= 0:

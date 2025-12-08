@@ -7,7 +7,8 @@ script = ExtResource("1_eyqm7")
 starts = {
 "NPC_1": &"0_1",
 "NPC_2": &"0_2",
-"NPC_3": &"0_3"
+"NPC_3": &"0_3",
+"Npc_Ending": &"0_4"
 }
 nodes = {
 &"0_1": {
@@ -24,6 +25,11 @@ nodes = {
 "link": &"1_5",
 "offset": Vector2(20, 1200),
 "start_id": "NPC_3"
+},
+&"0_4": {
+"link": &"1_24",
+"offset": Vector2(59.59996, 1801.3973),
+"start_id": "Npc_Ending"
 },
 &"1_1": {
 "dialogue": "Stop there. You’re not from this place, are you?
@@ -63,7 +69,7 @@ nodes = {
 "text": ""
 }
 },
-"size": Vector2(339.99878, 460),
+"size": Vector2(339.9984, 460),
 "speaker": "Player"
 },
 &"1_12": {
@@ -89,7 +95,7 @@ nodes = {
 "text": ""
 }
 },
-"size": Vector2(420.0005, 340.00006),
+"size": Vector2(420.00043, 339.99994),
 "speaker": "NPC"
 },
 &"1_14": {
@@ -102,7 +108,7 @@ nodes = {
 "text": ""
 }
 },
-"size": Vector2(580.0006, 340),
+"size": Vector2(580.00006, 339.99997),
 "speaker": "NPC"
 },
 &"1_15": {
@@ -115,7 +121,7 @@ nodes = {
 "text": ""
 }
 },
-"size": Vector2(640.00037, 320),
+"size": Vector2(640.00073, 320),
 "speaker": "Player"
 },
 &"1_16": {
@@ -129,7 +135,7 @@ nodes = {
 "text": ""
 }
 },
-"size": Vector2(759.9995, 320),
+"size": Vector2(759.999, 320),
 "speaker": "NPC"
 },
 &"1_17": {
@@ -142,7 +148,7 @@ nodes = {
 "text": ""
 }
 },
-"size": Vector2(499.99927, 340),
+"size": Vector2(499.9989, 340),
 "speaker": "NPC"
 },
 &"1_18": {
@@ -155,7 +161,7 @@ nodes = {
 "text": ""
 }
 },
-"size": Vector2(360.00037, 320),
+"size": Vector2(360.00024, 319.99997),
 "speaker": "Player"
 },
 &"1_19": {
@@ -169,7 +175,7 @@ nodes = {
 "text": ""
 }
 },
-"size": Vector2(540, 340),
+"size": Vector2(540, 340.00006),
 "speaker": "Player"
 },
 &"1_2": {
@@ -197,7 +203,7 @@ When the world speeds up, slowing it down saves you.
 "text": ""
 }
 },
-"size": Vector2(760, 340),
+"size": Vector2(759.99963, 340.00006),
 "speaker": "NPC"
 },
 &"1_21": {
@@ -210,7 +216,7 @@ When the world speeds up, slowing it down saves you.
 "text": ""
 }
 },
-"size": Vector2(480, 340),
+"size": Vector2(479.99933, 340.00006),
 "speaker": "Player"
 },
 &"1_22": {
@@ -224,7 +230,7 @@ When the world speeds up, slowing it down saves you.
 "text": ""
 }
 },
-"size": Vector2(520, 340),
+"size": Vector2(520, 340.00006),
 "speaker": "NPC"
 },
 &"1_23": {
@@ -237,8 +243,92 @@ When the world speeds up, slowing it down saves you.
 "text": ""
 }
 },
-"size": Vector2(460, 320),
+"size": Vector2(459.99988, 320.00006),
 "speaker": "Player"
+},
+&"1_24": {
+"dialogue": " So you made it this far.
+ Strange, isn’t it—fighting a world built from your own fears?",
+"offset": Vector2(455.7855, 1817.5024),
+"options": {
+0: {
+"condition": {},
+"link": &"1_25",
+"text": ""
+}
+},
+"size": Vector2(739.9999, 299.99994),
+"speaker": "NPC"
+},
+&"1_25": {
+"dialogue": " …You look like me.",
+"offset": Vector2(1320, 1820),
+"options": {
+0: {
+"condition": {},
+"link": &"1_26",
+"text": ""
+}
+},
+"size": Vector2(300.00012, 240),
+"speaker": "Player"
+},
+&"1_26": {
+"dialogue": " Because I am you.
+ Every monster, every glitch—your mind shaped all of it.
+ The faster the world became, the more you lost your breath.",
+"offset": Vector2(1680, 1820),
+"options": {
+0: {
+"condition": {},
+"link": &"1_27",
+"text": ""
+}
+},
+"size": Vector2(340, 319.99994),
+"speaker": "NPC"
+},
+&"1_27": {
+"dialogue": " So this was all a dream… my own warning.",
+"offset": Vector2(2096.628, 1814.2814),
+"options": {
+0: {
+"condition": {},
+"link": &"1_28",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": "Player"
+},
+&"1_28": {
+"dialogue": "You slowed the world down—that’s why you survived.
+ Remember that when you wake.
+ Not all problems are solved by running faster.
+",
+"offset": Vector2(2483.1504, 1856.1547),
+"options": {
+0: {
+"condition": {},
+"link": &"1_29",
+"text": ""
+}
+},
+"size": Vector2(300.00012, 240),
+"speaker": "NPC"
+},
+&"1_29": {
+"dialogue": " …I understand.",
+"offset": Vector2(2861.62, 1831.997),
+"options": {
+0: {
+"condition": {},
+"link": "END",
+"text": ""
+}
+},
+"size": Vector2(300.00012, 240),
+"speaker": "P"
 },
 &"1_3": {
 "dialogue": " Those out there aren’t people—AI broke them.",
@@ -250,7 +340,7 @@ When the world speeds up, slowing it down saves you.
 "text": ""
 }
 },
-"size": Vector2(340, 400),
+"size": Vector2(340.00012, 399.99994),
 "speaker": "NPC"
 },
 &"1_4": {
@@ -263,7 +353,7 @@ When the world speeds up, slowing it down saves you.
 "text": ""
 }
 },
-"size": Vector2(399.99945, 420.00006),
+"size": Vector2(399.99963, 420.00003),
 "speaker": "NPC"
 },
 &"1_5": {
@@ -278,7 +368,7 @@ When the world speeds up, slowing it down saves you.
 "text": ""
 }
 },
-"size": Vector2(660, 340),
+"size": Vector2(659.9999, 340.00006),
 "speaker": "NPC"
 },
 &"1_6": {
@@ -292,7 +382,7 @@ When the world speeds up, slowing it down saves you.
 "text": ""
 }
 },
-"size": Vector2(400.0008, 439.99994),
+"size": Vector2(400.00073, 439.99994),
 "speaker": "NPC"
 },
 &"1_7": {
@@ -305,7 +395,7 @@ When the world speeds up, slowing it down saves you.
 "text": ""
 }
 },
-"size": Vector2(440.00018, 440),
+"size": Vector2(439.99976, 440),
 "speaker": "Player"
 },
 &"1_8": {
@@ -320,7 +410,7 @@ When the world speeds up, slowing it down saves you.
 "text": ""
 }
 },
-"size": Vector2(420, 460),
+"size": Vector2(419.99982, 460),
 "speaker": "NPC"
 },
 &"1_9": {
@@ -333,7 +423,7 @@ When the world speeds up, slowing it down saves you.
 "text": ""
 }
 },
-"size": Vector2(340.00085, 479.9999),
+"size": Vector2(340.00098, 479.99988),
 "speaker": "Player"
 }
 }

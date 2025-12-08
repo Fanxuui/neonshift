@@ -1,4 +1,4 @@
-[gd_scene load_steps=109 format=4 uid="uid://wwbqbws515pt"]
+[gd_scene load_steps=115 format=4 uid="uid://wwbqbws515pt"]
 
 [ext_resource type="Texture2D" uid="uid://c2u3o2r05frjl" path="res://assets/Sidescroller Shooter - Central City/Background/Base Color.png" id="1_sugp2"]
 [ext_resource type="Texture2D" uid="uid://6qg8u82gy61f" path="res://assets/Sidescroller Shooter - Central City/Background/Background Props.png" id="2_jyhfs"]
@@ -13,13 +13,13 @@
 [ext_resource type="PackedScene" uid="uid://qslq878mwgt7" path="res://scenes/ranged.tscn" id="7_o6xl0"]
 [ext_resource type="Texture2D" uid="uid://d4mir546kcf8i" path="res://assets/Elements-01.png" id="8_85g3d"]
 [ext_resource type="Script" uid="uid://dicwbliei6u8y" path="res://scripts/game_manager.gd" id="8_ya4ey"]
+[ext_resource type="AudioStream" uid="uid://c8j2hlct6kdx0" path="res://assets/Music/Bgm/Erokia__ambient-wave-46.wav" id="9_c6pm6"]
 [ext_resource type="Script" uid="uid://chdbeiao8ehn7" path="res://scripts/mounse_indicator.gd" id="9_choun"]
-[ext_resource type="AudioStream" uid="uid://ep44hsfh1358" path="res://assets/Music/Bgm/GTR7 - Vai Toma(PHONK).mp3" id="9_dp3eg"]
 [ext_resource type="Script" uid="uid://da3ukx7vc1qjo" path="res://scripts/fade_rect.gd" id="9_jkv2x"]
 [ext_resource type="AudioStream" uid="uid://cjjo4jjqfwk1p" path="res://assets/Music/Sounds/footstep.wav" id="11_0ld40"]
 [ext_resource type="AudioStream" uid="uid://vk88n7k744i2" path="res://assets/Music/Sounds/jump.wav" id="12_2wyq8"]
 [ext_resource type="PackedScene" uid="uid://dwvpu2l4olj12" path="res://scenes/shooter.tscn" id="12_eb6dy"]
-[ext_resource type="AudioStream" uid="uid://cwsivfxwb2gja" path="res://assets/Music/Sounds/gun.wav" id="13_vxglm"]
+[ext_resource type="AudioStream" uid="uid://cmro1ysk1ynbm" path="res://assets/Music/Sounds/gun.wav" id="13_vxglm"]
 [ext_resource type="AudioStream" uid="uid://cu3yk3v0yksui" path="res://assets/Music/Sounds/heal-short.wav" id="14_2f3dj"]
 [ext_resource type="PackedScene" uid="uid://8if0lqhe35ko" path="res://scenes/platform.tscn" id="14_jbj1t"]
 [ext_resource type="AudioStream" uid="uid://bj4ivua8vl25d" path="res://assets/Music/Sounds/hit vocal.wav" id="15_yq6so"]
@@ -33,12 +33,11 @@
 [ext_resource type="Script" uid="uid://cttm3bvyovbsa" path="res://addons/dialogue_nodes/objects/bbcodeMatrix.gd" id="27_5he1u"]
 [ext_resource type="PackedScene" uid="uid://bx57dgmmxmn0g" path="res://scenes/npc_1.tscn" id="27_vxglm"]
 [ext_resource type="PackedScene" uid="uid://cwy1twvc8kcu8" path="res://scenes/npc_3.tscn" id="29_yq6so"]
-[ext_resource type="PackedScene" uid="uid://n45imv6x0xtx" path="res://scenes/npc_4.tscn" id="30_fv21b"]
-[ext_resource type="PackedScene" uid="uid://c1hmcgdlos678" path="res://scenes/npc_ending.tscn" id="32_5q0nq"]
 [ext_resource type="PackedScene" uid="uid://r6rmnr4ffm04" path="res://scenes/shooter_basic.tscn" id="32_qkpxi"]
 [ext_resource type="Resource" uid="uid://canm52y3w26d4" path="res://Dialogue/Level1_NPCs.tres" id="33_pibwh"]
 [ext_resource type="Texture2D" uid="uid://c4yy0rhn3v2gc" path="res://assets/free-townspeople-cyberpunk-pixel-art/5/Idle.png" id="34_c6pm6"]
-[ext_resource type="Texture2D" uid="uid://dm6eex4b4ojdl" path="res://assets/free-townspeople-cyberpunk-pixel-art/1/Idle.png" id="38_c6pm6"]
+[ext_resource type="Texture2D" uid="uid://ceynclxlw7cgv" path="res://assets/Striker/spr_StrikerIdle_strip.png" id="37_pibwh"]
+[ext_resource type="Texture2D" uid="uid://bcqrnwqyntrfu" path="res://assets/free-townspeople-cyberpunk-pixel-art/10/Idle.png" id="38_5he1u"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yc10j"]
 texture = ExtResource("1_sugp2")
@@ -4451,33 +4450,80 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5he1u"]
-atlas = ExtResource("38_c6pm6")
+[sub_resource type="AtlasTexture" id="AtlasTexture_txyw0"]
+atlas = ExtResource("38_5he1u")
 region = Rect2(0, 0, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5poiv"]
-atlas = ExtResource("38_c6pm6")
+[sub_resource type="AtlasTexture" id="AtlasTexture_vc5cj"]
+atlas = ExtResource("38_5he1u")
 region = Rect2(48, 0, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2cjbq"]
-atlas = ExtResource("38_c6pm6")
+[sub_resource type="AtlasTexture" id="AtlasTexture_nvyfr"]
+atlas = ExtResource("38_5he1u")
 region = Rect2(96, 0, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_chjal"]
-atlas = ExtResource("38_c6pm6")
+[sub_resource type="AtlasTexture" id="AtlasTexture_ty1g6"]
+atlas = ExtResource("38_5he1u")
 region = Rect2(144, 0, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_cjqg0"]
-atlas = ExtResource("38_c6pm6")
-region = Rect2(192, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vchkt"]
-atlas = ExtResource("38_c6pm6")
-region = Rect2(240, 0, 48, 48)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_txyw0"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_j2jfr"]
 animations = [{
 "frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_txyw0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vc5cj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nvyfr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ty1g6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c6pm6"]
+atlas = ExtResource("37_pibwh")
+region = Rect2(0, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5he1u"]
+atlas = ExtResource("37_pibwh")
+region = Rect2(96, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5poiv"]
+atlas = ExtResource("37_pibwh")
+region = Rect2(192, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2cjbq"]
+atlas = ExtResource("37_pibwh")
+region = Rect2(288, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_chjal"]
+atlas = ExtResource("37_pibwh")
+region = Rect2(384, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cjqg0"]
+atlas = ExtResource("37_pibwh")
+region = Rect2(480, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vchkt"]
+atlas = ExtResource("37_pibwh")
+region = Rect2(576, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j2jfr"]
+atlas = ExtResource("37_pibwh")
+region = Rect2(672, 0, 96, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bjg73"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c6pm6")
+}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_5he1u")
 }, {
@@ -4495,6 +4541,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_vchkt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j2jfr")
 }],
 "loop": true,
 "name": &"default",
@@ -4608,7 +4657,7 @@ tile_map_data = PackedByteArray("AABWABMAAAAEAAIAAABWABQAAAAEAAIAAABWABUAAAAEAAI
 tile_set = SubResource("TileSet_e755i")
 
 [node name="Music" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("9_dp3eg")
+stream = ExtResource("9_c6pm6")
 autoplay = true
 bus = &"BGM"
 
@@ -4884,35 +4933,64 @@ position = Vector2(-50, 176)
 dialogue_data = ExtResource("33_pibwh")
 dialogue_id = "NPC_1"
 
-[node name="Npc5" parent="NPCs" instance=ExtResource("27_vxglm")]
+[node name="Npc2" parent="NPCs" instance=ExtResource("27_vxglm")]
 position = Vector2(143, 223)
 dialogue_data = ExtResource("33_pibwh")
 dialogue_id = "NPC_2"
 
-[node name="AnimatedSprite2D" parent="NPCs/Npc5" index="0"]
-sprite_frames = SubResource("SpriteFrames_5he1u")
-frame_progress = 0.0
-
-[node name="Npc3" parent="NPCs" instance=ExtResource("29_yq6so")]
-position = Vector2(-246, 55)
-
-[node name="Npc4" parent="NPCs" instance=ExtResource("30_fv21b")]
-position = Vector2(700, 199)
-
-[node name="Npc_Ending" parent="NPCs" instance=ExtResource("32_5q0nq")]
-position = Vector2(3702, 127)
-
-[node name="Npc2" parent="NPCs" instance=ExtResource("27_vxglm")]
-position = Vector2(322, 223)
-dialogue_data = ExtResource("33_pibwh")
-dialogue_id = "NPC_3"
-
 [node name="AnimatedSprite2D" parent="NPCs/Npc2" index="0"]
-sprite_frames = SubResource("SpriteFrames_txyw0")
+sprite_frames = SubResource("SpriteFrames_5he1u")
 frame_progress = 0.0
 
 [node name="ButtonPrompt" parent="NPCs/Npc2" index="2"]
 visible = true
+offset_left = -19.0
+offset_top = -53.0
+offset_right = 21.0
+offset_bottom = -30.0
+
+[node name="Npc2s" parent="NPCs" instance=ExtResource("29_yq6so")]
+position = Vector2(172, 200)
+
+[node name="Npc3" parent="NPCs" instance=ExtResource("27_vxglm")]
+position = Vector2(653, 214)
+dialogue_data = ExtResource("33_pibwh")
+dialogue_id = "NPC_3"
+
+[node name="AnimatedSprite2D" parent="NPCs/Npc3" index="0"]
+position = Vector2(-13, -14)
+sprite_frames = SubResource("SpriteFrames_j2jfr")
+frame_progress = 0.0
+
+[node name="CollisionShape2D" parent="NPCs/Npc3" index="1"]
+position = Vector2(-7, -2)
+
+[node name="ButtonPrompt" parent="NPCs/Npc3" index="2"]
+visible = true
+offset_left = -27.0
+offset_top = -40.0
+offset_right = 13.0
+offset_bottom = -17.0
+
+[node name="Npc_Ending" parent="NPCs" instance=ExtResource("27_vxglm")]
+position = Vector2(691.1648, 207.71277)
+dialogue_data = ExtResource("33_pibwh")
+dialogue_id = "Npc_Ending"
+
+[node name="AnimatedSprite2D" parent="NPCs/Npc_Ending" index="0"]
+position = Vector2(2957.8352, -71.71277)
+sprite_frames = SubResource("SpriteFrames_bjg73")
+frame_progress = 0.0
+
+[node name="CollisionShape2D" parent="NPCs/Npc_Ending" index="1"]
+position = Vector2(2965.8352, -57.71277)
+
+[node name="ButtonPrompt" parent="NPCs/Npc_Ending" index="2"]
+visible = true
+offset_left = 2942.6704
+offset_top = -103.42554
+offset_right = 2982.6704
+offset_bottom = -80.42554
 
 [node name="ranged" parent="." instance=ExtResource("32_qkpxi")]
 position = Vector2(43, 170)
@@ -4925,5 +5003,6 @@ position = Vector2(43, 170)
 [connection signal="tutorial_ended" from="CanvasLayer/TutorialUI/JumpTutorial" to="CanvasLayer/TutorialUI/DoubleJumpTutorial" method="Initiate"]
 [connection signal="body_entered" from="BoundryWalls/BottomWall" to="Player" method="_on_bottom_wall_body_entered"]
 
-[editable path="NPCs/Npc5"]
 [editable path="NPCs/Npc2"]
+[editable path="NPCs/Npc3"]
+[editable path="NPCs/Npc_Ending"]

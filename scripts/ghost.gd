@@ -5,11 +5,15 @@ const CHASING_SPEED := 350.0
 const REDUCED_SPEED := 20.0
 const CHASE_RANGE := 200.0
 const STOP_RANGE := 5.0
+const KNOCKBACK_FORCE := 150.0
+const KNOCKBACK_DURATION := 2
+const KNOCKBACK_SLOW_MULT := 0.4
+var _is_knocked_back := false
 
 @export var speed := REGULAR_SPEED
 var player: Node2D
 var direction = 1
-var health = 1
+var health = 2
 var _is_slowed := false
 
 @onready var ray_cast_right: RayCast2D = $RayCastRight
@@ -17,6 +21,7 @@ var _is_slowed := false
 @onready var ray_cast_bottom: RayCast2D = $RayCastBottom
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
+@onready var target_point: Node2D = $TargetPoint
 
 func _ready():
 	add_to_group("enemies")
@@ -27,6 +32,10 @@ func _ready():
 	else:
 		player = null
 func _physics_process(delta):
+	if _is_knocked_back:
+		velocity.y = 0 
+		move_and_slide()
+		return
 	if player:
 		var reachable := false
 		var dx := player.global_position.x - global_position.x
@@ -50,17 +59,24 @@ func _physics_process(delta):
 		if not ray_cast_bottom.is_colliding():
 			direction *= -1
 			animated_sprite.flip_h = direction < 0
+			target_point.position.x *= -1
 		elif ray_cast_right.is_colliding():
 			direction = -1
+			target_point.position.x *= -1
 			animated_sprite.flip_h = true
 		elif ray_cast_left.is_colliding():
 			direction = 1
 			animated_sprite.flip_h = false
+			target_point.position.x *= -1
 			
-		position.x += direction * speed * delta
+		velocity.x = direction * speed
+		move_and_slide()
 	
-func take_damage() -> void:
-	queue_free()
+func take_damage2(from_position: Vector2 = global_position) -> void:
+	health -= 1
+	apply_knockback(from_position)
+	if health <= 0:
+		die()
 	
 func slow_down() -> void:
 	_is_slowed = true
@@ -74,3 +90,23 @@ func die() -> void:
 func _on_hitbox_area_entered(area: Area2D) -> void:
 	if area.is_in_group("playerhurtbox"):
 		area.get_parent().take_damage(1)
+		apply_knockback(area.get_parent().global_position)
+		
+func apply_knockback(player_pos: Vector2):
+	var knock_dir = signf(global_position.x - player_pos.x)
+
+	# Apply weakened knockback if slowed
+	var knock_force = KNOCKBACK_FORCE
+	if _is_slowed:
+		knock_force *= KNOCKBACK_SLOW_MULT
+
+	# Horizontal-only knockback
+	velocity = Vector2(knock_dir * knock_force, 0)
+
+	_is_knocked_back = true
+
+	await get_tree().create_timer(KNOCKBACK_DURATION).timeout
+
+	_is_knocked_back = false
+	velocity = Vector2.ZERO
+ # stop sliding after knockback

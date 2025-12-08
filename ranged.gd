@@ -40,7 +40,7 @@ var reaction_timer := 0.0
 
 func _ready() -> void:
 	add_to_group("enemies")
-	
+
 	# find the player
 	var players = get_tree().get_nodes_in_group("player")
 	if players.size() > 0:

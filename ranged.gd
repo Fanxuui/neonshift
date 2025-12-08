@@ -60,7 +60,7 @@ func _physics_process(delta: float) -> void:
 	
 	var in_chase_range := distance <= CHASE_RANGE
 	var reachable := navigation_agent.is_target_reachable()
-	var can_see_player := in_chase_range and reachable
+	var can_see_player := in_chase_range 
 	
 	
 	match state:

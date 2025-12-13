@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 [gd_scene load_steps=119 format=4 uid="uid://wwbqbws515pt"]
-=======
-[gd_scene load_steps=116 format=4 uid="uid://wwbqbws515pt"]
->>>>>>> 64a9917850986ce628525b710f33cd606f12ff66
 
 [ext_resource type="Texture2D" uid="uid://c2u3o2r05frjl" path="res://assets/Sidescroller Shooter - Central City/Background/Base Color.png" id="1_sugp2"]
 [ext_resource type="Texture2D" uid="uid://6qg8u82gy61f" path="res://assets/Sidescroller Shooter - Central City/Background/Background Props.png" id="2_jyhfs"]
@@ -29,29 +25,18 @@
 [ext_resource type="AudioStream" uid="uid://bj4ivua8vl25d" path="res://assets/Music/Sounds/hit vocal.wav" id="15_yq6so"]
 [ext_resource type="AudioStream" uid="uid://cxt7l52onvar3" path="res://assets/Music/Sounds/sword.wav" id="16_fv21b"]
 [ext_resource type="AudioStream" uid="uid://bn77d4qy3pcvp" path="res://assets/Music/Sounds/character death.wav" id="18_qkpxi"]
-<<<<<<< HEAD
 [ext_resource type="Script" uid="uid://ct63huug8gybc" path="res://scripts/tutorial_ui.gd" id="23_tel4y"]
 [ext_resource type="FontFile" uid="uid://bkgvp47akbko8" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="24_5he1u"]
 [ext_resource type="FontFile" uid="uid://bj0h4rfw7vukl" path="res://assets/fonts/PixelOperator8.ttf" id="24_c6pm6"]
-=======
-[ext_resource type="Script" path="res://scripts/tutorial_ui.gd" id="23_tel4y"]
->>>>>>> 64a9917850986ce628525b710f33cd606f12ff66
 [ext_resource type="Script" uid="uid://bfum5h1wtofle" path="res://addons/dialogue_nodes/objects/DialogueBox.gd" id="24_fuf3a"]
 [ext_resource type="Script" uid="uid://bnn0v4yrotwj" path="res://addons/dialogue_nodes/objects/bbcodeWait.gd" id="25_pibwh"]
 [ext_resource type="Script" uid="uid://cru7hqlt4jse5" path="res://addons/dialogue_nodes/objects/bbcodeGhost.gd" id="26_c6pm6"]
-[ext_resource type="PackedScene" uid="uid://dv1ikq1wucki2" path="res://scenes/ghost.tscn" id="27_2f3dj"]
 [ext_resource type="Script" uid="uid://cttm3bvyovbsa" path="res://addons/dialogue_nodes/objects/bbcodeMatrix.gd" id="27_5he1u"]
-<<<<<<< HEAD
 [ext_resource type="Script" uid="uid://dnejmkg2lcl01" path="res://addons/dialogue_nodes/objects/DialogueData.gd" id="27_5poiv"]
 [ext_resource type="PackedScene" uid="uid://bx57dgmmxmn0g" path="res://scenes/npc_1.tscn" id="27_vxglm"]
 [ext_resource type="PackedScene" uid="uid://cwy1twvc8kcu8" path="res://scenes/npc_3.tscn" id="29_yq6so"]
 [ext_resource type="AudioStream" uid="uid://b4fgk6k8ttfav" path="res://assets/Music/Sounds/E_npc.wav" id="30_5poiv"]
 [ext_resource type="PackedScene" uid="uid://r6rmnr4ffm04" path="res://scenes/shooter_basic.tscn" id="32_qkpxi"]
-=======
-[ext_resource type="PackedScene" path="res://scenes/npc_1.tscn" id="27_vxglm"]
-[ext_resource type="PackedScene" path="res://scenes/npc_3.tscn" id="29_yq6so"]
-[ext_resource type="PackedScene" path="res://scenes/shooter_basic.tscn" id="32_qkpxi"]
->>>>>>> 64a9917850986ce628525b710f33cd606f12ff66
 [ext_resource type="Resource" uid="uid://canm52y3w26d4" path="res://Dialogue/Level1_NPCs.tres" id="33_pibwh"]
 [ext_resource type="Texture2D" uid="uid://c4yy0rhn3v2gc" path="res://assets/free-townspeople-cyberpunk-pixel-art/5/Idle.png" id="34_c6pm6"]
 [ext_resource type="Texture2D" uid="uid://bcqrnwqyntrfu" path="res://assets/free-townspeople-cyberpunk-pixel-art/10/Idle.png" id="38_5he1u"]
@@ -4546,7 +4531,7 @@ animations = [{
 "speed": 3.0
 }]
 
-[node name="Level2" type="Node2D"]
+[node name="Level1" type="Node2D"]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 
@@ -4913,20 +4898,17 @@ shape = SubResource("WorldBoundaryShape2D_jbj1t")
 
 [node name="Enemies" type="Node" parent="."]
 
-[node name="ranged" parent="Enemies" instance=ExtResource("32_qkpxi")]
-position = Vector2(43, 170)
-
 [node name="Ranged1" parent="Enemies" instance=ExtResource("7_o6xl0")]
-position = Vector2(291, -16)
+position = Vector2(507, 225)
 
 [node name="Ranged2" parent="Enemies" instance=ExtResource("7_o6xl0")]
-position = Vector2(594, 46)
+position = Vector2(428, 225)
 
 [node name="Shooter1" parent="Enemies" instance=ExtResource("12_eb6dy")]
 position = Vector2(1146, 28)
 
 [node name="Ranged3" parent="Enemies" instance=ExtResource("7_o6xl0")]
-position = Vector2(1326, 209)
+position = Vector2(985, 177)
 
 [node name="Ranged4" parent="Enemies" instance=ExtResource("7_o6xl0")]
 position = Vector2(1795, 202)
@@ -4945,9 +4927,6 @@ position = Vector2(2577, 156)
 
 [node name="Ranged7" parent="Enemies" instance=ExtResource("7_o6xl0")]
 position = Vector2(2190, 204)
-
-[node name="ghost" parent="Enemies" instance=ExtResource("27_2f3dj")]
-position = Vector2(758, 227)
 
 [node name="NPCs" type="Node2D" parent="."]
 
@@ -5018,6 +4997,9 @@ offset_left = 2942.6704
 offset_top = -103.42554
 offset_right = 2982.6704
 offset_bottom = -80.42554
+
+[node name="ranged" parent="." instance=ExtResource("32_qkpxi")]
+position = Vector2(43, 170)
 
 [connection signal="attacked" from="Player" to="CanvasLayer/TutorialUI/AttackTutorial" method="delete_tutorial"]
 [connection signal="double_jumped" from="Player" to="CanvasLayer/TutorialUI/DoubleJumpTutorial" method="delete_tutorial"]

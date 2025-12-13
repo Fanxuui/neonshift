@@ -1,0 +1,159 @@
+[gd_scene load_steps=13 format=3 uid="uid://be2adml4jayjp"]
+
+[ext_resource type="Texture2D" uid="uid://bh0gkaxh7yh13" path="res://assets/UI/city 7/1.png" id="1_402yb"]
+[ext_resource type="Texture2D" uid="uid://bqoajmtp5pr1y" path="res://assets/UI/city 7/2.png" id="2_52145"]
+[ext_resource type="Texture2D" uid="uid://bvda66brlep60" path="res://assets/UI/city 7/3.png" id="3_uebxt"]
+[ext_resource type="Texture2D" uid="uid://dmk1n70do3t40" path="res://assets/UI/city 7/4.png" id="4_qbkda"]
+[ext_resource type="Texture2D" uid="uid://brsly172cx06h" path="res://assets/UI/city 7/5.png" id="5_0t10h"]
+[ext_resource type="FontFile" uid="uid://bkgvp47akbko8" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="6_je0t7"]
+[ext_resource type="Script" uid="uid://cpqqtisvof6ui" path="res://scenes/play_button.gd" id="7_qqxji"]
+
+[sub_resource type="Animation" id="Animation_3ej01"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.27058825, 0.14117648, 0.34901962, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_66w26"]
+resource_name = "flash"
+length = 0.4
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:theme_override_colors/font_color")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0.27058825, 0.14117648, 0.34901962, 1), Color(1, 0.65611404, 0.7269094, 1), Color(0.27058825, 0.14117648, 0.34901962, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w20ru"]
+_data = {
+&"RESET": SubResource("Animation_3ej01"),
+&"flash": SubResource("Animation_66w26")
+}
+
+[sub_resource type="Theme" id="Theme_66w26"]
+default_font = ExtResource("6_je0t7")
+default_font_size = 0
+Button/font_sizes/font_size = 28
+
+[sub_resource type="Theme" id="Theme_3ej01"]
+default_font = ExtResource("6_je0t7")
+Button/font_sizes/font_size = 28
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Node2D" type="Node2D" parent="."]
+z_index = -7
+
+[node name="Parallax2D" type="Parallax2D" parent="Node2D"]
+scroll_offset = Vector2(-306, 321.285)
+repeat_size = Vector2(1152, 0)
+autoscroll = Vector2(-20, 0)
+repeat_times = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D/Parallax2D"]
+scale = Vector2(2, 2)
+texture = ExtResource("1_402yb")
+
+[node name="Parallax2D2" type="Parallax2D" parent="Node2D"]
+scroll_offset = Vector2(-306, 326)
+repeat_size = Vector2(1152, 0)
+autoscroll = Vector2(-40, 0)
+repeat_times = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D/Parallax2D2"]
+scale = Vector2(2, 2)
+texture = ExtResource("2_52145")
+
+[node name="Parallax2D3" type="Parallax2D" parent="Node2D"]
+scroll_offset = Vector2(-306, 326)
+repeat_size = Vector2(1152, 0)
+autoscroll = Vector2(-60, 0)
+repeat_times = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D/Parallax2D3"]
+scale = Vector2(2, 2)
+texture = ExtResource("3_uebxt")
+
+[node name="Parallax2D4" type="Parallax2D" parent="Node2D"]
+scroll_offset = Vector2(-306, 326)
+repeat_size = Vector2(1152, 0)
+autoscroll = Vector2(-80, 0)
+repeat_times = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D/Parallax2D4"]
+scale = Vector2(2, 2)
+texture = ExtResource("4_qbkda")
+
+[node name="Parallax2D5" type="Parallax2D" parent="Node2D"]
+scroll_offset = Vector2(-306, 326)
+repeat_size = Vector2(1152, 0)
+autoscroll = Vector2(-100, 0)
+repeat_times = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D/Parallax2D5"]
+scale = Vector2(2, 2)
+texture = ExtResource("5_0t10h")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TitleLabel" type="Label" parent="CanvasLayer"]
+offset_left = 300.0
+offset_top = 158.0
+offset_right = 1452.0
+offset_bottom = 222.0
+theme_override_colors/font_color = Color(0.27058825, 0.14117648, 0.34901962, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("6_je0t7")
+theme_override_font_sizes/font_size = 64
+text = "NEON SHIFT"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/TitleLabel"]
+libraries = {
+&"": SubResource("AnimationLibrary_w20ru")
+}
+autoplay = "flash"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+offset_left = -1.0
+offset_right = 1151.0
+offset_bottom = 647.0
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="PlayButton" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_66w26")
+text = "REPLAY"
+script = ExtResource("7_qqxji")
+
+[node name="QuitButton" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_3ej01")
+text = "QUIT"
+
+[node name="UIAnim" type="AnimationPlayer" parent="CanvasLayer"]
+
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/PlayButton" to="CanvasLayer/VBoxContainer/PlayButton" method="_on_play_pressed"]

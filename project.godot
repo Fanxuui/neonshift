@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Assassin's Creed: 2D"
-run/main_scene="uid://wwbqbws515pt"
+run/main_scene="uid://d0xfvl6ra4yn8"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 

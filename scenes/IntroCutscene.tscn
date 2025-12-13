@@ -1,0 +1,133 @@
+[gd_scene load_steps=12 format=3 uid="uid://mqyibvrim80g"]
+
+[ext_resource type="Script" uid="uid://dc5d4y1rwavhw" path="res://scenes/intro_cutscene.gd" id="1_fgsq1"]
+[ext_resource type="Texture2D" uid="uid://bfp85i04wb7xh" path="res://assets/UI/city 1/1.png" id="2_t6y0e"]
+[ext_resource type="Texture2D" uid="uid://bbrmk1gymyruh" path="res://assets/UI/city 1/2.png" id="3_8wwff"]
+[ext_resource type="Texture2D" uid="uid://bwe26pc7qw6ae" path="res://assets/UI/city 1/3.png" id="4_gqb4e"]
+[ext_resource type="Texture2D" uid="uid://dobu0kkhenhyc" path="res://assets/UI/city 1/4.png" id="5_0f8n4"]
+[ext_resource type="Texture2D" uid="uid://c7rhjjww0jxtl" path="res://assets/UI/city 1/5.png" id="6_p6ax6"]
+[ext_resource type="FontFile" uid="uid://bkgvp47akbko8" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="7_8wwff"]
+
+[sub_resource type="Theme" id="Theme_gqb4e"]
+default_font = ExtResource("7_8wwff")
+default_font_size = 32
+
+[sub_resource type="Animation" id="Animation_872o4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Caption:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_fgsq1"]
+resource_name = "intro"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Caption:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(2.2, 2.7, 3.6, 4.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nuwxb"]
+_data = {
+&"RESET": SubResource("Animation_872o4"),
+&"intro": SubResource("Animation_fgsq1")
+}
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_fgsq1")
+
+[node name="Node2D" type="Node2D" parent="."]
+z_index = -7
+
+[node name="Parallax2D" type="Parallax2D" parent="Node2D"]
+scroll_offset = Vector2(-306, 326)
+repeat_size = Vector2(1152, 0)
+autoscroll = Vector2(-20, 0)
+repeat_times = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D/Parallax2D"]
+scale = Vector2(2, 2)
+texture = ExtResource("2_t6y0e")
+
+[node name="Parallax2D2" type="Parallax2D" parent="Node2D"]
+scroll_offset = Vector2(-306, 326)
+repeat_size = Vector2(1152, 0)
+autoscroll = Vector2(-40, 0)
+repeat_times = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D/Parallax2D2"]
+scale = Vector2(2, 2)
+texture = ExtResource("3_8wwff")
+
+[node name="Parallax2D3" type="Parallax2D" parent="Node2D"]
+scroll_offset = Vector2(-306, 326)
+repeat_size = Vector2(1152, 0)
+autoscroll = Vector2(-60, 0)
+repeat_times = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D/Parallax2D3"]
+scale = Vector2(2, 2)
+texture = ExtResource("4_gqb4e")
+
+[node name="Parallax2D4" type="Parallax2D" parent="Node2D"]
+scroll_offset = Vector2(-306, 326)
+repeat_size = Vector2(1152, 0)
+autoscroll = Vector2(-80, 0)
+repeat_times = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D/Parallax2D4"]
+scale = Vector2(2, 2)
+texture = ExtResource("5_0f8n4")
+
+[node name="Parallax2D5" type="Parallax2D" parent="Node2D"]
+scroll_offset = Vector2(-306, 326)
+repeat_size = Vector2(1152, 0)
+autoscroll = Vector2(-100, 0)
+repeat_times = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D/Parallax2D5"]
+scale = Vector2(2, 2)
+texture = ExtResource("6_p6ax6")
+
+[node name="Caption" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 236.0
+offset_top = 237.0
+offset_right = 944.1305
+offset_bottom = 326.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_gqb4e")
+text = "Falling into the dream..."
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_nuwxb")
+}
+autoplay = "intro"

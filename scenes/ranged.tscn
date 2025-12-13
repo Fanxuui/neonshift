@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://qslq878mwgt7"]
+[gd_scene load_steps=20 format=3 uid="uid://qslq878mwgt7"]
 
 [ext_resource type="Script" uid="uid://cu8xx5lol6c7e" path="res://ranged.gd" id="1_ihxqk"]
 [ext_resource type="PackedScene" uid="uid://b2jhg53i0j7p3" path="res://scenes/bullets/enemy_bullet.tscn" id="2_8akpr"]
@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://bfo2mwr4xi4ib" path="res://assets/free-guns-pack-2-for-main-characters-pixel-art/3 Hands/2 Punk/8.png" id="4_mcfec"]
 [ext_resource type="Texture2D" uid="uid://bcsdps3b6o4vu" path="res://assets/free-guns-pack-2-for-main-characters-pixel-art/2 Guns/2_1.png" id="5_f1u7b"]
 [ext_resource type="Texture2D" uid="uid://chq568lteu0d8" path="res://assets/New Piskel-1.png.png" id="7_mcfec"]
+[ext_resource type="AudioStream" uid="uid://k0arf42qlk3v" path="res://assets/Music/Sounds/enemy-hurt.wav" id="8_0djpx"]
+[ext_resource type="AudioStream" uid="uid://da6qam7gqurwa" path="res://assets/Music/Sounds/be slowed.wav" id="9_woal2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0djpx"]
 atlas = ExtResource("3_afsbx")
@@ -136,5 +138,15 @@ collision_layer = 64
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 position = Vector2(0, -7)
 shape = SubResource("RectangleShape2D_5mfnq")
+
+[node name="HitSfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_0djpx")
+volume_db = 6.746
+bus = &"SFX"
+
+[node name="SlowHitSfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_woal2")
+volume_db = 17.427
+bus = &"SFX"
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

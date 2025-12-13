@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Character" load_steps=3 format=3 uid="uid://dsl7bltrpooa3"]
+
+[ext_resource type="Script" uid="uid://b87t18a6dnl1h" path="res://addons/dialogue_nodes/objects/Character.gd" id="1_8qaml"]
+[ext_resource type="Texture2D" uid="uid://b1mho5k533d2b" path="res://assets/Striker/P0.png" id="1_huyv0"]
+
+[resource]
+script = ExtResource("1_8qaml")
+name = "You"
+image = ExtResource("1_huyv0")
+color = Color(0.8392157, 0.27450982, 0.14901961, 1)
+metadata/_custom_type_script = "uid://b87t18a6dnl1h"

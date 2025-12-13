@@ -150,6 +150,8 @@ var _dialogue_parser : DialogueParser
 var _main_container : BoxContainer
 var _sub_container : BoxContainer
 var _wait_effect : RichTextWait
+var next_sfx: AudioStreamPlayer
+@export var next_sfx_stream: AudioStream 
 
 
 func _enter_tree():
@@ -200,6 +202,12 @@ func _enter_tree():
 	options_alignment = options_alignment
 	options_vertical = options_vertical
 	options_position = options_position
+	
+	#ADDED next_sfx 
+	next_sfx = AudioStreamPlayer.new()
+	next_sfx.name = "NextSfx"
+	add_child(next_sfx)
+	next_sfx.stream = next_sfx_stream
 	
 	_dialogue_parser = DialogueParser.new()
 	add_child(_dialogue_parser)
@@ -263,6 +271,11 @@ func stop():
 ## Continues processing the dialogue tree from the node connected to the option at [param idx].
 func select_option(idx : int):
 	if not _dialogue_parser: return
+	
+	# ADDED
+	if next_sfx and next_sfx.stream:
+		next_sfx.play()
+	
 	_dialogue_parser.select_option(idx)
 
 
@@ -317,6 +330,8 @@ func _on_dialogue_processed(speaker : Variant, dialogue : String, options : Arra
 
 
 func _on_option_selected(idx : int):
+	if next_sfx:
+		next_sfx.play()  
 	option_selected.emit(idx)
 
 

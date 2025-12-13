@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CharacterList" load_steps=8 format=3 uid="uid://1n6fak5jgr1w"]
+
+[ext_resource type="Script" uid="uid://b87t18a6dnl1h" path="res://addons/dialogue_nodes/objects/Character.gd" id="1_p34lh"]
+[ext_resource type="Script" uid="uid://b4vtsgmihdh0b" path="res://addons/dialogue_nodes/objects/CharacterList.gd" id="2_04jjo"]
+[ext_resource type="Resource" uid="uid://dsl7bltrpooa3" path="res://Dialogue/You.tres" id="2_oc3b1"]
+[ext_resource type="Resource" uid="uid://bsxlgsvr3an4x" path="res://Dialogue/NPC1.tres" id="2_pfho8"]
+[ext_resource type="Resource" uid="uid://drp4dibkgtwt0" path="res://Dialogue/NPC2.tres" id="3_pfho8"]
+[ext_resource type="Resource" uid="uid://bl5q1pkh2d48p" path="res://Dialogue/NPC3.tres" id="5_bmib8"]
+[ext_resource type="Resource" uid="uid://b3x5nnf4mdjjf" path="res://Dialogue/Npc_Ending.tres" id="5_sus47"]
+
+[resource]
+script = ExtResource("2_04jjo")
+characters = Array[ExtResource("1_p34lh")]([ExtResource("2_oc3b1"), ExtResource("2_pfho8"), ExtResource("3_pfho8"), ExtResource("5_bmib8"), ExtResource("5_sus47")])
+metadata/_custom_type_script = "uid://b4vtsgmihdh0b"

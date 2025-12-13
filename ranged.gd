@@ -38,6 +38,22 @@ var reaction_timer := 0.0
 @onready var alert_icon: Sprite2D = $AlertIcon
 @onready var target_point: Node2D = $TargetPoint
 
+
+# -------------------------------------------------
+# ADD: hit sound effects (melee hit / slow-gun hit)
+# Required child nodes under this enemy:
+#   - HitSfx (AudioStreamPlayer2D)
+#   - SlowHitSfx (AudioStreamPlayer2D)
+# -------------------------------------------------
+@onready var hit_sfx: AudioStreamPlayer2D = $HitSfx
+@onready var slow_hit_sfx: AudioStreamPlayer2D = $SlowHitSfx
+
+# Prevent hit sounds from playing every frame
+var _hit_sfx_lock := false
+const HIT_SFX_LOCK_TIME := 0.08
+# -------------------------------------------------
+
+
 func _ready() -> void:
 	add_to_group("enemies")
 	
@@ -184,16 +200,23 @@ func _shoot_projectile() -> void:
 	can_shoot = true
 
 func take_damage() -> void:
+	if hit_sfx:
+		hit_sfx.play()
+		await get_tree().create_timer(0.05).timeout
 	queue_free()
 
 func slow_down() -> void:
 	print("slow")
+	if slow_hit_sfx:
+		slow_hit_sfx.play()
+
 	_is_slowed = true
 	var cur_speed = speed
 	speed = REDUCED_SPEED
 	await get_tree().create_timer(3.0).timeout
 	_is_slowed = false
 	speed = cur_speed
+	
 
 func die() -> void:
 	queue_free()

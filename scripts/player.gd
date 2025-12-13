@@ -26,6 +26,10 @@ var dash_timer: float = 0.0
 var last_tap_time_left: float = -1.0
 var last_tap_time_right: float = -1.0
 var is_dashing: bool = false
+# --- Footstep SFX ---
+var footstep_timer := 0.0
+const FOOTSTEP_INTERVAL := 0.28  
+
 
 const DAMAGE_LOCKOUT_TIME := 1   # Prevent multi-hit spam per attack
 
@@ -86,6 +90,7 @@ func take_damage(damage: int):
 	# Apply real damage
 	if GameState.current_health > 0:
 		GameState.damage(damage)
+		$HitPlayer.play()  #ADDED hit sfx 
 
 	# Die?
 	if GameState.current_health <= 0:
@@ -112,6 +117,7 @@ func heal():
 
 func die():
 	print("die")
+	$DeathSfx.play()  # added death sfx
 	anim_locked = true
 	state = PlayerState.DIE
 	_update_animation()
@@ -137,12 +143,17 @@ func handle_movement_input() -> void:
 	# --- NORMAL JUMP ---
 	if Input.is_action_just_pressed("jump") and jump_count < MAX_JUMPS:
 		emit_signal("jumped")
+		$JumpSfx.play()  
+
 		state = PlayerState.JUMP
 		velocity.y = JUMP_VELOCITY
 		jump_count += 1
+
 		if jump_count == MAX_JUMPS:
 			emit_signal("double_jumped")
-
+			$JumpSfx.play()  
+		
+		
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_axis("move_left", "move_right")
@@ -223,6 +234,15 @@ func _physics_process(delta: float) -> void:
 
 	handle_movement_input()
 	move_and_slide()
+
+	# ADDED：Footstep SFX
+	if is_on_floor() and absf(velocity.x) > 10.0 and not is_dashing:
+		footstep_timer -= delta
+		if footstep_timer <= 0.0:
+			$FootstepSfx.play()
+			footstep_timer = FOOTSTEP_INTERVAL
+	else:
+		footstep_timer = 0.0
 
 	# Handle sprite flip
 	if Input.is_action_pressed("move_right"):
@@ -372,4 +392,4 @@ func invincibility_timer() -> void:
 	await get_tree().create_timer(INVINCIBILITY_TIME, false, true).timeout
 	is_invincible = false
 	$AnimatedSprite2D.modulate = Color(1,1,1,1) # reset sprite
-#202511302319
+#20251212

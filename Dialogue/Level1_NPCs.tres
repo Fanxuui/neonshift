@@ -18,7 +18,7 @@ nodes = {
 },
 &"0_2": {
 "link": &"1_3",
-"offset": Vector2(-37, 644),
+"offset": Vector2(-40, 640),
 "start_id": "NPC_2"
 },
 &"0_3": {
@@ -42,8 +42,8 @@ nodes = {
 "text": ""
 }
 },
-"size": Vector2(500.00024, 342.00012),
-"speaker": "NPC"
+"size": Vector2(499.9995, 341.99988),
+"speaker": 1
 },
 &"1_10": {
 "dialogue": "Exactly. One second can save your life here.
@@ -56,8 +56,8 @@ nodes = {
 "text": ""
 }
 },
-"size": Vector2(420, 440.00006),
-"speaker": "NPC"
+"size": Vector2(419.9961, 439.99988),
+"speaker": 1
 },
 &"1_11": {
 "dialogue": "…Thank you.",
@@ -69,8 +69,8 @@ nodes = {
 "text": ""
 }
 },
-"size": Vector2(339.9984, 460),
-"speaker": "Player"
+"size": Vector2(339.9956, 459.99976),
+"speaker": 0
 },
 &"1_12": {
 "dialogue": " So they attack anything?",
@@ -82,8 +82,8 @@ nodes = {
 "text": ""
 }
 },
-"size": Vector2(420.00018, 339.99994),
-"speaker": "Player"
+"size": Vector2(419.99817, 342.00018),
+"speaker": 2
 },
 &"1_13": {
 "dialogue": " Yes. Some won’t fall in one hit.",
@@ -95,8 +95,8 @@ nodes = {
 "text": ""
 }
 },
-"size": Vector2(420.00043, 339.99994),
-"speaker": "NPC"
+"size": Vector2(419.99902, 342.00018),
+"speaker": 0
 },
 &"1_14": {
 "dialogue": " If they get up again, finish them fast.",
@@ -108,8 +108,8 @@ nodes = {
 "text": ""
 }
 },
-"size": Vector2(580.00006, 339.99997),
-"speaker": "NPC"
+"size": Vector2(579.99805, 342.00018),
+"speaker": 2
 },
 &"1_15": {
 "dialogue": " So defeating them just keeps me alive.",
@@ -121,8 +121,8 @@ nodes = {
 "text": ""
 }
 },
-"size": Vector2(640.00073, 320),
-"speaker": "Player"
+"size": Vector2(639.9951, 342.00006),
+"speaker": 0
 },
 &"1_16": {
 "dialogue": "Some drop healing energy—use it when you can.
@@ -135,8 +135,8 @@ nodes = {
 "text": ""
 }
 },
-"size": Vector2(759.999, 320),
-"speaker": "NPC"
+"size": Vector2(759.9885, 342.00006),
+"speaker": 2
 },
 &"1_17": {
 "dialogue": " You’ll need every advantage in this place.",
@@ -148,8 +148,8 @@ nodes = {
 "text": ""
 }
 },
-"size": Vector2(499.9989, 340),
-"speaker": "NPC"
+"size": Vector2(499.98608, 342.00006),
+"speaker": 0
 },
 &"1_18": {
 "dialogue": " Understood.",
@@ -161,8 +161,8 @@ nodes = {
 "text": ""
 }
 },
-"size": Vector2(360.00024, 319.99997),
-"speaker": "Player"
+"size": Vector2(360.00024, 342.00018),
+"speaker": 0
 },
 &"1_19": {
 "dialogue": "They’re faster than the others?
@@ -175,8 +175,8 @@ nodes = {
 "text": ""
 }
 },
-"size": Vector2(540, 340.00006),
-"speaker": "Player"
+"size": Vector2(539.9995, 342.0003),
+"speaker": 0
 },
 &"1_2": {
 "dialogue": "What happened here?",
@@ -188,8 +188,8 @@ nodes = {
 "text": ""
 }
 },
-"size": Vector2(300, 342),
-"speaker": "Player"
+"size": Vector2(300.00012, 341.99988),
+"speaker": 0
 },
 &"1_20": {
 "dialogue": " Yes. That’s why your Slow Gun matters.
@@ -203,8 +203,8 @@ When the world speeds up, slowing it down saves you.
 "text": ""
 }
 },
-"size": Vector2(759.99963, 340.00006),
-"speaker": "NPC"
+"size": Vector2(759.9979, 342.0003),
+"speaker": 3
 },
 &"1_21": {
 "dialogue": " Slowing them is my only opening.",
@@ -216,8 +216,8 @@ When the world speeds up, slowing it down saves you.
 "text": ""
 }
 },
-"size": Vector2(479.99933, 340.00006),
-"speaker": "Player"
+"size": Vector2(479.9973, 342.0003),
+"speaker": 0
 },
 &"1_22": {
 "dialogue": " Their bodies, their bullets—everything slows if you shoot right.
@@ -230,8 +230,8 @@ When the world speeds up, slowing it down saves you.
 "text": ""
 }
 },
-"size": Vector2(520, 340.00006),
-"speaker": "NPC"
+"size": Vector2(519.9946, 342.0003),
+"speaker": 3
 },
 &"1_23": {
 "dialogue": " I’ll use it well!!!",
@@ -243,8 +243,8 @@ When the world speeds up, slowing it down saves you.
 "text": ""
 }
 },
-"size": Vector2(459.99988, 320.00006),
-"speaker": "Player"
+"size": Vector2(459.9922, 342.0003),
+"speaker": 0
 },
 &"1_24": {
 "dialogue": " So you made it this far.
@@ -257,8 +257,8 @@ When the world speeds up, slowing it down saves you.
 "text": ""
 }
 },
-"size": Vector2(739.9999, 299.99994),
-"speaker": "NPC"
+"size": Vector2(739.99744, 342.0003),
+"speaker": 3
 },
 &"1_25": {
 "dialogue": " …You look like me.",
@@ -270,8 +270,8 @@ When the world speeds up, slowing it down saves you.
 "text": ""
 }
 },
-"size": Vector2(300.00012, 240),
-"speaker": "Player"
+"size": Vector2(300.00037, 342.0003),
+"speaker": 0
 },
 &"1_26": {
 "dialogue": " Because I am you.
@@ -285,8 +285,8 @@ When the world speeds up, slowing it down saves you.
 "text": ""
 }
 },
-"size": Vector2(340, 319.99994),
-"speaker": "NPC"
+"size": Vector2(339.99695, 342.0003),
+"speaker": 3
 },
 &"1_27": {
 "dialogue": " So this was all a dream… my own warning.",
@@ -298,15 +298,15 @@ When the world speeds up, slowing it down saves you.
 "text": ""
 }
 },
-"size": Vector2(300, 240),
-"speaker": "Player"
+"size": Vector2(300.0028, 342.00012),
+"speaker": 0
 },
 &"1_28": {
 "dialogue": "You slowed the world down—that’s why you survived.
  Remember that when you wake.
  Not all problems are solved by running faster.
 ",
-"offset": Vector2(2483.1504, 1856.1547),
+"offset": Vector2(2460, 1860),
 "options": {
 0: {
 "condition": {},
@@ -314,8 +314,8 @@ When the world speeds up, slowing it down saves you.
 "text": ""
 }
 },
-"size": Vector2(300.00012, 240),
-"speaker": "NPC"
+"size": Vector2(300.00073, 341.99982),
+"speaker": 3
 },
 &"1_29": {
 "dialogue": " …I understand.",
@@ -327,12 +327,12 @@ When the world speeds up, slowing it down saves you.
 "text": ""
 }
 },
-"size": Vector2(300.00012, 240),
-"speaker": "P"
+"size": Vector2(300.00073, 342.00012),
+"speaker": 0
 },
 &"1_3": {
 "dialogue": " Those out there aren’t people—AI broke them.",
-"offset": Vector2(445, 712),
+"offset": Vector2(440, 720),
 "options": {
 0: {
 "condition": {},
@@ -340,8 +340,8 @@ When the world speeds up, slowing it down saves you.
 "text": ""
 }
 },
-"size": Vector2(340.00012, 399.99994),
-"speaker": "NPC"
+"size": Vector2(340.0005, 400.00043),
+"speaker": 2
 },
 &"1_4": {
 "dialogue": " Workers, robots, failed experiments… all corrupted.",
@@ -353,14 +353,14 @@ When the world speeds up, slowing it down saves you.
 "text": ""
 }
 },
-"size": Vector2(399.99963, 420.00003),
-"speaker": "NPC"
+"size": Vector2(399.9989, 420.00104),
+"speaker": 0
 },
 &"1_5": {
 "dialogue": "You’re heading toward the core, aren't you?
  Be careful—everything there moves too fast.
 ",
-"offset": Vector2(360, 1160),
+"offset": Vector2(340, 1160),
 "options": {
 0: {
 "condition": {},
@@ -368,8 +368,8 @@ When the world speeds up, slowing it down saves you.
 "text": ""
 }
 },
-"size": Vector2(659.9999, 340.00006),
-"speaker": "NPC"
+"size": Vector2(659.9994, 342.0003),
+"speaker": 3
 },
 &"1_6": {
 "dialogue": " Some people lost themselves to broken tech.
@@ -382,8 +382,8 @@ When the world speeds up, slowing it down saves you.
 "text": ""
 }
 },
-"size": Vector2(400.00073, 439.99994),
-"speaker": "NPC"
+"size": Vector2(399.99902, 439.99976),
+"speaker": 1
 },
 &"1_7": {
 "dialogue": " I… feel different here.",
@@ -395,8 +395,8 @@ When the world speeds up, slowing it down saves you.
 "text": ""
 }
 },
-"size": Vector2(439.99976, 440),
-"speaker": "Player"
+"size": Vector2(440.0022, 439.99976),
+"speaker": 0
 },
 &"1_8": {
 "dialogue": "Your sword will protect you.
@@ -410,8 +410,8 @@ When the world speeds up, slowing it down saves you.
 "text": ""
 }
 },
-"size": Vector2(419.99982, 460),
-"speaker": "NPC"
+"size": Vector2(419.9978, 459.99976),
+"speaker": 1
 },
 &"1_9": {
 "dialogue": "Slow… to buy time?",
@@ -423,7 +423,8 @@ When the world speeds up, slowing it down saves you.
 "text": ""
 }
 },
-"size": Vector2(340.00098, 479.99988),
-"speaker": "Player"
+"size": Vector2(339.99878, 479.99963),
+"speaker": 0
 }
 }
+characters = "res://Dialogue/characters.tres"

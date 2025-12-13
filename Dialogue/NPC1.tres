@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Character" load_steps=3 format=3 uid="uid://bsxlgsvr3an4x"]
+
+[ext_resource type="Texture2D" uid="uid://bg8a7jqkbvmgh" path="res://assets/free-townspeople-cyberpunk-pixel-art/7/p1.png" id="1_6xght"]
+[ext_resource type="Script" uid="uid://b87t18a6dnl1h" path="res://addons/dialogue_nodes/objects/Character.gd" id="1_h5lbg"]
+
+[resource]
+script = ExtResource("1_h5lbg")
+name = "The Old Man"
+image = ExtResource("1_6xght")
+color = Color(0.89411765, 0.4627451, 0.88235295, 1)
+metadata/_custom_type_script = "uid://b87t18a6dnl1h"

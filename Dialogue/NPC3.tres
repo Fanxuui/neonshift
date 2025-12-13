@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Character" load_steps=3 format=3 uid="uid://bl5q1pkh2d48p"]
+
+[ext_resource type="Script" uid="uid://b87t18a6dnl1h" path="res://addons/dialogue_nodes/objects/Character.gd" id="1_6nx6c"]
+[ext_resource type="Texture2D" uid="uid://bikhci6aiwdfo" path="res://assets/free-townspeople-cyberpunk-pixel-art/10/P3.png" id="1_m3vax"]
+
+[resource]
+script = ExtResource("1_6nx6c")
+name = "Pace"
+image = ExtResource("1_m3vax")
+color = Color(0.89411765, 0.4627451, 0.88235295, 1)
+metadata/_custom_type_script = "uid://b87t18a6dnl1h"

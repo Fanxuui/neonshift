@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Character" load_steps=3 format=3 uid="uid://b3x5nnf4mdjjf"]
+
+[ext_resource type="Texture2D" uid="uid://0x6si23le5ox" path="res://assets/Striker/P0-end.png" id="1_g20xv"]
+[ext_resource type="Script" uid="uid://b87t18a6dnl1h" path="res://addons/dialogue_nodes/objects/Character.gd" id="2_wuxjb"]
+
+[resource]
+script = ExtResource("2_wuxjb")
+name = "Mirage You"
+image = ExtResource("1_g20xv")
+color = Color(0.89411765, 0.4627451, 0.88235295, 1)
+metadata/_custom_type_script = "uid://b87t18a6dnl1h"

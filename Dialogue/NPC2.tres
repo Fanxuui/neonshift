@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Character" load_steps=3 format=3 uid="uid://drp4dibkgtwt0"]
+
+[ext_resource type="Texture2D" uid="uid://cmjn3f1sjrejq" path="res://assets/free-townspeople-cyberpunk-pixel-art/5/p2.png" id="1_kqowb"]
+[ext_resource type="Script" uid="uid://b87t18a6dnl1h" path="res://addons/dialogue_nodes/objects/Character.gd" id="1_ojfi8"]
+
+[resource]
+script = ExtResource("1_ojfi8")
+name = "Band Duo"
+image = ExtResource("1_kqowb")
+color = Color(0.89411765, 0.4627451, 0.88235295, 1)
+metadata/_custom_type_script = "uid://b87t18a6dnl1h"

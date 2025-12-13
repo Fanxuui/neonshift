@@ -1,8 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://dv1ikq1wucki2"]
+[gd_scene load_steps=17 format=3 uid="uid://dv1ikq1wucki2"]
 
 [ext_resource type="Script" uid="uid://bjpy5d3haavp3" path="res://scripts/ghost.gd" id="1_fj7t6"]
 [ext_resource type="Texture2D" uid="uid://cv6lnsf12w2gu" path="res://assets/industrial.v2.png" id="1_tykv7"]
 [ext_resource type="PackedScene" uid="uid://g51wsrys1hsp" path="res://scenes/killzone.tscn" id="2_l5lq6"]
+[ext_resource type="PackedScene" uid="uid://b1raqrcad5iof" path="res://scenes/shoot_point.tscn" id="3_5mfnq"]
+[ext_resource type="PackedScene" uid="uid://cavf4ju8qt1vl" path="res://scenes/target_point.tscn" id="4_veat2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l5lq6"]
 atlas = ExtResource("1_tykv7")
@@ -70,9 +72,15 @@ size = Vector2(14, 13)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5mfnq"]
 size = Vector2(14, 13)
 
-[node name="ghost" type="CharacterBody2D"]
+[node name="ghost" type="CharacterBody2D" groups=["enemies", "enemy_hurtbox"]]
 collision_layer = 4
 script = ExtResource("1_fj7t6")
+
+[node name="TargetPoint" parent="." instance=ExtResource("4_veat2")]
+position = Vector2(500.2132, 219.14066)
+
+[node name="ShootPoint" parent="." instance=ExtResource("3_5mfnq")]
+position = Vector2(0, -7)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1

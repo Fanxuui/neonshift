@@ -8,7 +8,12 @@ const SHOOT_RANGE := 200.0
 const FIRE_COOLDOWN := 5.0
 const BULLET_COUNT := 3       # how many bullets per volley
 const SPREAD_ANGLE := 45.0       # total spread (in degrees)
-const MAX_HEALTH := 3
+const MAX_HEALTH := 2
+const KNOCKBACK_FORCE := 150.0
+const KNOCKBACK_DURATION := 0.3
+const KNOCKBACK_SLOW_MULT := 0.4
+
+var _is_knocked_back := false
 
 # === VARIABLES ===
 var player: Node2D
@@ -24,6 +29,8 @@ var speed := 0
 
 # === READY ===
 func _ready():
+	scale = Vector2(2,2)
+
 	add_to_group("enemies")
 	var players = get_tree().get_nodes_in_group("player")
 	if players.size() > 0:
@@ -36,6 +43,9 @@ func _physics_process(delta):
 	if not player:
 		return
 
+	if _is_knocked_back:
+		move_and_slide()
+		return
 	var to_player = player.global_position - global_position
 	var dist = to_player.length()
 	var dir = to_player.normalized()
@@ -89,8 +99,9 @@ func slow_down() -> void:
 	_is_slowed = false
 	speed = CHASE_SPEED
 
-func take_damage():
+func take_damage2(from_position: Vector2 = global_position) -> void:
 	health -= 1
+	apply_knockback(from_position)
 	if health <= 0:
 		die()
 
@@ -105,3 +116,20 @@ func die() -> void:
 func _on_hitbox_area_entered(area: Area2D) -> void:
 	if area.is_in_group("playerhurtbox"):
 		area.get_parent().take_damage(1)
+		
+func apply_knockback(from_position: Vector2):
+	# Determine direction (left or right)
+	var knock_dir := (global_position - from_position).normalized()
+	# Slow reduces knockback force
+	var knock_force := KNOCKBACK_FORCE
+	if _is_slowed:
+		knock_force *= KNOCKBACK_SLOW_MULT
+
+	velocity = knock_dir * knock_force
+
+	_is_knocked_back = true
+
+	await get_tree().create_timer(KNOCKBACK_DURATION).timeout
+
+	_is_knocked_back = false
+	velocity = Vector2.ZERO

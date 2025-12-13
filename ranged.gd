@@ -56,7 +56,7 @@ const HIT_SFX_LOCK_TIME := 0.08
 
 func _ready() -> void:
 	add_to_group("enemies")
-	
+
 	# find the player
 	var players = get_tree().get_nodes_in_group("player")
 	if players.size() > 0:
@@ -76,7 +76,7 @@ func _physics_process(delta: float) -> void:
 	
 	var in_chase_range := distance <= CHASE_RANGE
 	var reachable := navigation_agent.is_target_reachable()
-	var can_see_player := in_chase_range and reachable
+	var can_see_player := in_chase_range 
 	
 	
 	match state:

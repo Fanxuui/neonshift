@@ -34,8 +34,6 @@ var reaction_timer := 0.0
 @onready var ray_cast_bottom: RayCast2D = $RayCastBottom
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
-@onready var gun_pivot: Node2D = $GunPivot
-@onready var alert_icon: Sprite2D = $AlertIcon
 @onready var target_point: Node2D = $TargetPoint
 
 
@@ -97,7 +95,6 @@ func _physics_process(delta: float) -> void:
 # ---------------- State Logic ----------------
 
 func _state_patrol(delta: float, can_see_player: bool, dx: float) -> void:
-	alert_icon.visible = false
 	# regular patrol speed
 	if _is_slowed:
 		speed = REDUCED_SPEED
@@ -116,7 +113,6 @@ func _state_patrol(delta: float, can_see_player: bool, dx: float) -> void:
 		animated_sprite.flip_h = (dx < 0.0)
 
 func _state_alert(delta: float, can_see_player: bool, dx: float, d: float) -> void:
-	alert_icon.visible = true
 	# stay staionary when in recation time
 	speed = 0.0
 	
@@ -131,7 +127,6 @@ func _state_alert(delta: float, can_see_player: bool, dx: float, d: float) -> vo
 		state = EnemyState.ATTACK
 
 func _state_attack(delta: float, can_see_player: bool, dx: float, distance: float) -> void:
-	alert_icon.visible = false
 	# go back to patrol when player disappears
 	if not can_see_player:
 		state = EnemyState.PATROL
@@ -164,19 +159,16 @@ func _handle_raycast_direction() -> void:
 	if not ray_cast_bottom.is_colliding():
 		direction *= -1
 		animated_sprite.flip_h = direction < 0
-		gun_pivot.scale.x *= -1
 		target_point.position.x *= -1
 	# collide with the right floor -> move left
 	elif ray_cast_right.is_colliding():
 		direction = -1
 		animated_sprite.flip_h = true
-		gun_pivot.scale.x = -1
 		target_point.position.x *= -1
 	# collide with the left floor -> move right
 	elif ray_cast_left.is_colliding():
 		direction = 1
 		animated_sprite.flip_h = false
-		gun_pivot.scale.x = 1
 		target_point.position.x *= -1
 
 # ---------------- Other Function ----------------

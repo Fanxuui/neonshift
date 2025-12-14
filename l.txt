@@ -1,0 +1,195 @@
+extends CharacterBody2D
+
+enum Phase { PHASE_1, PHASE_2, PHASE_3, PHASE_4 }
+const PHASE_HP_STEP := 5
+const MAX_PHASES := 4
+var phase: Phase = Phase.PHASE_1
+
+# === CONSTANTS ===
+const CHASE_SPEED := 50.0
+const REDUCED_SPEED := 20.0
+const CHASE_RANGE := 250.0
+const SHOOT_RANGE := 200.0
+const FIRE_COOLDOWN := 5.0
+const BULLET_COUNT := 3       # how many bullets per volley
+const SPREAD_ANGLE := 45.0       # total spread (in degrees)
+const MAX_HEALTH := PHASE_HP_STEP * MAX_PHASES # 20 HP total
+const KNOCKBACK_FORCE := 150.0
+const KNOCKBACK_DURATION := 0.3
+const KNOCKBACK_SLOW_MULT := 0.4
+
+var _is_knocked_back := false
+
+# === VARIABLES ===
+var player: Node2D
+var health := MAX_HEALTH
+var can_shoot := true
+var _is_slowed := false
+var speed := 0
+
+@export var bullet_scene: PackedScene = preload("res://scenes/bullets/enemy_bullet.tscn")
+@export var heal_drop_scene: PackedScene = preload("res://scenes/heal.tscn")
+
+@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+
+# === READY ===
+func _ready():
+	scale = Vector2(2,2)
+
+	add_to_group("enemies")
+	var players = get_tree().get_nodes_in_group("player")
+	if players.size() > 0:
+		player = players[0] as Node2D
+	else:
+		player = null
+
+# === PHYSICS ===
+func _physics_process(delta):
+	if not player:
+		return
+		
+	match phase:
+		Phase.PHASE_1:
+			_phase_1(delta)
+		#Phase.PHASE_2:
+			#_phase_2(delta)
+		#Phase.PHASE_3:
+			#_phase_3(delta)
+		#Phase.PHASE_4:
+			#_phase_4(delta)
+
+
+
+# === SHOOTING ===
+func shoot_spread(direction: Vector2):
+	can_shoot = false
+
+	var base_angle = direction.angle()
+	var half_spread = deg_to_rad(SPREAD_ANGLE) / 2.0
+
+	for i in range(BULLET_COUNT):
+		var t = float(i) / float(BULLET_COUNT - 1)
+		var angle = base_angle - half_spread + t * deg_to_rad(SPREAD_ANGLE)
+		var bullet_dir = Vector2.RIGHT.rotated(angle)
+
+		var bullet = bullet_scene.instantiate()
+		get_tree().current_scene.add_child(bullet)
+		bullet.global_position = global_position
+		bullet.direction = bullet_dir
+		bullet.speed = 200  # adjust as needed
+		bullet.scale = Vector2(3, 3)
+
+
+	#animated_sprite.play("shoot")
+
+	await get_tree().create_timer(FIRE_COOLDOWN).timeout
+	can_shoot = true
+
+# === DAMAGE ===
+func slow_down() -> void:
+	_is_slowed = true
+	speed = REDUCED_SPEED
+	await get_tree().create_timer(1.0).timeout
+	_is_slowed = false
+	speed = CHASE_SPEED
+
+func take_damage2(from_position: Vector2 = global_position) -> void:
+	health -= 1
+	_update_phase()
+
+	apply_knockback(from_position)
+	if health <= 0:
+		die()
+
+
+func die() -> void:
+	if heal_drop_scene:
+		var heal_item = heal_drop_scene.instantiate()
+		get_parent().add_child(heal_item)
+		heal_item.global_position = global_position + Vector2(0, -16)
+	queue_free()
+
+func _on_hitbox_area_entered(area: Area2D) -> void:
+	if area.is_in_group("playerhurtbox"):
+		area.get_parent().take_damage(1)
+		
+func apply_knockback(from_position: Vector2):
+	# Determine direction (left or right)
+	var knock_dir := (global_position - from_position).normalized()
+	# Slow reduces knockback force
+	var knock_force := KNOCKBACK_FORCE
+	if _is_slowed:
+		knock_force *= KNOCKBACK_SLOW_MULT
+
+	velocity = knock_dir * knock_force
+
+	_is_knocked_back = true
+
+	await get_tree().create_timer(KNOCKBACK_DURATION).timeout
+
+	_is_knocked_back = false
+	velocity = Vector2.ZERO
+
+func _update_phase():
+	var new_phase: Phase = clamp(
+		(MAX_HEALTH - health) / PHASE_HP_STEP,
+		0,
+		MAX_PHASES - 1
+	)
+
+	if new_phase != phase:
+		phase = new_phase
+		_on_phase_enter()
+
+func _on_phase_enter():
+	# Reset transient state from previous phase
+	velocity = Vector2.ZERO
+	can_shoot = true
+	_is_knocked_back = false
+	_is_slowed = false
+	speed = 0
+
+	match phase:
+		Phase.PHASE_1:
+			print("Entered Phase 1")
+
+		Phase.PHASE_2:
+			print("Entered Phase 2")
+			# Example: faster fire rate
+			# FIRE_COOLDOWN = 3.0  ❌ (can't change const)
+			# Instead: use a phase-based cooldown variable later
+
+		Phase.PHASE_3:
+			print("Entered Phase 3")
+
+		Phase.PHASE_4:
+			print("Entered Phase 4 (ENRAGED)")
+
+func _phase_1(delta):
+	if not player:
+		return
+		
+	if _is_knocked_back:
+		move_and_slide()
+		return
+	var to_player = player.global_position - global_position
+	var dist = to_player.length()
+	var dir = to_player.normalized()
+
+	
+	if dist <= CHASE_RANGE:
+		if _is_slowed:
+			speed = REDUCED_SPEED
+			$AnimatedSprite2D.modulate = Color(0,0,1)
+		else:
+			speed = CHASE_SPEED
+			$AnimatedSprite2D.modulate = Color(1,1,1)
+		animated_sprite.flip_h = dir.x < 0
+	else:
+		speed = 0
+	
+	velocity = dir * speed
+	move_and_slide()
+
+	if dist <= SHOOT_RANGE and can_shoot:
+		shoot_spread(to_player.normalized())

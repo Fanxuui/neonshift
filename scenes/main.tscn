@@ -4687,7 +4687,7 @@ tile_set = SubResource("TileSet_0loja")
 
 [node name="Deco_A1" parent="TileMapLayer/BGCITY2/Deco2" index="0"]
 autoplay = "blink"
-frame_progress = 0.4807806
+frame_progress = 0.0130014615
 
 [node name="light2" parent="TileMapLayer/BGCITY2/Deco2" index="10"]
 autoplay = "blink"

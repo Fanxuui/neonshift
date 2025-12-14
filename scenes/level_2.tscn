@@ -4674,6 +4674,15 @@ tile_set = SubResource("TileSet_2cjbq")
 
 [node name="Deco2" parent="TileMapLayer/BGCITY2" instance=ExtResource("8_bbkd8")]
 
+[node name="Deco_A1" parent="TileMapLayer/BGCITY2/Deco2" index="0"]
+autoplay = "blink"
+
+[node name="light2" parent="TileMapLayer/BGCITY2/Deco2" index="10"]
+autoplay = "blink"
+
+[node name="light3" parent="TileMapLayer/BGCITY2/Deco2" index="11"]
+autoplay = "blink"
+
 [node name="Mid" type="TileMapLayer" parent="TileMapLayer"]
 
 [node name="Mid0" type="TileMapLayer" parent="TileMapLayer/Mid"]
@@ -5070,6 +5079,7 @@ shape = SubResource("RectangleShape2D_xc1pa")
 [connection signal="tutorial_ended" from="CanvasLayer/TutorialUI/JumpTutorial" to="CanvasLayer/TutorialUI/DoubleJumpTutorial" method="Initiate"]
 [connection signal="body_entered" from="BoundryWalls/BottomWall" to="Player" method="_on_bottom_wall_body_entered"]
 
+[editable path="TileMapLayer/BGCITY2/Deco2"]
 [editable path="NPCs/Npc1"]
 [editable path="NPCs/Npc2"]
 [editable path="NPCs/Npc3"]

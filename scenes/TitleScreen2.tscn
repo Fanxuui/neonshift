@@ -154,6 +154,4 @@ layout_mode = 2
 theme = SubResource("Theme_3ej01")
 text = "QUIT"
 
-[node name="UIAnim" type="AnimationPlayer" parent="CanvasLayer"]
-
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/PlayButton" to="CanvasLayer/VBoxContainer/PlayButton" method="_on_play_pressed"]

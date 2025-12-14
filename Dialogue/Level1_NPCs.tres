@@ -42,7 +42,7 @@ nodes = {
 "text": ""
 }
 },
-"size": Vector2(499.9995, 341.99988),
+"size": Vector2(499.99942, 342),
 "speaker": 1
 },
 &"1_10": {
@@ -56,7 +56,7 @@ nodes = {
 "text": ""
 }
 },
-"size": Vector2(419.9961, 439.99988),
+"size": Vector2(419.99622, 439.99988),
 "speaker": 1
 },
 &"1_11": {
@@ -69,7 +69,7 @@ nodes = {
 "text": ""
 }
 },
-"size": Vector2(339.9956, 459.99976),
+"size": Vector2(339.99573, 459.99976),
 "speaker": 0
 },
 &"1_12": {
@@ -82,7 +82,7 @@ nodes = {
 "text": ""
 }
 },
-"size": Vector2(419.99817, 342.00018),
+"size": Vector2(419.9983, 342.00015),
 "speaker": 2
 },
 &"1_13": {
@@ -95,7 +95,7 @@ nodes = {
 "text": ""
 }
 },
-"size": Vector2(419.99902, 342.00018),
+"size": Vector2(419.99902, 342.00015),
 "speaker": 0
 },
 &"1_14": {
@@ -108,7 +108,7 @@ nodes = {
 "text": ""
 }
 },
-"size": Vector2(579.99805, 342.00018),
+"size": Vector2(579.9978, 342.00037),
 "speaker": 2
 },
 &"1_15": {
@@ -121,7 +121,7 @@ nodes = {
 "text": ""
 }
 },
-"size": Vector2(639.9951, 342.00006),
+"size": Vector2(639.99524, 341.99988),
 "speaker": 0
 },
 &"1_16": {
@@ -135,7 +135,7 @@ nodes = {
 "text": ""
 }
 },
-"size": Vector2(759.9885, 342.00006),
+"size": Vector2(759.9884, 341.99988),
 "speaker": 2
 },
 &"1_17": {
@@ -148,7 +148,7 @@ nodes = {
 "text": ""
 }
 },
-"size": Vector2(499.98608, 342.00006),
+"size": Vector2(499.98645, 341.99988),
 "speaker": 0
 },
 &"1_18": {
@@ -161,7 +161,7 @@ nodes = {
 "text": ""
 }
 },
-"size": Vector2(360.00024, 342.00018),
+"size": Vector2(360.00012, 342.00037),
 "speaker": 0
 },
 &"1_19": {
@@ -175,7 +175,7 @@ nodes = {
 "text": ""
 }
 },
-"size": Vector2(539.9995, 342.0003),
+"size": Vector2(539.9994, 342.00024),
 "speaker": 0
 },
 &"1_2": {
@@ -188,7 +188,7 @@ nodes = {
 "text": ""
 }
 },
-"size": Vector2(300.00012, 341.99988),
+"size": Vector2(300, 342),
 "speaker": 0
 },
 &"1_20": {
@@ -203,7 +203,7 @@ When the world speeds up, slowing it down saves you.
 "text": ""
 }
 },
-"size": Vector2(759.9979, 342.0003),
+"size": Vector2(759.99805, 342.00024),
 "speaker": 3
 },
 &"1_21": {
@@ -216,7 +216,7 @@ When the world speeds up, slowing it down saves you.
 "text": ""
 }
 },
-"size": Vector2(479.9973, 342.0003),
+"size": Vector2(479.9973, 342.00024),
 "speaker": 0
 },
 &"1_22": {
@@ -230,7 +230,7 @@ When the world speeds up, slowing it down saves you.
 "text": ""
 }
 },
-"size": Vector2(519.9946, 342.0003),
+"size": Vector2(519.99475, 342.00024),
 "speaker": 3
 },
 &"1_23": {
@@ -243,7 +243,7 @@ When the world speeds up, slowing it down saves you.
 "text": ""
 }
 },
-"size": Vector2(459.9922, 342.0003),
+"size": Vector2(459.9923, 342.00024),
 "speaker": 0
 },
 &"1_24": {
@@ -257,8 +257,8 @@ When the world speeds up, slowing it down saves you.
 "text": ""
 }
 },
-"size": Vector2(739.99744, 342.0003),
-"speaker": 3
+"size": Vector2(739.9974, 342.00018),
+"speaker": 4
 },
 &"1_25": {
 "dialogue": " …You look like me.",
@@ -270,7 +270,7 @@ When the world speeds up, slowing it down saves you.
 "text": ""
 }
 },
-"size": Vector2(300.00037, 342.0003),
+"size": Vector2(300.00046, 342.00012),
 "speaker": 0
 },
 &"1_26": {
@@ -285,8 +285,8 @@ When the world speeds up, slowing it down saves you.
 "text": ""
 }
 },
-"size": Vector2(339.99695, 342.0003),
-"speaker": 3
+"size": Vector2(339.99683, 342.00012),
+"speaker": 4
 },
 &"1_27": {
 "dialogue": " So this was all a dream… my own warning.",
@@ -314,8 +314,8 @@ When the world speeds up, slowing it down saves you.
 "text": ""
 }
 },
-"size": Vector2(300.00073, 341.99982),
-"speaker": 3
+"size": Vector2(300.0006, 342),
+"speaker": 4
 },
 &"1_29": {
 "dialogue": " …I understand.",
@@ -327,7 +327,7 @@ When the world speeds up, slowing it down saves you.
 "text": ""
 }
 },
-"size": Vector2(300.00073, 342.00012),
+"size": Vector2(300.00073, 342.00018),
 "speaker": 0
 },
 &"1_3": {
@@ -340,7 +340,7 @@ When the world speeds up, slowing it down saves you.
 "text": ""
 }
 },
-"size": Vector2(340.0005, 400.00043),
+"size": Vector2(340.0004, 400.00037),
 "speaker": 2
 },
 &"1_4": {
@@ -353,7 +353,7 @@ When the world speeds up, slowing it down saves you.
 "text": ""
 }
 },
-"size": Vector2(399.9989, 420.00104),
+"size": Vector2(399.99887, 420.00098),
 "speaker": 0
 },
 &"1_5": {
@@ -368,7 +368,7 @@ When the world speeds up, slowing it down saves you.
 "text": ""
 }
 },
-"size": Vector2(659.9994, 342.0003),
+"size": Vector2(659.9994, 342.00024),
 "speaker": 3
 },
 &"1_6": {
@@ -395,7 +395,7 @@ When the world speeds up, slowing it down saves you.
 "text": ""
 }
 },
-"size": Vector2(440.0022, 439.99976),
+"size": Vector2(440.00256, 439.99976),
 "speaker": 0
 },
 &"1_8": {
@@ -423,7 +423,7 @@ When the world speeds up, slowing it down saves you.
 "text": ""
 }
 },
-"size": Vector2(339.99878, 479.99963),
+"size": Vector2(339.99866, 479.99963),
 "speaker": 0
 }
 }

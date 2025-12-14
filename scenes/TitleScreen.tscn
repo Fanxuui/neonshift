@@ -1,5 +1,6 @@
-[gd_scene load_steps=13 format=3 uid="uid://d0xfvl6ra4yn8"]
+[gd_scene load_steps=19 format=3 uid="uid://d0xfvl6ra4yn8"]
 
+[ext_resource type="Script" uid="uid://oeemuit242sx" path="res://scenes/title_screen.gd" id="1_3ej01"]
 [ext_resource type="Script" uid="uid://cpqqtisvof6ui" path="res://scenes/play_button.gd" id="1_qyuap"]
 [ext_resource type="Texture2D" uid="uid://bh0gkaxh7yh13" path="res://assets/UI/city 7/1.png" id="2_ch40n"]
 [ext_resource type="Texture2D" uid="uid://bqoajmtp5pr1y" path="res://assets/UI/city 7/2.png" id="3_85feu"]
@@ -7,6 +8,21 @@
 [ext_resource type="Texture2D" uid="uid://dmk1n70do3t40" path="res://assets/UI/city 7/4.png" id="5_3ej01"]
 [ext_resource type="FontFile" uid="uid://bkgvp47akbko8" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="6_66w26"]
 [ext_resource type="Texture2D" uid="uid://brsly172cx06h" path="res://assets/UI/city 7/5.png" id="6_w20ru"]
+
+[sub_resource type="Animation" id="Animation_3ej01"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.27058825, 0.14117648, 0.34901962, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_66w26"]
 resource_name = "flash"
@@ -26,21 +42,6 @@ tracks/0/keys = {
 "values": [Color(0.27058825, 0.14117648, 0.34901962, 1), Color(1, 0.65611404, 0.7269094, 1), Color(0.27058825, 0.14117648, 0.34901962, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_3ej01"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:theme_override_colors/font_color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0.27058825, 0.14117648, 0.34901962, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_w20ru"]
 _data = {
 &"RESET": SubResource("Animation_3ej01"),
@@ -52,9 +53,100 @@ default_font = ExtResource("6_66w26")
 default_font_size = 0
 Button/font_sizes/font_size = 28
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_66w26"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.3)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3ej01"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 0.75)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w20ru"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.225, 0.225, 0.225, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1vfo2"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.101960786, 0.101960786, 0.101960786, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hjcsb"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0, 0, 0, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
 [sub_resource type="Theme" id="Theme_3ej01"]
 default_font = ExtResource("6_66w26")
+Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
+Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
+Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
+Button/colors/icon_focus_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_normal_color = Color(1, 1, 1, 1)
+Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
+Button/constants/align_to_largest_stylebox = 0
+Button/constants/h_separation = 4
+Button/constants/icon_max_width = 0
+Button/constants/outline_size = 0
 Button/font_sizes/font_size = 28
+Button/styles/disabled = SubResource("StyleBoxFlat_66w26")
+Button/styles/focus = SubResource("StyleBoxFlat_3ej01")
+Button/styles/hover = SubResource("StyleBoxFlat_w20ru")
+Button/styles/normal = SubResource("StyleBoxFlat_1vfo2")
+Button/styles/pressed = SubResource("StyleBoxFlat_hjcsb")
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -63,6 +155,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_3ej01")
 
 [node name="Node2D" type="Node2D" parent="."]
 z_index = -7
@@ -153,7 +246,5 @@ script = ExtResource("1_qyuap")
 layout_mode = 2
 theme = SubResource("Theme_3ej01")
 text = "QUIT"
-
-[node name="UIAnim" type="AnimationPlayer" parent="CanvasLayer"]
 
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/PlayButton" to="CanvasLayer/VBoxContainer/PlayButton" method="_on_play_pressed"]

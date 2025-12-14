@@ -4688,6 +4688,12 @@ tile_set = SubResource("TileSet_0loja")
 [node name="Deco_A2" parent="TileMapLayer/BGCITY2/Deco2" index="1"]
 modulate = Color(1, 1, 1, 0.78431374)
 
+[node name="light2" parent="TileMapLayer/BGCITY2/Deco2" index="10"]
+autoplay = "blink"
+
+[node name="light3" parent="TileMapLayer/BGCITY2/Deco2" index="11"]
+autoplay = "blink"
+
 [node name="Mid" type="TileMapLayer" parent="TileMapLayer"]
 
 [node name="Mid0" type="TileMapLayer" parent="TileMapLayer/Mid"]
@@ -4716,16 +4722,16 @@ position = Vector2(-3461, -336)
 shape = SubResource("RectangleShape2D_chjal")
 
 [node name="Player" parent="." instance=ExtResource("4_171oe")]
-position = Vector2(-325, 206)
+position = Vector2(1186, 175)
 floor_snap_length = 10.0
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(-1, 3)
 zoom = Vector2(2, 2)
-limit_left = -348
-limit_top = -93
-limit_right = 1398
-limit_bottom = 286
+limit_left = 534
+limit_top = -50
+limit_right = 2280
+limit_bottom = 329
 position_smoothing_enabled = true
 
 [node name="FootstepSfx" type="AudioStreamPlayer2D" parent="Player"]
@@ -4910,6 +4916,7 @@ Right Click"
 horizontal_alignment = 1
 
 [node name="DialogueBox" type="Panel" parent="CanvasLayer"]
+visible = false
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
@@ -4985,7 +4992,7 @@ position = Vector2(1146, 28)
 position = Vector2(985, 177)
 
 [node name="Ranged4" parent="Enemies" instance=ExtResource("7_o6xl0")]
-position = Vector2(1795, 202)
+position = Vector2(1682, 209)
 
 [node name="Ranged5" parent="Enemies" instance=ExtResource("7_o6xl0")]
 position = Vector2(1293, 210)

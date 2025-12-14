@@ -35,6 +35,21 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Animation" id="Animation_augu2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.78431374)]
+}
+
 [sub_resource type="Animation" id="Animation_ids8r"]
 resource_name = "idle"
 length = 1.4
@@ -52,12 +67,18 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 0.78431374), Color(0.4627451, 1, 1, 0.78431374), Color(1, 1, 1, 0.78431374)]
 }
 
-[sub_resource type="Animation" id="Animation_augu2"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tm6hj"]
+_data = {
+&"RESET": SubResource("Animation_augu2"),
+&"idle": SubResource("Animation_ids8r")
+}
+
+[sub_resource type="Animation" id="Animation_0loja"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
+tracks/0/path = NodePath("../Deco_A3:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -65,12 +86,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 0.78431374)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_tm6hj"]
-_data = {
-&"RESET": SubResource("Animation_augu2"),
-&"idle": SubResource("Animation_ids8r")
 }
 
 [sub_resource type="Animation" id="Animation_o7ddy"]
@@ -90,25 +105,25 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 0.78431374), Color(1, 0.2509804, 1, 0.78431374), Color(1, 1, 1, 0.78431374)]
 }
 
-[sub_resource type="Animation" id="Animation_0loja"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ids8r"]
+_data = {
+&"RESET": SubResource("Animation_0loja"),
+&"idle": SubResource("Animation_o7ddy")
+}
+
+[sub_resource type="Animation" id="Animation_1v6qk"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Deco_A3:modulate")
+tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 0.78431374)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_ids8r"]
-_data = {
-&"RESET": SubResource("Animation_0loja"),
-&"idle": SubResource("Animation_o7ddy")
+"values": [Color(1, 1, 1, 0.50980395)]
 }
 
 [sub_resource type="Animation" id="Animation_dnhof"]
@@ -128,25 +143,25 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 0.50980395), Color(1, 1, 1, 0.78431374), Color(1, 1, 1, 0.50980395)]
 }
 
-[sub_resource type="Animation" id="Animation_1v6qk"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_augu2"]
+_data = {
+&"RESET": SubResource("Animation_1v6qk"),
+&"idle": SubResource("Animation_dnhof")
+}
+
+[sub_resource type="Animation" id="Animation_kf5aa"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
+tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 0.50980395)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_augu2"]
-_data = {
-&"RESET": SubResource("Animation_1v6qk"),
-&"idle": SubResource("Animation_dnhof")
+"values": [Vector2(2814.0002, 67)]
 }
 
 [sub_resource type="Animation" id="Animation_tm6hj"]
@@ -166,25 +181,25 @@ tracks/0/keys = {
 "values": [Vector2(2814.0002, 67), Vector2(2814, 77), Vector2(2814.0002, 67)]
 }
 
-[sub_resource type="Animation" id="Animation_kf5aa"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t5ykj"]
+_data = {
+&"RESET": SubResource("Animation_kf5aa"),
+&"idle": SubResource("Animation_tm6hj")
+}
+
+[sub_resource type="Animation" id="Animation_ro3en"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
+tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(2814.0002, 67)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_t5ykj"]
-_data = {
-&"RESET": SubResource("Animation_kf5aa"),
-&"idle": SubResource("Animation_tm6hj")
+"values": [Color(1, 1, 1, 0.8627451)]
 }
 
 [sub_resource type="Animation" id="Animation_e755i"]
@@ -202,21 +217,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0.8627451), Color(1, 1, 1, 0.43137255), Color(1, 1, 1, 0.8627451)]
-}
-
-[sub_resource type="Animation" id="Animation_ro3en"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0.8627451)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_od4ux"]
@@ -269,10 +269,10 @@ position = Vector2(1616, 176)
 scale = Vector2(0.5859375, 0.5859375)
 sprite_frames = SubResource("SpriteFrames_t5ykj")
 animation = &"blink"
-frame_progress = 0.35267794
+frame_progress = 0.75372255
 
 [node name="Deco_A2" type="Sprite2D" parent="."]
-modulate = Color(0.46753263, 1, 1, 0.78431374)
+modulate = Color(1, 1, 1, 0.78431374)
 position = Vector2(1892, 59.999996)
 scale = Vector2(0.390625, 0.390625)
 texture = ExtResource("3_fjm4i")

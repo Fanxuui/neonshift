@@ -6,9 +6,10 @@ const REDUCED_SPEED := 20.0
 const CHASE_RANGE := 200.0
 const STOP_RANGE := 5.0
 const KNOCKBACK_FORCE := 150.0
-const KNOCKBACK_DURATION := 2
+const KNOCKBACK_DURATION := 0.67
 const KNOCKBACK_SLOW_MULT := 0.4
 var _is_knocked_back := false
+const GRAVITY := 900.0
 
 @export var speed := REGULAR_SPEED
 var player: Node2D
@@ -22,6 +23,7 @@ var _is_slowed := false
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
 @onready var target_point: Node2D = $TargetPoint
+@onready var slow_hit_sfx: AudioStreamPlayer2D = $SlowHitSfx
 
 func _ready():
 	add_to_group("enemies")
@@ -32,6 +34,10 @@ func _ready():
 	else:
 		player = null
 func _physics_process(delta):
+	if not is_on_floor():
+		velocity.y += GRAVITY * delta
+	else:
+		velocity.y = 0
 	if _is_knocked_back:
 		velocity.y = 0 
 		move_and_slide()
@@ -46,7 +52,7 @@ func _physics_process(delta):
 		if reachable:
 			if _is_slowed:
 				speed = REDUCED_SPEED
-				modulate = Color(0, 0, 1)
+				modulate = Color(0, 1, 1)
 			else:
 				speed = CHASING_SPEED
 				modulate = Color(1, 1, 1)
@@ -74,11 +80,14 @@ func _physics_process(delta):
 	
 func take_damage2(from_position: Vector2 = global_position) -> void:
 	health -= 1
+	flash_sprite()
 	apply_knockback(from_position)
 	if health <= 0:
 		die()
 	
 func slow_down() -> void:
+	if slow_hit_sfx:
+		slow_hit_sfx.play()
 	_is_slowed = true
 	await get_tree().create_timer(1.0).timeout
 	_is_slowed = false
@@ -110,3 +119,12 @@ func apply_knockback(player_pos: Vector2):
 	_is_knocked_back = false
 	velocity = Vector2.ZERO
  # stop sliding after knockback
+
+func flash_sprite():
+	var sprite = $AnimatedSprite2D
+	
+	for i in range(5):
+		sprite.modulate = Color(1,1,1,0.3)  # transparent
+		await get_tree().create_timer(0.07).timeout
+		sprite.modulate = Color(1,0,0,1)    # solid
+		await get_tree().create_timer(0.07).timeout

@@ -1,61 +1,78 @@
-[gd_scene load_steps=16 format=3 uid="uid://dwvpu2l4olj12"]
+[gd_scene load_steps=21 format=3 uid="uid://dwvpu2l4olj12"]
 
 [ext_resource type="Script" uid="uid://cqkf37dn1cen6" path="res://shooter.gd" id="1_lynhg"]
 [ext_resource type="PackedScene" uid="uid://b2jhg53i0j7p3" path="res://scenes/bullets/enemy_bullet.tscn" id="2_mger4"]
-[ext_resource type="Texture2D" uid="uid://cv6lnsf12w2gu" path="res://assets/industrial.v2.png" id="3_ld1l8"]
+[ext_resource type="Texture2D" uid="uid://b7kpb6lu746sj" path="res://assets/Drone.png" id="3_xxh7r"]
 [ext_resource type="PackedScene" uid="uid://g51wsrys1hsp" path="res://scenes/killzone.tscn" id="4_xxh7r"]
+[ext_resource type="PackedScene" uid="uid://cavf4ju8qt1vl" path="res://scenes/target_point.tscn" id="5_ok5ye"]
+[ext_resource type="AudioStream" uid="uid://k0arf42qlk3v" path="res://assets/Music/Sounds/enemy-hurt.wav" id="6_xxh7r"]
+[ext_resource type="AudioStream" uid="uid://da6qam7gqurwa" path="res://assets/Music/Sounds/be slowed.wav" id="7_ts0hh"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_l5lq6"]
-atlas = ExtResource("3_ld1l8")
-region = Rect2(0, 416, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_ts0hh"]
+atlas = ExtResource("3_xxh7r")
+region = Rect2(0, 288, 96, 96)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_bbnym"]
-atlas = ExtResource("3_ld1l8")
-region = Rect2(16, 416, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_qut8p"]
+atlas = ExtResource("3_xxh7r")
+region = Rect2(96, 288, 96, 96)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_veat2"]
-atlas = ExtResource("3_ld1l8")
-region = Rect2(32, 416, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_q4fik"]
+atlas = ExtResource("3_xxh7r")
+region = Rect2(192, 288, 96, 96)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5mfnq"]
-atlas = ExtResource("3_ld1l8")
-region = Rect2(48, 416, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_32q6q"]
+atlas = ExtResource("3_xxh7r")
+region = Rect2(288, 288, 96, 96)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_lv6vd"]
-atlas = ExtResource("3_ld1l8")
-region = Rect2(64, 416, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_8mxsl"]
+atlas = ExtResource("3_xxh7r")
+region = Rect2(384, 288, 96, 96)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_sv5gc"]
-atlas = ExtResource("3_ld1l8")
-region = Rect2(80, 416, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_cgnek"]
+atlas = ExtResource("3_xxh7r")
+region = Rect2(0, 192, 96, 96)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_wj1r3"]
-atlas = ExtResource("3_ld1l8")
-region = Rect2(96, 416, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_6yn3d"]
+atlas = ExtResource("3_xxh7r")
+region = Rect2(96, 192, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gpxed"]
+atlas = ExtResource("3_xxh7r")
+region = Rect2(192, 192, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s8vns"]
+atlas = ExtResource("3_xxh7r")
+region = Rect2(288, 192, 96, 96)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_l5lq6"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_l5lq6")
+"texture": SubResource("AtlasTexture_ts0hh")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_bbnym")
+"texture": SubResource("AtlasTexture_qut8p")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_veat2")
+"texture": SubResource("AtlasTexture_q4fik")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_5mfnq")
+"texture": SubResource("AtlasTexture_32q6q")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_lv6vd")
+"texture": SubResource("AtlasTexture_8mxsl")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_sv5gc")
+"texture": SubResource("AtlasTexture_cgnek")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_wj1r3")
+"texture": SubResource("AtlasTexture_6yn3d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gpxed")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s8vns")
 }],
 "loop": true,
 "name": &"idle",
@@ -79,6 +96,7 @@ bullet_scene = ExtResource("2_mger4")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 position = Vector2(0, -8)
+scale = Vector2(0.26931956, 0.26931956)
 sprite_frames = SubResource("SpriteFrames_l5lq6")
 animation = &"idle"
 autoplay = "idle"
@@ -125,5 +143,17 @@ position = Vector2(16, 0)
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(100, 0)
+
+[node name="TargetPoint" parent="." instance=ExtResource("5_ok5ye")]
+
+[node name="HitSfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_xxh7r")
+volume_db = 6.746
+bus = &"SFX"
+
+[node name="SlowHitSfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_ts0hh")
+volume_db = 17.427
+bus = &"SFX"
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://d0xfvl6ra4yn8"]
+[gd_scene load_steps=20 format=3 uid="uid://d0xfvl6ra4yn8"]
 
 [ext_resource type="Script" uid="uid://oeemuit242sx" path="res://scenes/title_screen.gd" id="1_3ej01"]
 [ext_resource type="Script" uid="uid://cpqqtisvof6ui" path="res://scenes/play_button.gd" id="1_qyuap"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dmk1n70do3t40" path="res://assets/UI/city 7/4.png" id="5_3ej01"]
 [ext_resource type="FontFile" uid="uid://bkgvp47akbko8" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="6_66w26"]
 [ext_resource type="Texture2D" uid="uid://brsly172cx06h" path="res://assets/UI/city 7/5.png" id="6_w20ru"]
+[ext_resource type="Script" uid="uid://dqqwsadet6ofb" path="res://scenes/quit_button.gd" id="9_w20ru"]
 
 [sub_resource type="Animation" id="Animation_3ej01"]
 length = 0.001
@@ -246,5 +247,6 @@ script = ExtResource("1_qyuap")
 layout_mode = 2
 theme = SubResource("Theme_3ej01")
 text = "QUIT"
+script = ExtResource("9_w20ru")
 
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/PlayButton" to="CanvasLayer/VBoxContainer/PlayButton" method="_on_play_pressed"]

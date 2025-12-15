@@ -101,7 +101,7 @@ func _state_patrol(delta: float, can_see_player: bool, dx: float) -> void:
 	# regular patrol speed
 	if _is_slowed:
 		speed = REDUCED_SPEED
-		$AnimatedSprite2D.modulate = Color(0,0,1)
+		$AnimatedSprite2D.modulate = Color(0,1,1)
 
 	else:
 		speed = REGULAR_SPEED
@@ -157,7 +157,7 @@ func _state_attack(delta: float, can_see_player: bool, dx: float, distance: floa
 	else:
 		if _is_slowed:
 			speed = REDUCED_SPEED
-			$AnimatedSprite2D.modulate = Color(0,0,1)
+			$AnimatedSprite2D.modulate = Color(0,1,1)
 
 		else:
 			speed = CHASING_SPEED
@@ -199,7 +199,7 @@ func _shoot_projectile() -> void:
 	bullet.rotation = shoot_dir.angle()
 	if _is_slowed:
 		bullet.speed = BULLET_BASE_SPEED * BULLET_SLOW_MULT
-		bullet.modulate = Color(0,0,1)
+		bullet.modulate = Color(0,1,1)
 
 	else:
 		bullet.speed = BULLET_BASE_SPEED

@@ -181,6 +181,8 @@ func shoot_bullet() -> void:
 		bullet.global_position = target_point.global_position + shoot_dir
 	bullet.direction = shoot_dir
 	bullet.rotation = shoot_dir.angle()
+	bullet.modulate = Color(0,1,1)
+	bullet.scale =  Vector2(4,4)
 	get_tree().current_scene.add_child(bullet)
 
 func handle_attack_input() -> void:

@@ -45,7 +45,6 @@ enum PlayerState { IDLE, MOVE, JUMP, SWORD, GUN, DIE, HURT, WALL_CLIMB }
 var state: PlayerState = PlayerState.IDLE
 var anim_locked: bool = false
 
-var health = GameState.current_health
 var jump_count = 0
 
 var wall_contact_coyote: float = 0.0
@@ -110,9 +109,8 @@ func start_damage_lockout():
 	recently_hit = false
 
 		
-func heal():
-	health += 1
-	emit_signal("health_changed", health)
+func heal(amount: int = 1) -> void:
+	GameState.set_health(GameState.current_health + amount)
 	
 
 func die():

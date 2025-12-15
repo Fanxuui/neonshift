@@ -22,9 +22,10 @@ func _process(delta: float) -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("turrets"):
 		body.slow_down()
+
 	if body.name == "Player":
-		body.heal()
-		print(body.health)  # Call the player's die function
+		body.heal(1)
+		print(GameState.current_health)
 		queue_free()
 		
 

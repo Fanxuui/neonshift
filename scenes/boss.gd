@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 enum Phase { PHASE_1, PHASE_2, PHASE_3, PHASE_4 }
-const PHASE_HP_STEP := 5
+const PHASE_HP_STEP := 3
 const MAX_PHASES := 4
 var phase: Phase = Phase.PHASE_1
 
@@ -15,7 +15,7 @@ const SHOOT_RANGE := 200.0
 const FIRE_COOLDOWN := 5.0
 const BULLET_COUNT := 3       # how many bullets per volley
 const SPREAD_ANGLE := 45.0       # total spread (in degrees)
-const MAX_HEALTH := PHASE_HP_STEP * MAX_PHASES # 20 HP total
+const MAX_HEALTH := PHASE_HP_STEP * MAX_PHASES # 12 HP total
 const KNOCKBACK_FORCE := 150.0
 const KNOCKBACK_DURATION := 0.3
 const KNOCKBACK_SLOW_MULT := 0.4

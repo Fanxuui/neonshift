@@ -21,7 +21,13 @@ func _create_hearts() -> void:
 		hearts.append(h)
 
 func _on_health_changed(current: int, max: int) -> void:
-	if current == max:
-		return
-	var heart = hearts[current]
-	heart.play_used_anim()
+	# Rebuild hearts if max health changed
+	if hearts.size() != max:
+		max_health = max
+		_create_hearts()
+
+	for i in range(hearts.size()):
+		if i < current:
+			hearts[i].play_refill_anim()
+		else:
+			hearts[i].play_used_anim()

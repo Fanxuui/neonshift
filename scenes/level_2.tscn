@@ -4760,6 +4760,7 @@ script = ExtResource("19_6jdxa")
 
 [node name="HeartsBar" parent="CanvasLayer" instance=ExtResource("20_gnx6a")]
 position = Vector2(127, 67)
+heart_scene = null
 
 [node name="FadeRect" type="ColorRect" parent="CanvasLayer"]
 anchors_preset = 15
@@ -4997,7 +4998,7 @@ position = Vector2(2369, -45)
 position = Vector2(2000, 177)
 
 [node name="boss" parent="Enemies" instance=ExtResource("37_r72fi")]
-position = Vector2(3100, 179)
+position = Vector2(3089, 207)
 
 [node name="ghost3" parent="Enemies" instance=ExtResource("36_y6uxt")]
 position = Vector2(3085, 375)

@@ -6,6 +6,10 @@ signal health_changed(current, max)
 var max_health: int = 5
 var current_health: int = 5
 
+func _ready() -> void:
+	current_health = max_health
+	emit_signal("health_changed", current_health, max_health)
+
 func reset():
 	max_health = 5
 	current_health = 5

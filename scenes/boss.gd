@@ -142,7 +142,7 @@ func slow_down() -> void:
 		slow_hit_sfx.play()
 	_is_slowed = true
 	speed = REDUCED_SPEED
-	await get_tree().create_timer(2.0).timeout
+	await get_tree().create_timer(1.5).timeout
 	_is_slowed = false
 	speed = CHASE_SPEED
 

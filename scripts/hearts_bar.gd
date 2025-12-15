@@ -3,11 +3,12 @@ extends Node2D
 @export var heart_scene: PackedScene
 
 var hearts: Array = []
-var max_health: int = GameState.max_health
+var max_health: int = -1   # sentinel value
 
 func _ready() -> void:
-	_create_hearts()
 	GameState.health_changed.connect(_on_health_changed)
+
+	_on_health_changed(GameState.current_health, GameState.max_health)
 
 func _create_hearts() -> void:
 	for c in get_children():
@@ -21,8 +22,7 @@ func _create_hearts() -> void:
 		hearts.append(h)
 
 func _on_health_changed(current: int, max: int) -> void:
-	# Rebuild hearts if max health changed
-	if hearts.size() != max:
+	if max_health != max:
 		max_health = max
 		_create_hearts()
 

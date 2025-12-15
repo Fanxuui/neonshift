@@ -1,4 +1,4 @@
-[gd_scene load_steps=127 format=4 uid="uid://dilen613djetp"]
+[gd_scene load_steps=129 format=4 uid="uid://dilen613djetp"]
 
 [ext_resource type="Texture2D" uid="uid://c2u3o2r05frjl" path="res://assets/Sidescroller Shooter - Central City/Background/Base Color.png" id="1_xc1pa"]
 [ext_resource type="Texture2D" uid="uid://6qg8u82gy61f" path="res://assets/Sidescroller Shooter - Central City/Background/Background Props.png" id="2_j2jmx"]
@@ -37,6 +37,8 @@
 [ext_resource type="PackedScene" uid="uid://dwvpu2l4olj12" path="res://scenes/shooter.tscn" id="34_017xt"]
 [ext_resource type="PackedScene" uid="uid://bx57dgmmxmn0g" path="res://scenes/npc_1.tscn" id="35_ukaxa"]
 [ext_resource type="Resource" uid="uid://canm52y3w26d4" path="res://Dialogue/Level1_NPCs.tres" id="36_bjb0b"]
+[ext_resource type="PackedScene" uid="uid://dv1ikq1wucki2" path="res://scenes/ghost.tscn" id="36_y6uxt"]
+[ext_resource type="PackedScene" uid="uid://mvxs0un5xk2s" path="res://scenes/boss.tscn" id="37_r72fi"]
 [ext_resource type="Texture2D" uid="uid://c4yy0rhn3v2gc" path="res://assets/free-townspeople-cyberpunk-pixel-art/5/Idle.png" id="37_rbite"]
 [ext_resource type="PackedScene" uid="uid://cwy1twvc8kcu8" path="res://scenes/npc_3.tscn" id="38_egb33"]
 [ext_resource type="Texture2D" uid="uid://bcqrnwqyntrfu" path="res://assets/free-townspeople-cyberpunk-pixel-art/10/Idle.png" id="39_1h7x3"]
@@ -4970,7 +4972,7 @@ position = Vector2(1146, 28)
 position = Vector2(985, 177)
 
 [node name="Ranged4" parent="Enemies" instance=ExtResource("33_2wcyd")]
-position = Vector2(1795, 202)
+position = Vector2(1796, 177)
 
 [node name="Ranged5" parent="Enemies" instance=ExtResource("33_2wcyd")]
 position = Vector2(1293, 210)
@@ -4982,10 +4984,22 @@ position = Vector2(1969, 2)
 position = Vector2(2679, 45)
 
 [node name="Ranged6" parent="Enemies" instance=ExtResource("33_2wcyd")]
-position = Vector2(2577, 156)
+position = Vector2(2581, 193)
 
 [node name="Ranged7" parent="Enemies" instance=ExtResource("33_2wcyd")]
-position = Vector2(2190, 204)
+position = Vector2(2181, 192)
+
+[node name="ghost" parent="Enemies" instance=ExtResource("36_y6uxt")]
+position = Vector2(2369, -45)
+
+[node name="ghost2" parent="Enemies" instance=ExtResource("36_y6uxt")]
+position = Vector2(2000, 177)
+
+[node name="boss" parent="Enemies" instance=ExtResource("37_r72fi")]
+position = Vector2(3089, 207)
+
+[node name="ghost3" parent="Enemies" instance=ExtResource("36_y6uxt")]
+position = Vector2(3085, 375)
 
 [node name="NPCs" type="Node2D" parent="."]
 

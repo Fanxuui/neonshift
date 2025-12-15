@@ -4999,9 +4999,6 @@ position = Vector2(2000, 177)
 [node name="boss" parent="Enemies" instance=ExtResource("37_r72fi")]
 position = Vector2(3100, 179)
 
-[node name="ghost3" parent="Enemies" instance=ExtResource("36_y6uxt")]
-position = Vector2(3085, 375)
-
 [node name="NPCs" type="Node2D" parent="."]
 
 [node name="Npc1" parent="NPCs" instance=ExtResource("35_ukaxa")]

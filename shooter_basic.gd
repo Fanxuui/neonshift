@@ -21,6 +21,7 @@ var speed := 0
 @export var heal_drop_scene: PackedScene = preload("res://scenes/heal.tscn")
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var slow_hit_sfx: AudioStreamPlayer2D = $SlowHitSfx
 
 # === READY ===
 func _ready():
@@ -47,10 +48,14 @@ func _physics_process(delta):
 
 # === DAMAGE ===
 func slow_down() -> void:
+	if slow_hit_sfx:
+		slow_hit_sfx.play()
 	_is_slowed = true
 	speed = REDUCED_SPEED
+	modulate = Color(0,1,1)
 	await get_tree().create_timer(1.0).timeout
 	_is_slowed = false
+	modulate = Color(1,1,1)
 	speed = CHASE_SPEED
 
 func take_damage():

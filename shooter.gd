@@ -24,13 +24,13 @@ var speed := 0
 
 @export var bullet_scene: PackedScene
 @export var heal_drop_scene: PackedScene = preload("res://scenes/heal.tscn")
-
+@onready var slow_hit_sfx: AudioStreamPlayer2D = $SlowHitSfx
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 # === READY ===
 func _ready():
 	scale = Vector2(2,2)
-
+	modulate =  Color(0.5,0.5,1)
 	add_to_group("enemies")
 	var players = get_tree().get_nodes_in_group("player")
 	if players.size() > 0:
@@ -93,6 +93,8 @@ func shoot_spread(direction: Vector2):
 
 # === DAMAGE ===
 func slow_down() -> void:
+	if slow_hit_sfx:
+		slow_hit_sfx.play()
 	_is_slowed = true
 	speed = REDUCED_SPEED
 	await get_tree().create_timer(1.0).timeout
@@ -101,6 +103,8 @@ func slow_down() -> void:
 
 func take_damage2(from_position: Vector2 = global_position) -> void:
 	health -= 1
+	modulate = Color(1,0,0)
+	flash_sprite()
 	apply_knockback(from_position)
 	if health <= 0:
 		die()
@@ -133,3 +137,12 @@ func apply_knockback(from_position: Vector2):
 
 	_is_knocked_back = false
 	velocity = Vector2.ZERO
+	
+func flash_sprite():
+	var sprite = $AnimatedSprite2D
+		
+	for i in range(5):
+		sprite.modulate = Color(1,1,1,0.3)  # transparent
+		await get_tree().create_timer(0.07).timeout
+		sprite.modulate = Color(1,0,0,1)    # solid
+		await get_tree().create_timer(0.07).timeout

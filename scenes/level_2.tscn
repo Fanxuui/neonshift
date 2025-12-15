@@ -1,4 +1,4 @@
-[gd_scene load_steps=127 format=4 uid="uid://dilen613djetp"]
+[gd_scene load_steps=130 format=4 uid="uid://dilen613djetp"]
 
 [ext_resource type="Texture2D" uid="uid://c2u3o2r05frjl" path="res://assets/Sidescroller Shooter - Central City/Background/Base Color.png" id="1_xc1pa"]
 [ext_resource type="Texture2D" uid="uid://6qg8u82gy61f" path="res://assets/Sidescroller Shooter - Central City/Background/Background Props.png" id="2_j2jmx"]
@@ -37,12 +37,15 @@
 [ext_resource type="PackedScene" uid="uid://dwvpu2l4olj12" path="res://scenes/shooter.tscn" id="34_017xt"]
 [ext_resource type="PackedScene" uid="uid://bx57dgmmxmn0g" path="res://scenes/npc_1.tscn" id="35_ukaxa"]
 [ext_resource type="Resource" uid="uid://canm52y3w26d4" path="res://Dialogue/Level1_NPCs.tres" id="36_bjb0b"]
+[ext_resource type="PackedScene" uid="uid://dv1ikq1wucki2" path="res://scenes/ghost.tscn" id="36_y6uxt"]
+[ext_resource type="PackedScene" uid="uid://mvxs0un5xk2s" path="res://scenes/boss.tscn" id="37_r72fi"]
 [ext_resource type="Texture2D" uid="uid://c4yy0rhn3v2gc" path="res://assets/free-townspeople-cyberpunk-pixel-art/5/Idle.png" id="37_rbite"]
 [ext_resource type="PackedScene" uid="uid://cwy1twvc8kcu8" path="res://scenes/npc_3.tscn" id="38_egb33"]
 [ext_resource type="Texture2D" uid="uid://bcqrnwqyntrfu" path="res://assets/free-townspeople-cyberpunk-pixel-art/10/Idle.png" id="39_1h7x3"]
 [ext_resource type="Texture2D" uid="uid://0x6si23le5ox" path="res://assets/Striker/P0-end.png" id="40_jekav"]
 [ext_resource type="PackedScene" uid="uid://r6rmnr4ffm04" path="res://scenes/shooter_basic.tscn" id="41_qs8wu"]
 [ext_resource type="Script" uid="uid://b370hvyeujup6" path="res://scripts/room_transition_area.gd" id="42_j2jmx"]
+[ext_resource type="PackedScene" uid="uid://s5e3vf4tt5bi" path="res://scenes/flying_enemy.tscn" id="46_r72fi"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yc10j"]
 texture = ExtResource("1_xc1pa")
@@ -4970,7 +4973,7 @@ position = Vector2(1146, 28)
 position = Vector2(985, 177)
 
 [node name="Ranged4" parent="Enemies" instance=ExtResource("33_2wcyd")]
-position = Vector2(1795, 202)
+position = Vector2(1796, 177)
 
 [node name="Ranged5" parent="Enemies" instance=ExtResource("33_2wcyd")]
 position = Vector2(1293, 210)
@@ -4982,10 +4985,22 @@ position = Vector2(1969, 2)
 position = Vector2(2679, 45)
 
 [node name="Ranged6" parent="Enemies" instance=ExtResource("33_2wcyd")]
-position = Vector2(2577, 156)
+position = Vector2(2581, 193)
 
 [node name="Ranged7" parent="Enemies" instance=ExtResource("33_2wcyd")]
-position = Vector2(2190, 204)
+position = Vector2(2181, 192)
+
+[node name="ghost" parent="Enemies" instance=ExtResource("36_y6uxt")]
+position = Vector2(2369, -45)
+
+[node name="ghost2" parent="Enemies" instance=ExtResource("36_y6uxt")]
+position = Vector2(2000, 177)
+
+[node name="boss" parent="Enemies" instance=ExtResource("37_r72fi")]
+position = Vector2(3100, 179)
+
+[node name="ghost3" parent="Enemies" instance=ExtResource("36_y6uxt")]
+position = Vector2(3085, 375)
 
 [node name="NPCs" type="Node2D" parent="."]
 
@@ -5070,6 +5085,12 @@ to_room = "uid://be2adml4jayjp"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(48.5, -79)
 shape = SubResource("RectangleShape2D_xc1pa")
+
+[node name="ghost" parent="." instance=ExtResource("46_r72fi")]
+position = Vector2(2754, 51)
+
+[node name="ghost2" parent="." instance=ExtResource("46_r72fi")]
+position = Vector2(2507, -62)
 
 [connection signal="attacked" from="Player" to="CanvasLayer/TutorialUI/AttackTutorial" method="delete_tutorial"]
 [connection signal="double_jumped" from="Player" to="CanvasLayer/TutorialUI/DoubleJumpTutorial" method="delete_tutorial"]

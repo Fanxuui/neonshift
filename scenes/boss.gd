@@ -27,7 +27,7 @@ var _is_knocked_back := false
 # --- Phase 2  ---
 const P2_STRAFE_SPEED := 60.0
 const P2_STRAFE_RADIUS := 140.0       
-const P2_RING_BULLETS := 10
+const P2_RING_BULLETS := 8
 const P2_RING_COOLDOWN := 2.5
 const P2_BULLET_SPEED := 260.0
 
@@ -44,6 +44,7 @@ const P3_TACKLE_COOLDOWN := 1.8
 enum P3State { APPROACH, TACKLE, RETREAT }
 var _p3_state := P3State.APPROACH
 var _p3_can_tackle := true
+@onready var slow_hit_sfx: AudioStreamPlayer2D = $SlowHitSfx
 
 
 # --- Phase 4 ---
@@ -69,8 +70,7 @@ var speed := 0
 @export var heal_drop_scene: PackedScene = preload("res://scenes/heal.tscn")
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var gunsprite: Sprite2D = $GunPivot/Gun
-@onready var handsprite: Sprite2D = $GunPivot/Hands
+
 
 
 # === READY ===
@@ -120,28 +120,36 @@ func shoot_spread(direction: Vector2):
 		var bullet_speed := 200
 		if _is_slowed:
 			bullet_speed *= BULLET_SLOW_MULT
+			bullet.modulate = Color(0,1,1)
+			
+
 
 		bullet.speed = bullet_speed
 		bullet.scale = Vector2(3, 3)
 
 
 	#animated_sprite.play("shoot")
+	if _is_slowed:
+		await get_tree().create_timer(FIRE_COOLDOWN * 2).timeout
+	else:
+		await get_tree().create_timer(FIRE_COOLDOWN).timeout
 
-	await get_tree().create_timer(FIRE_COOLDOWN).timeout
 	can_shoot = true
 
 # === DAMAGE ===
 func slow_down() -> void:
+	if slow_hit_sfx:
+		slow_hit_sfx.play()
 	_is_slowed = true
 	speed = REDUCED_SPEED
-	await get_tree().create_timer(1.0).timeout
+	await get_tree().create_timer(2.0).timeout
 	_is_slowed = false
 	speed = CHASE_SPEED
 
 func take_damage2(from_position: Vector2 = global_position) -> void:
 	health -= 1
 	_update_phase()
-
+	flash_sprite()
 	apply_knockback(from_position)
 	if health <= 0:
 		die()
@@ -230,7 +238,7 @@ func _phase_1(delta):
 	if dist <= CHASE_RANGE:
 		if _is_slowed:
 			speed = REDUCED_SPEED
-			$AnimatedSprite2D.modulate = Color(0,0,1)
+			$AnimatedSprite2D.modulate = Color(0,1,1)
 		else:
 			speed = CHASE_SPEED
 			$AnimatedSprite2D.modulate = Color(1,1,1)
@@ -268,13 +276,12 @@ func _phase_2(delta):
 	# Face the player
 	if dx != 0:
 		animated_sprite.flip_h = dx < 0
-		gunsprite.flip_h = dx < 0
-		handsprite.flip_h = dx < 0
+
 
 	var move_speed := P2_STRAFE_SPEED * 2
 	if _is_slowed:
 		move_speed = P2_STRAFE_SPEED / 3
-		animated_sprite.modulate = Color(0, 0, 1)
+		animated_sprite.modulate = Color(0, 1, 1)
 	else:
 		animated_sprite.modulate = Color(1, 1, 1)
 	# Maintain preferred horizontal distance
@@ -297,7 +304,7 @@ func _phase_2(delta):
 
 func _p2_ring_burst():
 	_p2_can_ring = false
-
+	modulate = Color(1, 0.5, 0)
 	var count := P2_RING_BULLETS
 	for i in range(count):
 		var angle := TAU * float(i) / float(count)
@@ -310,6 +317,8 @@ func _p2_ring_burst():
 		var bullet_speed := P2_BULLET_SPEED
 		if _is_slowed:
 			bullet_speed *= BULLET_SLOW_MULT
+			bullet.modulate = Color(0,1,1)
+
 
 		bullet.speed = bullet_speed
 		bullet.scale = Vector2(2.5, 2.5)
@@ -324,7 +333,7 @@ func _p2_ring_burst():
 func _phase_3(delta):
 	if not player:
 		return
-		
+	modulate = Color(0,1,0)
 	if _is_knocked_back:
 		move_and_slide()
 		return
@@ -337,7 +346,7 @@ func _phase_3(delta):
 		var move_speed: float
 		if _is_slowed:
 			move_speed = REDUCED_SPEED
-			modulate = Color(0, 0, 1)
+			modulate = Color(0, 1, 1)
 		else:
 			move_speed = CHASE_SPEED
 			modulate = Color(1, 1, 1)
@@ -346,8 +355,7 @@ func _phase_3(delta):
 
 		# Flip sprite based on direction
 		animated_sprite.flip_h = dir.x < 0
-		gunsprite.flip_h = dir.x < 0
-		handsprite.flip_h = dir.x < 0
+
 	else:
 		velocity = Vector2.ZERO
 		move_and_slide()
@@ -358,7 +366,7 @@ func _phase_4(delta):
 		velocity.y = 0 
 		move_and_slide()
 		return
-		
+	modulate = Color(0,0,0)
 	if not is_on_floor():
 		velocity.y += GRAVITY * delta
 	else:
@@ -372,8 +380,8 @@ func _phase_4(delta):
 			reachable = true
 		if reachable:
 			if _is_slowed:
-				speed = REDUCED_SPEED
-				modulate = Color(0, 0, 1)
+				speed = REDUCED_SPEED / 1.5
+				modulate = Color(0, 1, 1)
 			else:
 				speed = CHASING_SPEED
 				modulate = Color(1, 1, 1)
@@ -386,21 +394,25 @@ func _phase_4(delta):
 		if not ray_cast_bottom.is_colliding():
 			direction *= -1
 			animated_sprite.flip_h = direction < 0
-			gunsprite.flip_h = direction < 0
-			handsprite.flip_h = direction < 0
+		
 			target_point.position.x *= -1
 		elif ray_cast_right.is_colliding():
 			direction = -1
 			target_point.position.x *= -1
 			animated_sprite.flip_h = true
-			gunsprite.flip_h = true
-			handsprite.flip_h = true
+		
 		elif ray_cast_left.is_colliding():
 			direction = 1
 			animated_sprite.flip_h = false
-			gunsprite.flip_h = false
-			handsprite.flip_h = false
 			target_point.position.x *= -1
 			
 		velocity.x = direction * speed
 		move_and_slide()
+func flash_sprite():
+	var sprite = $AnimatedSprite2D
+	
+	for i in range(5):
+		sprite.modulate = Color(1,1,1,0.3)  # transparent
+		await get_tree().create_timer(0.07).timeout
+		sprite.modulate = Color(1,0,0,1)    # solid
+		await get_tree().create_timer(0.07).timeout

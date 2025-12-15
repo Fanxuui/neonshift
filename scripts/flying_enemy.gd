@@ -18,11 +18,15 @@ var health := MAX_HEALTH
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
 @export var heal_drop_scene: PackedScene = preload("res://scenes/heal.tscn")
+@onready var slow_hit_sfx: AudioStreamPlayer2D = $SlowHitSfx
+@onready var alert_icon: Sprite2D = $AlertIcon
 
 
 
 # === READY ===
 func _ready():
+	modulate = Color(0, 1, 0)
+
 	add_to_group("enemies")
 	scale = Vector2(2,2)
 	var players = get_tree().get_nodes_in_group("player")
@@ -48,10 +52,10 @@ func _physics_process(delta):
 		var move_speed: float
 		if _is_slowed:
 			move_speed = REDUCED_SPEED
-			modulate = Color(0, 0, 1)
+			modulate = Color(0, 1, 1)
 		else:
 			move_speed = CHASE_SPEED
-			modulate = Color(1, 1, 1)
+			modulate = Color(0, 1, 0)
 		velocity = dir * move_speed
 		move_and_slide()
 
@@ -64,14 +68,22 @@ func _physics_process(delta):
 # === DAMAGE & STATUS ===
 func take_damage2(from_position: Vector2 = global_position) -> void:
 	health -= 1
+	modulate = Color(1,0,0)
+	flash_sprite()
 	apply_knockback(from_position)
 	if health <= 0:
 		die()
 
 func slow_down() -> void:
+	if slow_hit_sfx:
+		slow_hit_sfx.play()
 	_is_slowed = true
+	modulate = Color(0, 1, 1)
+
 	await get_tree().create_timer(1.0).timeout
 	_is_slowed = false
+	modulate = Color(1, 1, 1)
+
 
 func die() -> void:
 	if heal_drop_scene:
@@ -94,3 +106,12 @@ func apply_knockback(player_pos: Vector2):
 	move_and_slide()
 	await get_tree().create_timer(KNOCKBACK_DURATION).timeout
 	_is_knocked_back = false
+
+func flash_sprite():
+	var sprite = $AnimatedSprite2D
+	
+	for i in range(5):
+		sprite.modulate = Color(1,1,1,0.3)  # transparent
+		await get_tree().create_timer(0.07).timeout
+		sprite.modulate = Color(1,0,0,1)    # solid
+		await get_tree().create_timer(0.07).timeout

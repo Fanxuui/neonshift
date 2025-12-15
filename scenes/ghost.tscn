@@ -1,10 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://dv1ikq1wucki2"]
+[gd_scene load_steps=18 format=3 uid="uid://dv1ikq1wucki2"]
 
 [ext_resource type="Script" uid="uid://bjpy5d3haavp3" path="res://scripts/ghost.gd" id="1_fj7t6"]
 [ext_resource type="Texture2D" uid="uid://cv6lnsf12w2gu" path="res://assets/industrial.v2.png" id="1_tykv7"]
 [ext_resource type="PackedScene" uid="uid://g51wsrys1hsp" path="res://scenes/killzone.tscn" id="2_l5lq6"]
-[ext_resource type="PackedScene" uid="uid://b1raqrcad5iof" path="res://scenes/shoot_point.tscn" id="3_5mfnq"]
 [ext_resource type="PackedScene" uid="uid://cavf4ju8qt1vl" path="res://scenes/target_point.tscn" id="4_veat2"]
+[ext_resource type="AudioStream" uid="uid://k0arf42qlk3v" path="res://assets/Music/Sounds/enemy-hurt.wav" id="5_lv6vd"]
+[ext_resource type="AudioStream" uid="uid://da6qam7gqurwa" path="res://assets/Music/Sounds/be slowed.wav" id="6_sv5gc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l5lq6"]
 atlas = ExtResource("1_tykv7")
@@ -76,12 +77,6 @@ size = Vector2(14, 13)
 collision_layer = 4
 script = ExtResource("1_fj7t6")
 
-[node name="TargetPoint" parent="." instance=ExtResource("4_veat2")]
-position = Vector2(500.2132, 219.14066)
-
-[node name="ShootPoint" parent="." instance=ExtResource("3_5mfnq")]
-position = Vector2(0, -7)
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 position = Vector2(0, -8)
@@ -123,5 +118,17 @@ collision_layer = 64
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_5mfnq")
+
+[node name="HitSfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_lv6vd")
+volume_db = 6.746
+bus = &"SFX"
+
+[node name="SlowHitSfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_sv5gc")
+volume_db = 17.427
+bus = &"SFX"
+
+[node name="TargetPoint" parent="." instance=ExtResource("4_veat2")]
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
